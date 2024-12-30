@@ -1,34 +1,31 @@
-'use client'
-import React, { use, useEffect, useState } from 'react'
-import { fetchMovieTrending } from '@/app/Service/imdbAPI'
+'use client';
 
-export default function page() {
+import React, { useEffect, useState } from 'react';
+import { fetchTrending } from '@/app/Service/imdbAPI';
 
-  const [movie, setMovie] = useState([])
+export default function TrendingMovies() {
+  const [movies, setMovies] = useState([]);
+
   useEffect(() => {
-    const getMovieTrending = async () => {
+    const getTrendingMovies = async () => {
       try {
-        const res = await fetchMovieTrending();
-        setMovie(res)
-        
+        const results = await fetchTrending('movie'); // 'movie' คือ type
+        setMovies(results); // เก็บผลลัพธ์ใน state
+      } catch (err) {
+        console.error('Error fetching trending movies:', err);
       }
-      catch (err) {
-        console.log('getMovieTrending error is : ' , err)
-      }
-    }
-    getMovieTrending();
-  }, [])
-  
-  console.log(movie);
-  
+    };
+    getTrendingMovies();
+  }, []);
 
   return (
     <div>
-      {
-        movie.map((items) => (
-          <div key={items.id}>{items.title}</div>
-        ))
-      }
+      <h1>Trending Movies</h1>
+      <ul>
+        {movies.map((movie) => (
+          <li key={movie.id}>{movie.title}</li> // แสดงชื่อหนัง
+        ))}
+      </ul>
     </div>
-  )
+  );
 }
