@@ -1,52 +1,18 @@
-    import axiosClient from "./axiosClient";
+import axios from "axios"
 
-    export const category = {
-        movie : 'movie',
-        tv : 'tv'
-    }
+const API_KEY = process.env.NEXT_PUBLIC_API_KEY
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL
 
-    export const movieType = {
-        upcoming : 'upcoming',
-        popular : 'popular',
-        top_rated : 'top_rated',
-        trending : 'trending'
-    }
 
-    export const tvType = {
-        popular : 'popular',
-        top_rated : 'top_rated' , 
-        on_the_air : 'on_the_air',
-        trending : 'trending'
+export const fetchMovieTrending = async () => {
+    try {
+        const res = await axios.get(`${BASE_URL}/trending/movie/week?api_key=${API_KEY}&language=en-US
+            `)
+        const results = res.data.results
+        return results
     }
-    const tmdbApi = {
-        getMovieList : (type , params) => {
-            const url = `/movie/${movieType[type]}`;
-            return axiosClient.get(url , params);
-        },
-        getTvList : (type , params) => {
-            const url = `/tv/${tvType[type]}`
-            return axiosClient.get(url , params)
-        },
-        getVideo : (cate , id) => {
-            const url = `${category[cate]}/${id}/video`;
-            return axiosClient.get(url , {params : {}})
-        }, 
-        datail : (cate  , id , params) => {
-            const url = `${category[cate]}/${id}`
-            return axiosClient.get(url , params)
-        },
-        credits : (cate , id ) => {
-            const url = `${category[cate]}/${id}/credits`
-            return axiosClient.get(url , {params : {}})
-        },
-        similar : (cate , id ) => {
-            const url = `${category[cate]}/${id}/similar`
-            return axiosClient.get(url , {params : {}})
-        },
-        genre : (cate) => {
-            const url = `/genre/${category[cate]}/list`
-            return axiosClient.get(url , {params : {}})
-        }
+    catch (error) {
+        console.log('Error Movietrending is : ', error)
+        throw error;
     }
-
-    export default tmdbApi;
+};

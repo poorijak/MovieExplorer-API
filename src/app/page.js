@@ -1,36 +1,34 @@
 'use client'
-import Image from "next/image";
-import tmdbApi, { movieType } from "./Service/imdbAPI";
-import axiosClient from "./Service/axiosClient";
-import { useEffect, useState } from "react";
+import React, { use, useEffect, useState } from 'react'
+import { fetchMovieTrending } from '@/app/Service/imdbAPI'
 
-export default function Home() {
-  const [data, setData] = useState([])
+export default function page() {
 
+  const [movie, setMovie] = useState([])
   useEffect(() => {
-    const fetchData = async () => {
+    const getMovieTrending = async () => {
       try {
-        const params = { language: 'en-US', page: 1 }
-        const res = await tmdbApi.getMovieList(movieType.popular, {params});
-        setData(res.results.genres)
-
+        const res = await fetchMovieTrending();
+        setMovie(res)
+        
       }
       catch (err) {
-        console.log('error is : ', err);
-
+        console.log('getMovieTrending error is : ' , err)
       }
     }
-
-    fetchData();
+    getMovieTrending();
   }, [])
-
-  useEffect(() => {
-    console.log(data)
-  } , [data])
+  
+  console.log(movie);
+  
 
   return (
-    <>
-      <h2>Hello</h2>
-    </>
-  );
+    <div>
+      {
+        movie.map((items) => (
+          <div key={items.id}>{items.title}</div>
+        ))
+      }
+    </div>
+  )
 }
