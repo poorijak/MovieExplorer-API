@@ -6,7 +6,7 @@ const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL
 
 export const fetchTrending = async (type) => {
     try {
-        const res = await axios.get(`${BASE_URL}/trending/${type}/week`, { params: { api_key: API_KEY, language: 'en-Us' } })
+        const res = await axios.get(`${BASE_URL}/trending/${type}/week`, { params: { api_key: API_KEY, language: 'en-Us' , page: 1 } })
         const results = res.data.results
         return results
     }
