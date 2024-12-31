@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { fetchTrending } from '@/app/Service/imdbAPI';
-import HeroSection from './components/HeroSection';
+import HeroSection from './components/HeroSection/HeroSection';
 
 export default function TrendingMovies() {
   
@@ -10,6 +10,9 @@ export default function TrendingMovies() {
   return (
     <div>
       <HeroSection/>
+      <p>
+        lorem400000000
+      </p>
     </div>
   );
 }
