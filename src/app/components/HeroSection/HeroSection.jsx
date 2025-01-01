@@ -69,14 +69,14 @@ export default function HeroSection() {
                   <div className=''>
                     <div className='flex flex-col pt-32 xl:pl-16 justify-center'>
                       <h1 className='text-3xl md:text-4xl xl:text-6xl font-bold mb-5'>{item.original_title}</h1>
-                      <p className='hidden md:block w-96 line-clamp-2 md:line-clamp-3 lg:line-clamp-4  mb-5 font-medium'>{item.overview}</p>
+                      <p className='hidden sm:block w-96 line-clamp-1 md:line-clamp-2 2xl:line-clamp-3  mb-5 font-medium'>{item.overview}</p>
                       <p className='mb-5 font-semibold xl:text-[#787878] text-white '>{item.genres.join(' , ')}</p>
                       <div className='flex gap-2 mb-5 text-lg items-center'>
                         <FaStar className='text-amber-400' />
                         <p className='flex items-center text-2xl font-bold mr-2'>{item.vote_average.toFixed(1)}<span className='ml-2 text-lg'> /10</span></p>
                         <Image src='IMDB.svg' width={50} height={50} alt='imdb logo' />
                       </div>
-                      <div className='flex item-center gap-5'>
+                      <div className='flex justify-center lg:justify-normal item-center gap-5'>
                         <button className='group bg-[#FF1C1C] rounded-md text-black font-bold hover:shadow-[0px_0px_10px_-1px_#ff4f4f] transition-shadow duration-300'>
                           <Link href={`/movie/${item.id}`} className='flex items-center px-4 py-2 gap-4 group-hover:text-white transition-colors duration-100'><FaPlay /> Watch Detail</Link>
                         </button>
