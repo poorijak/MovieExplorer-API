@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Mousewheel, Autoplay, Navigation } from 'swiper/modules';
-import { fetchPopular } from '@/app/Service/imdbAPI';
 import { FaPlay, FaStar } from "react-icons/fa6";
 import { IoIosArrowDroprightCircle } from "react-icons/io";
+import { TbHandFinger } from "react-icons/tb";
 import Image from 'next/image';
 import Link from 'next/link';
+import { fetchPopular } from '../../Service/imdbAPI';
 
 
 export default function PopularMovie() {
@@ -93,17 +94,31 @@ export default function PopularMovie() {
                     {
                         movie.map((item) => (
                             <SwiperSlide key={item.id} className='h-[500px]'>
-                                <Link href={`/movie/${item.id}`}>
-                                    <Image src={`https://image.tmdb.org/t/p/original${item.poster_path || item.backdrop_path}`} width={250} height={250} alt={item.original_title} className=' rounded-md w-auto' />
-                                </Link>
-                                <h2>{item.original_title || item.name}</h2>
-                                <div className='flex justify-between'>
-                                    <p>{item.release_date.split('-')[0]}</p>
-                                    <div className='flex items-center'>
-                                        <FaStar className='text-amber-400' />
-                                        <p className='ml-1 '>{item.vote_average.toFixed(1)}</p>
+                                <div>
+                                    <Link
+                                        href={`/movie/${item.id}`}
+                                        className="block overflow-hidden rounded-md relative"
+                                    >
+                                        <div className="group relative w-full h-0 pb-[150%] overflow-hidden">
+                                            <Image
+                                                src={`https://image.tmdb.org/t/p/original${item.poster_path || item.backdrop_path}`}
+                                                width={250}
+                                                height={250}
+                                                alt={item.original_title}
+                                                className="absolute top-0 left-0 w-full h-full object-cover transition-transform duration-300 ease-in-out group-hover:scale-110"
+                                            />
+                                        </div>
+                                    </Link>
+                                    <h2 className='font-semibold'>{item.original_title || item.name}</h2>
+                                    <div className='flex justify-between'>
+                                        <p className='text-[#a6a6a6]'>{item.release_date.split('-')[0]}</p>
+                                        <div className='flex items-center'>
+                                            <FaStar className='text-amber-400' />
+                                            <p className='ml-1 text-[#a6a6a6] '>{item.vote_average.toFixed(1)}</p>
+                                        </div>
                                     </div>
                                 </div>
+
                             </SwiperSlide>
                         ))
                     }
