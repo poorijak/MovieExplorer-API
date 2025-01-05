@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import HeroSection from './components/HeroSection/HeroSection';
 import PopularMovie from './components/PopularMovie/PopularMovie';
 
+
 export default function TrendingMovies() {
   
   
