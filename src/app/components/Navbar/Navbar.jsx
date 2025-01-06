@@ -85,11 +85,11 @@ export default function Navbar() {
           initial={{ y: '-200%' }}
           animate={isVisible ? 'visible' : 'hidden'}
           transition={{ duration: 0.6, ease: 'easeInOut' }}
-          className='w-11/12 lg:w-[935px] h-[52px] fixed  top-0 mt-3 shadow-lg shadow-[#171717]/50 bg-[#17171771] backdrop-blur-none lg:backdrop-blur-xl z-50 px-4 lg:px-10  rounded-xl border-[#ffff] after:-z-10 after:conten-[] after:absolute after:inset-0 after:outline-1 after:outline after:-outline-offset-1 after:rounded-xl after:outline-white/30'
+          className={`w-11/12 lg:w-[935px] h-[52px] fixed  top-0 mt-3 shadow-lg shadow-[#171717]/50 bg-[#17171771] ${isOpen ? 'backdrop-blur-none' : 'backdrop-blur-lg'} z-50 px-4 lg:px-10  rounded-xl border-[#ffff] after:-z-10 after:conten-[] after:absolute after:inset-0 after:outline-1 after:outline after:-outline-offset-1 after:rounded-xl after:outline-white/30`}
         >
           <div className='w-full h-full flex justify-between items-center relative'>
             <div className=''>
-              <Link href={'#'}>
+              <Link href={'/'}>
                 <RiMovie2AiFill className='text-2xl lg:text-3xl' />
               </Link>
             </div>
@@ -116,6 +116,7 @@ export default function Navbar() {
           <AnimatePresence>
             {isOpen ? (
               <motion.div
+              
                 initial={{ scaleY: 0, opacity: 0 }} // เริ่มจากย่อขนาดลง
                 animate={{ scaleY: 1, opacity: 1 }} // ยืดเต็มขนาด
                 exit={{ scaleY: 0, opacity: 0, transition: { duration: 0.3, ease: 'easeInOut' } }} // หดกลับ

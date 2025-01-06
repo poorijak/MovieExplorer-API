@@ -1,4 +1,5 @@
 import axios from "axios"
+import { type } from "os";
 
 const API_KEY = process.env.NEXT_PUBLIC_API_KEY
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL
@@ -84,6 +85,20 @@ export const fetchCasting = async (type , id) => {
     catch (err) {
         console.log("casting error api : ", err)
         throw err;
+    }
+}
+
+
+export const fetchSearch = async(type , searchTerm) => {
+    try {
+        const res = await axios.get(`${BASE_URL}/search/${type}?query=${searchTerm}&include_adult=false` , { params: { api_key: API_KEY, language: 'en-Us' } })
+        const  results = res.data.results
+        return results 
+    }
+    catch (err) {
+        console.log("fetchSearch err api : " , err);
+        throw err;
+        
     }
 }
 
