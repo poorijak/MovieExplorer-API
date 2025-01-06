@@ -102,6 +102,18 @@ export const fetchSearch = async(type , searchTerm) => {
     }
 }
 
+export const fetchTopRate = async(type) => {
+    try {
+        const res = await axios.get((`${BASE_URL}/${type}/top_rated`) , { params : { api_key : API_KEY , language : 'en-Us'}})
+        const results = res.data.results
+        return results
+    }
+    catch (err) {
+        console.log('fetchTopRated err api : ' , err);
+        throw err
+    }
+}
+
 
 
 export const fetchSimilar = async (type , id) => {

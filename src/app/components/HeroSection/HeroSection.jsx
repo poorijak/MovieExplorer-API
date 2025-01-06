@@ -63,7 +63,7 @@ export default function HeroSection() {
                 style={{
                   backgroundImage: `url(${`https://image.tmdb.org/t/p/original${item.backdrop_path}`})`,
                 }}
-                className='bg-cover bg-center h-[500px] xl:bg-top  w-screen'
+                className='bg-cover bg-center h-[60vh] xl:bg-top  w-screen'
               >
                 <div className='bg-blackOverlay_1 xl:bg-blackOverlay_2 flex justify-center items-center xl:block w-full h-full'>
                   <div className=''>

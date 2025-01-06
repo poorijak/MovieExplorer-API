@@ -3,6 +3,8 @@
 import React, { useEffect, useState } from 'react';
 import HeroSection from './components/HeroSection/HeroSection';
 import PopularMovie from './components/PopularMovie/PopularMovie';
+import PopularSeries from './components/PopularSeries/PopularSeries'
+import TopRated from './components/TopRated/TopRated'
 
 
 export default function TrendingMovies() {
@@ -13,8 +15,8 @@ export default function TrendingMovies() {
     <div className=''>
       <HeroSection/>
       <PopularMovie/>
-      <PopularMovie/>
-      <PopularMovie/>
+      <PopularSeries/>
+      <TopRated/>
       <PopularMovie/>
       <PopularMovie/>
       <PopularMovie/>

@@ -9,29 +9,29 @@ import Link from 'next/link';
 import { fetchPopular } from '../../Service/imdbAPI';
 
 
-export default function PopularMovie() {
-    const [movie, setMovie] = useState([])
+export default function PopularSeries() {
+    const [series, setSeries] = useState([])
 
     useEffect(() => {
-        const getPopularMovie = async () => {
+        const getPopularseries = async () => {
             try {
-                const res = await fetchPopular('movie');
-                setMovie(res)
+                const res = await fetchPopular('tv');
+                setSeries(res)
             }
             catch (err) {
-                console.log('getPopularMovieSection is : ', err);
+                console.log('getPopularseriesSection is : ', err);
 
             }
         }
-        getPopularMovie()
+        getPopularseries()
     }, [])
 
-    console.log(movie);
+    console.log(series);
 
     return (
         <>
             <div className=' my-5 ml-8 flex items-center'>
-                <h1 className='text-xl font-semibold'>Popular Movie</h1>
+                <h1 className='text-xl font-semibold'>Popular Tv</h1>
                 <div className="ml-2 group flex items-center">
                     <div className="relative flex items-center w-auto">
                         {/* ลูกศร */}
@@ -92,11 +92,11 @@ export default function PopularMovie() {
                     className='max-w-full h-auto mb-10'
                 >
                     {
-                        movie.map((item) => (
+                        series.map((item) => (
                             <SwiperSlide key={item.id} className='h-[500px]'>
                                 <div>
                                     <Link
-                                        href={`/movie/${item.id}`}
+                                        href={`/series/${item.id}`}
                                         className="block overflow-hidden rounded-md relative"
                                     >
                                         <div className="group relative w-full h-0 pb-[150%] overflow-hidden">
@@ -104,14 +104,13 @@ export default function PopularMovie() {
                                                 src={`https://image.tmdb.org/t/p/original${item.poster_path || item.backdrop_path}`}
                                                 width={250}
                                                 height={250}
-                                                alt={item.original_title}
+                                                alt={item.original_name}
                                                 className="absolute top-0 left-0 w-full h-full object-cover transition-transform duration-300 ease-in-out group-hover:scale-110"
                                             />
                                         </div>
                                     </Link>
-                                    <h2 className='font-semibold line-clamp-1'>{item.original_title || item.name}</h2>
+                                    <h2 className='font-semibold line-clamp-1'>{item.original_name || item.name}</h2>
                                     <div className='flex justify-between'>
-                                        <p className='text-[#a6a6a6]'>{item.release_date.split('-')[0]}</p>
                                         <div className='flex items-center'>
                                             <FaStar className='text-amber-400' />
                                             <p className='ml-1 text-[#a6a6a6] '>{item.vote_average.toFixed(1)}</p>
