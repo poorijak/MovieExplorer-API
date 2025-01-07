@@ -58,9 +58,11 @@ export default function Genres() {
 
     return (
         <div className='mt-10'>
-            <div className='w-11/12 mx-auto mb-10'>
-                <button className={`w-1/2 py-4 px-2 rounded-l-full border-2 border-gray-100 ${category === 'movie' ? 'bg-red-500' : 'bg-[#4b4b4b] ' }`} onClick={() => setCategory('movie')}>movie</button>
-                <button className={`w-1/2 py-4 px-2 rounded-r-full border-2 border-gray-100 ${category === 'tv'  ? 'bg-red-500' : 'bg-[#4b4b4b] '}`} onClick={() => setCategory('tv')}>tv</button>
+            <div className='w-full flex justify-center mb-10'>
+                <div className='flex w-52 p-1.5 border border-[#ffffff49] rounded-full bg-[#242424] '>
+                    <button className={`text-lg font-semibold w-24 py-2 px-4 rounded-full transition-all duration-300 ease-in-out ${category === 'movie' ? 'bg-red-500 shadow-[0px_0px_12px_-4px_#ff7a7a] ' : 'bg-[#242424] '}`} onClick={() => setCategory('movie')}>movie</button>
+                    <button className={`text-lg font-semibold w-24 py-2 px-4 rounded-full transition-all duration-300 ease-in-out ${category === 'tv' ? 'bg-red-500 shadow-[0px_0px_12px_-4px_#ff7a7a]' : 'bg-[#242424] '}`} onClick={() => setCategory('tv')}>tv</button>
+                </div>
             </div>
             <GenresFillter selected={selected} setSelected={setSelected} genres={genres} />
             <div>
