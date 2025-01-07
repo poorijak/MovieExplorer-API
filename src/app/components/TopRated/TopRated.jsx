@@ -69,7 +69,7 @@ export default function TopRated() {
                                 >
                                     <div className='bg-blackOverlay_3 flex justify-center items-center xl:block w-full h-full'>
                                         <div className='flex'>
-                                            <Image src={`https://image.tmdb.org/t/p/original${item.poster_path}`} width={250} height={75}  alt={item.name} />
+                                            <Image src={`https://image.tmdb.org/t/p/original${item.poster_path}`} width={250} height={75}  alt={item.original_title} />
                                             <div className='flex flex-col pt-32 xl:pl-16 justify-center'>
                                                 <h1 className='text-3xl md:text-4xl xl:text-6xl font-bold mb-5'>{item.original_title}</h1>
                                                 <p className='hidden sm:block w-96 line-clamp-1 md:line-clamp-2 2xl:line-clamp-3  mb-5 font-medium'>{item.overview}</p>

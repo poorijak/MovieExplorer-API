@@ -1,11 +1,12 @@
 'use client'
 import Link from 'next/link'
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, use } from 'react'
 import { RiMovie2AiFill } from "react-icons/ri";
 import { motion, AnimatePresence, delay } from 'framer-motion';
 import { FiSearch } from "react-icons/fi";
-import { useRouter } from 'next/navigation';
+import { useRouter , usePathname } from 'next/navigation';
 import { Squash as Hamburger } from 'hamburger-react'
+
 
 export default function Navbar() {
 
@@ -14,7 +15,10 @@ export default function Navbar() {
   const [isActive, setIsActive] = useState(false);
   const [search, setSearch] = useState('')
   const [isOpen, setIsOpen] = useState(false)
+  const [toggled , setToggled] = useState(false)
+  const pathName = usePathname()
   const router = useRouter();
+
   const handleSumit = (e) => {
     e.preventDefault();
     router.push(`search/${search}`)
@@ -42,9 +46,15 @@ export default function Navbar() {
 
 
 
+
   const toggleMenu = () => {
     setIsOpen(!isOpen)
   }
+
+  useEffect(() => {
+    setIsOpen(false)
+    setToggled(false)
+  }, [pathName])
 
   const items = {
     hidden: {
@@ -55,12 +65,12 @@ export default function Navbar() {
       opacity: 1,
       y: 0,
     },
-    visible : {
-      opacity : 0,
-      y : -20 , 
-      transition : {
+    visible: {
+      opacity: 0,
+      y: -20,
+      transition: {
         duration: 0.2,
-                ease: 'easeInOut'
+        ease: 'easeInOut'
       }
     }
   };
@@ -108,7 +118,7 @@ export default function Navbar() {
             {/* moblie nav */}
             <div className='lg:hidden flex items-center '>
               <button onClick={toggleMenu}>
-                <Hamburger size={25} />
+                <Hamburger size={25} toggled={toggled} toggle={setToggled}/>
               </button>
             </div>
           </div>
@@ -116,7 +126,7 @@ export default function Navbar() {
           <AnimatePresence>
             {isOpen ? (
               <motion.div
-              
+
                 initial={{ scaleY: 0, opacity: 0 }} // เริ่มจากย่อขนาดลง
                 animate={{ scaleY: 1, opacity: 1 }} // ยืดเต็มขนาด
                 exit={{ scaleY: 0, opacity: 0, transition: { duration: 0.3, ease: 'easeInOut' } }} // หดกลับ
@@ -125,38 +135,38 @@ export default function Navbar() {
               >
                 <ul className='w-full text-4xl font-bold ml-5 flex flex-col items-center'>
                   <motion.li
-                  variants={items}
-                  initial='hidden'
-                  animate='show'
-                  exit='visible'
+                    variants={items}
+                    initial='hidden'
+                    animate='show'
+                    exit='visible'
                     className='mb-5 pt-5'>
                     <Link href={'/'}>Movie</Link>
                   </motion.li>
 
                   <motion.li
-                  variants={items}
-                  initial='hidden'
-                  animate='show'
-                  exit='visible'
+                    variants={items}
+                    initial='hidden'
+                    animate='show'
+                    exit='visible'
                     className='mb-5'>
                     <Link href={'/'}>Tv Series</Link>
                   </motion.li>
 
                   <motion.li
-                  variants={items}
-                  initial='hidden'
-                  animate='show'
-                  exit='visible'
+                    variants={items}
+                    initial='hidden'
+                    animate='show'
+                    exit='visible'
                     className='mb-5'>
                     <Link href={'/'}>My List</Link>
                   </motion.li>
                 </ul>
 
                 <motion.form
-                variants={items}
-                initial='hidden'
-                animate='show'
-                exit='visible'
+                  variants={items}
+                  initial='hidden'
+                  animate='show'
+                  exit='visible'
                   action=""
                   className='flex items-center'
                   onSubmit={handleSumit}
