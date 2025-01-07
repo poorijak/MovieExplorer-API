@@ -49,8 +49,7 @@ export default function HeroSection() {
           forceToAxis: true,
           releaseOnEdges: true,
         }}
-        onSlideChange={() => console.log('Slide changed')}
-        onSwiper={(swiper) => console.log('Swiper initialized:', swiper)}
+       
 
         className='max-w-full '
       >

@@ -35,7 +35,7 @@ export default function TopRated() {
     return (
         <>
             <div className=' my-5 ml-8 flex items-center'>
-                <h1 className='text-xl font-semibold'>Popular Movie</h1>
+                <h1 className='text-xl font-semibold'>Top Rated Movie!</h1>
             </div>
             <div className='w-full'>
                 <Swiper
@@ -55,8 +55,6 @@ export default function TopRated() {
                         forceToAxis: true,
                         releaseOnEdges: true,
                     }}
-                    onSlideChange={() => console.log('Slide changed')}
-                    onSwiper={(swiper) => console.log('Swiper initialized:', swiper)}
                     pagination={{ clickable: true }}
                     scrollbar={{ draggable: true }}
 
@@ -74,7 +72,7 @@ export default function TopRated() {
                                 >
                                     <div className='bg-blackOverlay_3 flex justify-center items-center lg:block w-full h-full lg:rounded-xl'>
                                         <div className='flex flex-col lg:flex-row justify-center items-center  pt-32'>
-                                            <Image src={`https://image.tmdb.org/t/p/original${item.poster_path}`} width={200} height={300} layout='intrinsic' alt={item.original_title} />
+                                            <Image src={`https://image.tmdb.org/t/p/original${item.poster_path}`} width={200} height={300} priority  alt={item.original_title} />
                                             <div className='flex flex-col mt-5 lg:pl-16 justify-center items-center lg:items-start'>
                                                 <h1 className='text-3xl text-center lg:text-left md:text-4xl lg:text-5xl font-bold mb-5 w-96 line-clamp-2 '>{item.original_title}</h1>
                                                 <p className='w-96 px-10 lg:px-0 line-clamp-3  mb-5 font-medium'>{item.overview}</p>

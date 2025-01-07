@@ -1,5 +1,4 @@
 import axios from "axios"
-import { type } from "os";
 
 const API_KEY = process.env.NEXT_PUBLIC_API_KEY
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL
@@ -113,6 +112,7 @@ export const fetchTopRate = async(type) => {
         throw err
     }
 }
+
 
 
 

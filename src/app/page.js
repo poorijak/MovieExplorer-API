@@ -5,6 +5,7 @@ import HeroSection from './components/HeroSection/HeroSection';
 import PopularMovie from './components/PopularMovie/PopularMovie';
 import PopularSeries from './components/PopularSeries/PopularSeries'
 import TopRated from './components/TopRated/TopRated'
+import Genres from './components/Genres/Genres'
 
 
 export default function TrendingMovies() {
@@ -17,7 +18,7 @@ export default function TrendingMovies() {
       <PopularMovie/>
       <PopularSeries/>
       <TopRated/>
-      <PopularMovie/>
+      <Genres/>
       <PopularMovie/>
       <PopularMovie/>
       <PopularMovie/>

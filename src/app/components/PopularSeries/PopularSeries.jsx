@@ -85,8 +85,6 @@ export default function PopularSeries() {
                         forceToAxis: true,
                         releaseOnEdges: true,
                     }}
-                    onSlideChange={() => console.log('Slide changed')}
-                    onSwiper={(swiper) => console.log('Swiper initialized:', swiper)}
 
                     className='max-w-full h-auto mb-10'
                 >
