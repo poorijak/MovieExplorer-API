@@ -19,9 +19,12 @@ export default function Navbar() {
   const pathName = usePathname()
   const router = useRouter();
 
-  const handleSumit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    router.push(`search/${search}`)
+    const query = search.trim().startsWith('search/') ? search.trim().slice(7) : search.trim();
+    console.log('Search Query : ' , query);
+    
+    router.push(`search/${query}`)
   }
 
 
@@ -110,7 +113,7 @@ export default function Navbar() {
               <Link href={'#'}>Tv Series</Link>
               <Link href={'#'}>My List</Link>
             </div>
-            <form action="" className='gruop hidden  lg:flex items-center' onSubmit={handleSumit}>
+            <form action="" className='gruop hidden  lg:flex items-center' onSubmit={handleSubmit}>
               <input type="text" name="" id="" className='bg-transparent w-44 focus:outline-none' placeholder='search your keywords...' value={search} onChange={(e) => setSearch(e.target.value)} />
               <button className='text-gray-400 text-2xl font-medium  px-4 py-1.5 rounded-lg transition-transform  duration-300 hover:scale-105 hover:text-white'><FiSearch /></button>
             </form>
@@ -169,7 +172,7 @@ export default function Navbar() {
                   exit='visible'
                   action=""
                   className='flex items-center'
-                  onSubmit={handleSumit}
+                  onSubmit={handleSubmit}
                 >
                   <input
                     type="text"

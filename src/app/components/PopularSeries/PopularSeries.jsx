@@ -26,7 +26,6 @@ export default function PopularSeries() {
         getPopularseries()
     }, [])
 
-    console.log(series);
 
     return (
         <>

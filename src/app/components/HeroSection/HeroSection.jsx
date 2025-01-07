@@ -27,7 +27,6 @@ export default function HeroSection() {
     getTrending();
   }, [])
 
-  console.log(movie);
 
 
 
