@@ -9,21 +9,17 @@ import Genres from './components/Genres/Genres'
 
 
 export default function TrendingMovies() {
-  
-  
+
+
 
   return (
     <div className=''>
       <HeroSection/>
       <PopularMovie/>
-      <PopularSeries/>
-      <TopRated/>
-      <Genres/>
-      <PopularMovie/>
-      <PopularMovie/>
-      <PopularMovie/>
-      <PopularMovie/>
-      
+      <PopularSeries />
+      <TopRated />
+      <Genres />
+
     </div>
   );
 }

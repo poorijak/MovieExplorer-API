@@ -86,7 +86,7 @@ export default function PopularSeries() {
                         releaseOnEdges: true,
                     }}
 
-                    className='max-w-full h-auto mb-10'
+                    className='max-w-full h-auto mb-10  focus:cursor-grabbing'
                 >
                     {
                         series.map((item) => (
@@ -102,7 +102,7 @@ export default function PopularSeries() {
                                                 width={250}
                                                 height={250}
                                                 alt={item.original_name}
-                                                className="absolute top-0 left-0 w-full h-full object-cover transition-transform duration-300 ease-in-out group-hover:scale-110"
+                                                className="absolute  top-0 left-0 w-full h-full object-cover transition-transform duration-300 ease-in-out group-hover:scale-110"
                                             />
                                         </div>
                                     </Link>

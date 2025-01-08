@@ -54,14 +54,17 @@ export default function Genres() {
 
     }, [selected, category])
 
+    console.log(content);
+    
+
 
 
     return (
         <div className='mt-10'>
             <div className='w-full flex justify-center mb-10'>
                 <div className='flex w-52 p-1.5 border border-[#ffffff49] rounded-full bg-[#242424] '>
-                    <button className={`text-lg font-semibold w-24 py-2 px-4 rounded-full transition-all duration-300 ease-in-out ${category === 'movie' ? 'bg-red-500 shadow-[0px_0px_12px_-4px_#ff7a7a] ' : 'bg-[#242424] '}`} onClick={() => setCategory('movie')}>movie</button>
-                    <button className={`text-lg font-semibold w-24 py-2 px-4 rounded-full transition-all duration-300 ease-in-out ${category === 'tv' ? 'bg-red-500 shadow-[0px_0px_12px_-4px_#ff7a7a]' : 'bg-[#242424] '}`} onClick={() => setCategory('tv')}>tv</button>
+                    <button className={`text-lg font-semibold w-24 py-2 px-4 rounded-full transition-all duration-300 ease-in-out ${category === 'movie' ? 'bg-red-500 shadow-[0px_0px_6px_-4px_#ff7a7a] ' : 'bg-[#242424] '}`} onClick={() => setCategory('movie')}>movie</button>
+                    <button className={`text-lg font-semibold w-24 py-2 px-4 rounded-full transition-all duration-300 ease-in-out ${category === 'tv' ? 'bg-blue-500 shadow-[0px_0px_6px_0px_#61a5ff]' : 'bg-[#242424] '}`} onClick={() => setCategory('tv')}>tv</button>
                 </div>
             </div>
             <GenresFillter selected={selected} setSelected={setSelected} genres={genres} />
