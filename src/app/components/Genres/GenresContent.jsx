@@ -14,9 +14,9 @@ export default function GenresContent({ content }) {
           >
             <Link
               href={`/movie/${item.id}`}
-              className="block overflow rounded-md relative"
+              className="block overflow rounded-md relative overflow-hidden"
             >
-              <div className="group relative w-full h-0 pb-[150%] overflow-hidden">
+              <div className="group relative w-full h-0 pb-[150%] ">
                 <Image
                   src={`https://image.tmdb.org/t/p/original${item.poster_path || item.backdrop_path}`}
                   width={250}
@@ -26,7 +26,7 @@ export default function GenresContent({ content }) {
                 />
               </div>
             </Link>
-            <h2 className='font-semibold line-clamp-1'>{item.original_title || item.name}</h2>
+            <h2 className='font-semibold line-clamp-1 mt-2'>{item.original_title || item.name}</h2>
             <div className='flex justify-between'>
               <p className='text-[#a6a6a6]'>
                 {item.release_date ? item.release_date.split('-')[0] : item.first_air_date ? item.first_air_date.split('-')[0] : 'Unknown'}</p>

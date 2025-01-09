@@ -3,7 +3,7 @@ import { motion, AnimatePresence, delay } from 'framer-motion';
 import { IoIosArrowDown } from "react-icons/io";
 
 
-export default function GenresFilter({ selected, setSelected, genres }) {
+export default function GenresFilter({ selected, setSelected, genres, category }) {
     const [isOpen, setIsOpen] = useState(false);
     const [nameGenre, setNameGenre] = useState('All')
 
@@ -18,10 +18,18 @@ export default function GenresFilter({ selected, setSelected, genres }) {
                 {[{ id: 0, name: 'All' }, ...(genres || [])].map((genre) => (
                     <button
                         key={genre.id}
-                        className={`flex justify-center items-center w-36 h-12 rounded-full border transition-colors duration-150 ease-in-out border-[#ffffff49] hover:bg-[#4d4d4d] ${selected === genre.id
-                            ? 'bg-red-600 shadow-[0px_0px_12px_-4px_#ff7a7a] hover:bg-red-900'
-                            : 'bg-[#242424]'
-                            }`}
+                        className={`flex justify-center items-center w-36 h-12 rounded-full border transition-colors duration-100 ease-in-out border-[#ffffff49] hover:bg-[#4d4d4d] 
+                            ${category === 'movie'
+                                ? (selected === genre.id
+                                    ? 'bg-red-600 shadow-[0px_0px_12px_-4px_#ff7a7a] hover:bg-red-900'
+                                    : 'bg-[#242424]'
+                                )
+                                : (selected === genre.id
+                                    ? 'bg-blue-500 shadow-[0px_0px_6px_0px_#61a5ff] hover:bg-blue-900'
+                                    : 'bg-[#242424]'
+                                )
+                            }
+                            `}
                         onClick={() => setSelected(genre.id)}
                     >
                         {genre.name}
@@ -33,11 +41,11 @@ export default function GenresFilter({ selected, setSelected, genres }) {
             <div className='relative'>
                 <button
                     onClick={toggleMenu}
-                    className="lg:hidden block w-1/3 py-2 mx-auto bg-red-600 text-white font-semibold text-lg text-center rounded-xl"
+                    className={`lg:hidden block w-1/3 py-2 mx-auto  text-white font-semibold text-lg text-center rounded-xl active:scale-95 transition-transform ${category === 'movie' ? 'bg-red-600' : 'bg-blue-500'} `}
                 >
                     <div className='flex items-center justify-center'>
                         {nameGenre}
-                        <IoIosArrowDown className={`ml-1 text-lg transition-transform duration-100 ${isOpen ? 'rotate-180' : ''}`} />
+                        <IoIosArrowDown className={`mx-1 text-lg transition-transform duration-100 ${isOpen ? 'rotate-180' : ''}`} />
                     </div>
                 </button>
 
@@ -53,10 +61,16 @@ export default function GenresFilter({ selected, setSelected, genres }) {
                             {[{ id: 0, name: 'All' }, ...(genres || [])].map((genre) => (
                                 <button
                                     key={genre.id}
-                                    className={`flex justify-center items-center w-full h-12 rounded-full border transition-colors duration-150 ease-in-out border-[#ffffff49] hover:bg-[#4d4d4d] ${selected === genre.id
-                                        ? 'bg-red-600 shadow-[0px_0px_12px_-4px_#ff7a7a] hover:bg-red-900'
-                                        : 'bg-[#242424]'
-                                        }`}
+                                    className={`flex justify-center items-center w-full h-12 rounded-full border transition-colors duration-150 ease-in-out border-[#ffffff49] hover:bg-[#4d4d4d] 
+                                    ${category === 'movie'
+                                            ? (selected === genre.id
+                                                ? 'bg-red-600 shadow-[0px_0px_12px_-4px_#ff7a7a] hover:bg-red-900' : 'bg-[#242424]')
+                                            : (selected === genre.id
+                                                ? 'bg-blue-500 shadow-[0px_0px_6px_0px_#61a5ff] hover:bg-blue-900'
+                                                : 'bg-[#242424]'
+                                            )
+                                        }
+                                        `}
                                     onClick={() => {
                                         setSelected(genre.id);
                                         setIsOpen(false);

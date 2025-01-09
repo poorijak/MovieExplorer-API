@@ -106,7 +106,7 @@ export default function PopularSeries() {
                                             />
                                         </div>
                                     </Link>
-                                    <h2 className='font-semibold line-clamp-1'>{item.original_name || item.name}</h2>
+                                    <h2 className='font-semibold line-clamp-1 mt-2'>{item.original_name || item.name}</h2>
                                     <div className='flex justify-between'>
                                         <div className='flex items-center'>
                                             <FaStar className='text-amber-400' />

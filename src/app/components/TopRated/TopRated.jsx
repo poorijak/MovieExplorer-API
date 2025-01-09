@@ -75,8 +75,8 @@ export default function TopRated() {
                                             <Image src={`https://image.tmdb.org/t/p/original${item.poster_path}`} width={200} height={300} priority  alt={item.original_title} />
                                             <div className='flex flex-col mt-5 lg:pl-16 justify-center items-center lg:items-start'>
                                                 <h1 className='text-3xl text-center lg:text-left md:text-4xl lg:text-5xl font-bold mb-5 w-96 line-clamp-2 '>{item.original_title}</h1>
-                                                <p className='w-96 px-10 lg:px-0 line-clamp-3  mb-5 font-medium'>{item.overview}</p>
-                                                <div className='flex gap-2 mb-5 text-lg items-center'>
+                                                <p className='w-96 px-10 lg:px-0 line-clamp-3  mb-4 font-medium'>{item.overview}</p>
+                                                <div className='flex gap-2 mb-4 text-lg items-center'>
                                                     <FaStar className='text-amber-400' />
                                                     <p className='flex items-center text-2xl font-bold mr-2'>{item.vote_average.toFixed(1)}<span className='ml-2 text-lg'> /10</span></p>
                                                     <Image src='IMDB.svg' width={50} height={50} alt='imdb logo' />

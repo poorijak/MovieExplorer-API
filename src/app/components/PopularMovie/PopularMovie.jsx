@@ -98,7 +98,7 @@ export default function PopularMovie() {
                                             href={`/movie/${item.id}`}
                                             className="block overflow-hidden rounded-md relative"
                                         >
-                                            <div className="group relative w-full h-0 pb-[150%] overflow-hidden">
+                                            <div className="group relative w-full h-0 pb-[150%] ">
                                                 <Image
                                                     src={`https://image.tmdb.org/t/p/original${item.poster_path || item.backdrop_path}`}
                                                     width={250}
@@ -108,7 +108,7 @@ export default function PopularMovie() {
                                                 />
                                             </div>
                                         </Link>
-                                        <h2 className='font-semibold line-clamp-1'>{item.original_title || item.name}</h2>
+                                        <h2 className='font-semibold line-clamp-1 mt-2'>{item.original_title || item.name}</h2>
                                         <div className='flex justify-between'>
                                             <p className='text-[#a6a6a6]'>{item.release_date.split('-')[0]}</p>
                                             <div className='flex items-center'>

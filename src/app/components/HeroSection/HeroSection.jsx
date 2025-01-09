@@ -65,11 +65,11 @@ export default function HeroSection() {
               >
                 <div className='bg-blackOverlay_1 xl:bg-blackOverlay_2 flex justify-center items-center xl:block w-full h-full'>
                   <div className=''>
-                    <div className='flex flex-col pt-32 xl:pl-16 justify-center text-center'>
-                      <h1 className='text-3xl md:text-4xl xl:text-6xl font-bold mb-5'>{item.original_title}</h1>
-                      <p className='hidden sm:block w-96 line-clamp-1 md:line-clamp-2 2xl:line-clamp-3  mb-5 font-medium'>{item.overview}</p>
-                      <p className='mb-5 font-semibold xl:text-[#787878] text-white '>{item.genres.join(' , ')}</p>
-                      <div className='flex gap-2 mb-5 text-lg items-center justify-center'>
+                    <div className='flex flex-col pt-32 xl:pl-16  justify-center xl:justify-start '>
+                      <h1 className='text-3xl md:text-4xl xl:text-6xl font-bold mb-2 xl:mb-5'>{item.original_title}</h1>
+                      <p className='hidden smblock w-96 line-clamp-1 md:line-clamp-2 2xl:line-clamp-3  mb-5 font-medium'>{item.overview}</p>
+                      <p className='mb-5 font-semibold xl:text-[#787878] text-white text-center xl:text-left'>{item.genres.join(' , ')}</p>
+                      <div className='flex gap-2 mb-5 text-lg items-center justify-center xl:justify-start'>
                         <FaStar className='text-amber-400' />
                         <p className='flex items-center text-2xl font-bold mr-2'>{item.vote_average.toFixed(1)}<span className='ml-2 text-lg'> /10</span></p>
                         <Image src='IMDB.svg' width={50} height={50} alt='imdb logo' />
