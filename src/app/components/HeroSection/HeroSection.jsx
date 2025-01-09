@@ -41,10 +41,10 @@ export default function HeroSection() {
           nextEl: '.swiper-button-next',
           prevEl: '.swiper-button-prev',
         }}
-        // autoplay={{
-        //   delay: 10000,
-        //   disableOnInteraction: true, // ไม่ปิด autoplay เมื่อใช้ mousewheel
-        // }}
+        autoplay={{
+          delay: 10000,
+          disableOnInteraction: true, // ไม่ปิด autoplay เมื่อใช้ mousewheel
+        }}
         mousewheel={{
           forceToAxis: true,
           releaseOnEdges: true,
@@ -61,14 +61,14 @@ export default function HeroSection() {
                 style={{
                   backgroundImage: `url(${`https://image.tmdb.org/t/p/original${item.backdrop_path}`})`,
                 }}
-                className='bg-cover bg-center h-[60vh] xl:bg-top  w-screen'
+                className='bg-cover bg-center h-[80vh] xl:bg-top  w-screen'
               >
                 <div className='bg-blackOverlay_1 xl:bg-blackOverlay_2 flex justify-center items-center xl:block w-full h-full'>
                   <div className=''>
                     <div className='flex flex-col pt-32 xl:pl-16  justify-center xl:justify-start '>
                       <h1 className='text-3xl md:text-4xl xl:text-6xl font-bold mb-2 xl:mb-5'>{item.original_title}</h1>
                       <p className='hidden smblock w-96 line-clamp-1 md:line-clamp-2 2xl:line-clamp-3  mb-5 font-medium'>{item.overview}</p>
-                      <p className='mb-5 font-semibold xl:text-[#787878] text-white text-center xl:text-left'>{item.genres.join(' , ')}</p>
+                      <p className='mb-5 font-semibold xl:text-[#c2c2c2] text-white text-center xl:text-left'>{item.genres.join(' , ')}</p>
                       <div className='flex gap-2 mb-5 text-lg items-center justify-center xl:justify-start'>
                         <FaStar className='text-amber-400' />
                         <p className='flex items-center text-2xl font-bold mr-2'>{item.vote_average.toFixed(1)}<span className='ml-2 text-lg'> /10</span></p>

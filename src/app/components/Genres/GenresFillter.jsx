@@ -85,7 +85,7 @@ export default function GenresFilter({ selected, setSelected, genres, category }
                 </AnimatePresence>
             </div>
 
-            <hr className='my-10 max-w-6xl mx-8 border-spacing-x-0.5 border-[#3a3a3a]' />
+            <hr className='my-10 w-[100wh] mx-10 border-spacing-x-0.5 border-[#3a3a3a]' />
 
 
         </>

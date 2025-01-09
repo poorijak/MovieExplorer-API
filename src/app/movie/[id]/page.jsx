@@ -1,13 +1,12 @@
-import React from 'react'
+import axios from 'axios'
+import MovieDetail from './MovieDetail'
 
 export default async function page({ params }) {
-const { id } = await params
-
+  const { id } = await params
 
   return (
     <div>
-      <h1>hello</h1>
-      <p>{id}</p>
+      <MovieDetail id={id}/>
     </div>
   )
 }

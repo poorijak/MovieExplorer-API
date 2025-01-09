@@ -14,7 +14,7 @@ export default function Genres() {
     const [selected, setSelected] = useState(0)
     const [content, setContent] = useState([])
     const [category, setCategory] = useState('movie')
-    const [loadMore, setLoadMore] = useState(8)
+    const [loadMore, setLoadMore] = useState(12)
 
     useEffect(() => {
         const getGenres = async () => {
@@ -76,10 +76,10 @@ export default function Genres() {
             </div>
             <GenresFillter selected={selected} setSelected={setSelected} genres={genres} category={category} />
             <GenresContent content={content} />
-            <div className='flex justify-center w-full my-5'>
+            <div className='flex justify-center w-full mt-10 mb-36'>
                 {
                     content.length < 20 && (
-                        <button onClick={haddleLoad} className='text-lg font-semibold  py-2 px-4 rounded-full transition-all duration-300 ease-in-out bg-red-600'>Load More</button>
+                        <button onClick={haddleLoad} className='text-lg font-semibold  py-2 px-4 rounded-full transition-all duration-300 ease-in-out bg-red-600 ctive:scale-95 '>Load More</button>
                     )
                 }
             </div>
