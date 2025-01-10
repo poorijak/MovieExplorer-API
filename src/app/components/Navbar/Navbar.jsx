@@ -109,6 +109,7 @@ export default function Navbar() {
 
             {/* desktop nav */}
             <div className='hidden  lg:flex gap-8 text-lg font-medium items-center'>
+              <Link href={'/'}>Home</Link>
               <Link href={'#'}>Movie</Link>
               <Link href={'#'}>Tv Series</Link>
               <Link href={'#'}>My List</Link>
@@ -137,6 +138,14 @@ export default function Navbar() {
                 className='absolute flex flex-col items-center top-[52px] w-11/12 mt-2 shadow-lg shadow-[#171717]/50 bg-[#00000071] backdrop-blur-lg z-50 px-4 py-6 rounded-xl border-[#ffff] after:-z-10 after:conten-[] after:absolute after:inset-0 after:outline-1 after:outline after:-outline-offset-1 after:rounded-xl after:outline-white/30'
               >
                 <ul className='w-full text-4xl font-bold ml-5 flex flex-col items-center'>
+                  <motion.li
+                    variants={items}
+                    initial='hidden'
+                    animate='show'
+                    exit='visible'
+                    className='mb-5 pt-5'>
+                    <Link href={'/'}>Home</Link>
+                  </motion.li>
                   <motion.li
                     variants={items}
                     initial='hidden'

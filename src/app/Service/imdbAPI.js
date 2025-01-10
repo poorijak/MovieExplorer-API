@@ -77,7 +77,7 @@ export const fetchGenres = async (type) => {
 
 export const fetchCasting = async (type , id) => {
     try {
-        const res = await axios.get(`${BASE_URL}/${type}/${id}/credits `, { params: { api_key: API_KEY, language: 'en-Us' } })
+        const res = await axios.get(`${BASE_URL}/${type}/${id}/credits`, { params: { api_key: API_KEY, language: 'en-Us' } })
         const results = res.data.cast
         return results
     }

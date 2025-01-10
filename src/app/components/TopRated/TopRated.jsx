@@ -70,7 +70,7 @@ export default function TopRated() {
                                     }}
                                     className='bg-cover bg-center h-screen lg:h-[500px] lg:bg-top  w-11/12 mx-auto lg:rounded-xl hover:cursor-grab'
                                 >
-                                    <div className='bg-blackOverlay_3 flex justify-center items-center lg:block w-full h-full lg:rounded-xl'>
+                                    <div className='bg-blackOverlay_4 flex justify-center items-center lg:block w-full h-full lg:rounded-xl'>
                                         <div className='flex flex-col lg:flex-row justify-center items-center  pt-32'>
                                             <Image src={`https://image.tmdb.org/t/p/original${item.poster_path}`} width={200} height={300} priority  alt={item.original_title} />
                                             <div className='flex flex-col mt-5 lg:pl-16 justify-center items-center lg:items-start'>
