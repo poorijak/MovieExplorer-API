@@ -6,7 +6,7 @@ const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL
 
 export const fetchTrending = async (type) => {
     try {
-        const res = await axios.get(`${BASE_URL}/trending/${type}/week`, { params: { api_key: API_KEY, language: 'en-Us' , page: 1 } })
+        const res = await axios.get(`${BASE_URL}/trending/${type}/week`, { params: { api_key: API_KEY, language: 'en-Us', page: 1 } })
         const results = res.data.results
         return results
     }
@@ -20,14 +20,14 @@ export const fetchTrending = async (type) => {
 export const fetchPopular = async (type) => {
     try {
         // Fetch popular movies/shows
-        const res = await axios.get(`${BASE_URL}/${type}/popular`, { 
-            params: { api_key: API_KEY, language: 'en-US' } 
+        const res = await axios.get(`${BASE_URL}/${type}/popular`, {
+            params: { api_key: API_KEY, language: 'en-US' }
         });
         const results = res.data.results;
 
         // Fetch genre list
-        const genresRes = await axios.get(`${BASE_URL}/genre/${type}/list`, { 
-            params: { api_key: API_KEY, language: 'en-US' } 
+        const genresRes = await axios.get(`${BASE_URL}/genre/${type}/list`, {
+            params: { api_key: API_KEY, language: 'en-US' }
         });
         const genres = genresRes.data.genres;
 
@@ -50,7 +50,7 @@ export const fetchPopular = async (type) => {
 
 
 
-export const fetchDetail = async (type , id) => {
+export const fetchDetail = async (type, id) => {
     try {
         const res = await axios.get(`${BASE_URL}/${type}/${id}`, { params: { api_key: API_KEY, language: 'en-Us' } })
         const results = res.data
@@ -75,7 +75,7 @@ export const fetchGenres = async (type) => {
     }
 }
 
-export const fetchCasting = async (type , id) => {
+export const fetchCasting = async (type, id) => {
     try {
         const res = await axios.get(`${BASE_URL}/${type}/${id}/credits`, { params: { api_key: API_KEY, language: 'en-Us' } })
         const results = res.data.cast
@@ -88,27 +88,27 @@ export const fetchCasting = async (type , id) => {
 }
 
 
-export const fetchSearch = async(type , searchTerm) => {
+export const fetchSearch = async (type, searchTerm) => {
     try {
-        const res = await axios.get(`${BASE_URL}/search/${type}?query=${searchTerm}&include_adult=false` , { params: { api_key: API_KEY, language: 'en-Us' } })
-        const  results = res.data.results
-        return results 
-    }
-    catch (err) {
-        console.log("fetchSearch err api : " , err);
-        throw err;
-        
-    }
-}
-
-export const fetchTopRate = async(type) => {
-    try {
-        const res = await axios.get((`${BASE_URL}/${type}/top_rated`) , { params : { api_key : API_KEY , language : 'en-Us'}})
+        const res = await axios.get(`${BASE_URL}/search/${type}?query=${searchTerm}&include_adult=false`, { params: { api_key: API_KEY, language: 'en-Us' } })
         const results = res.data.results
         return results
     }
     catch (err) {
-        console.log('fetchTopRated err api : ' , err);
+        console.log("fetchSearch err api : ", err);
+        throw err;
+
+    }
+}
+
+export const fetchTopRate = async (type) => {
+    try {
+        const res = await axios.get((`${BASE_URL}/${type}/top_rated`), { params: { api_key: API_KEY, language: 'en-Us' } })
+        const results = res.data.results
+        return results
+    }
+    catch (err) {
+        console.log('fetchTopRated err api : ', err);
         throw err
     }
 }
@@ -116,7 +116,7 @@ export const fetchTopRate = async(type) => {
 
 
 
-export const fetchSimilar = async (type , id) => {
+export const fetchSimilar = async (type, id) => {
     try {
         const res = await axios.get(`${BASE_URL}/${type}/${id}/similar`, { params: { api_key: API_KEY, language: 'en-Us' } })
         const results = res.data.results
@@ -124,6 +124,18 @@ export const fetchSimilar = async (type , id) => {
     }
     catch (err) {
         console.log('MovieSimilar is : ', err);
+        throw err;
+    }
+}
+
+export const fetchVideo = async (type, id) => {
+    try {
+        const res = await axios.get(`${BASE_URL}/${type}/${id}/videos`, { params: { api_key: API_KEY, language: 'en-Us' } })
+        const results = res.data.results
+        return results
+    }
+    catch (err) {
+        console.error("Error fetching video:", err);
         throw err;
     }
 }

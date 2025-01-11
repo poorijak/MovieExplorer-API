@@ -151,7 +151,7 @@ export default function Navbar() {
                     initial='hidden'
                     animate='show'
                     exit='visible'
-                    className='mb-5 pt-5'>
+                    className='mb-5'>
                     <Link href={'/'}>Movie</Link>
                   </motion.li>
 
