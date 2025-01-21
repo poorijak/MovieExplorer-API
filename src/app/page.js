@@ -2,14 +2,16 @@
 
 import React, { useEffect, useState } from 'react';
 import Lenis from 'lenis';
-import HeroSection from '../components/HeroSection/HeroSection'
+import Home from '../app/Home/page'
+
 
 
 
 export default function TrendingMovies() {
 
-  useEffect(() => {
+  
 
+  useEffect(() => {
     const lenis = new Lenis()
     function raf(time) {
       lenis.raf(time)
@@ -22,9 +24,6 @@ export default function TrendingMovies() {
 
 
   return (
-    <div className=''>
-      <HeroSection/>
-
-    </div>
+    <Home/>
   );
 }
