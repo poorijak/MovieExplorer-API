@@ -28,3 +28,11 @@ body {
     font-family: 'Inter'; /* ฟอนต์เริ่มต้น */
   }
 }
+
+@layer {
+  :root {
+    --header-row-height: 10px;
+    --header-height: calc(var(var(--header-row-height) * 2));
+    --hero-height : calc(100svh - var(var(--header-height)))
+  }
+}
