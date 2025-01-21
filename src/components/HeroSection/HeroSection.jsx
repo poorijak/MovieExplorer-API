@@ -1,5 +1,6 @@
+'use client'
 import React, { useEffect, useState } from 'react'
-import { fetchPopular, fetchTrending } from '../../Service/imdbAPI'
+import { fetchPopular, fetchTrending } from '../../../Service/imdbAPI'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Mousewheel, Autoplay, Navigation } from 'swiper/modules';
 import 'swiper/css';

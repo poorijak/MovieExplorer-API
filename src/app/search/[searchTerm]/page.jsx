@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { use } from "react"; // Import React.use()
-import { fetchSearch } from "../../Service/imdbAPI";
+import { fetchSearch } from "../../../../Service/imdbAPI";
 
 function SearchPage({ paramsPromise }) {
     const params = use(paramsPromise); // ใช้ React.use() แกะ Promise ของ params

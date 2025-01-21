@@ -1,5 +1,7 @@
+"use client"
+
 import axios from 'axios'
-import { fetchGenres } from '../../Service/imdbAPI'
+import { fetchGenres } from '../../../Service/imdbAPI'
 import React, { use, useEffect, useState } from 'react'
 import GenresFillter from '../Genres/GenresFillter'
 import GenresContent from '../Genres/GenresContent'

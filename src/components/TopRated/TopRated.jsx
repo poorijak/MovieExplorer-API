@@ -1,4 +1,5 @@
-import { fetchTopRate } from '../../Service/imdbAPI'
+"use client"
+import { fetchTopRate } from '../../../Service/imdbAPI'
 import React, { useEffect, useState } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Mousewheel, Autoplay, Navigation } from 'swiper/modules';

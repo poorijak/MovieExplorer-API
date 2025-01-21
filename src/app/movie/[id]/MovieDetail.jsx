@@ -1,6 +1,6 @@
 'use client'
 import React, { useState, useEffect } from 'react'
-import { fetchDetail, fetchCasting } from '../../Service/imdbAPI';
+import { fetchDetail, fetchCasting } from '../../../../Service/imdbAPI';
 import Image from 'next/image';
 import { FaHeart } from "react-icons/fa";
 import { FaBookmark, FaStar } from "react-icons/fa6";

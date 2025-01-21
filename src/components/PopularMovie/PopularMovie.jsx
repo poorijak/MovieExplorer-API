@@ -7,7 +7,7 @@ import { IoIosArrowDroprightCircle } from "react-icons/io";
 import { TbHandFinger } from "react-icons/tb";
 import Image from 'next/image';
 import Link from 'next/link';
-import { fetchPopular } from '../../Service/imdbAPI';
+import { fetchPopular } from '../../../Service/imdbAPI';
 
 
 export default function PopularMovie() {

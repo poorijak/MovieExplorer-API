@@ -110,7 +110,7 @@ export default function Navbar() {
             {/* desktop nav */}
             <div className='hidden  lg:flex gap-8 text-lg font-medium items-center'>
               <Link href={'/'}>Home</Link>
-              <Link href={'#'}>Movie</Link>
+              <Link href={'/MainContent'}>Movie</Link>
               <Link href={'#'}>Tv Series</Link>
               <Link href={'#'}>My List</Link>
             </div>

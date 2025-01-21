@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { fetchVideo } from '../../Service/imdbAPI'; // ฟังก์ชัน fetch ที่ใช้ดึงข้อมูล
+import { fetchVideo } from '../../../../Service/imdbAPI'; // ฟังก์ชัน fetch ที่ใช้ดึงข้อมูล
 
 const VideoTrailer = ({ id }) => {
     const [video, setVideo] = useState([]);
