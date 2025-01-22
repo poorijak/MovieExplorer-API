@@ -1,34 +1,31 @@
-'use client'
-import Link from 'next/link'
-import React, { useState, useEffect, use } from 'react'
+"use client";
+import Link from "next/link";
+import React, { useState, useEffect, use } from "react";
 import { RiMovie2AiFill } from "react-icons/ri";
-import { motion, AnimatePresence, delay } from 'framer-motion';
+import { motion, AnimatePresence, delay } from "framer-motion";
 import { FiSearch } from "react-icons/fi";
-import { useRouter , usePathname } from 'next/navigation';
-import { Squash as Hamburger } from 'hamburger-react'
-
+import { useRouter, usePathname } from "next/navigation";
+import { Squash as Hamburger } from "hamburger-react";
 
 export default function Navbar() {
-
   const [scrollPosition, setScrollPosition] = useState(0);
-  const [isVisible, setIsVisible] = useState(true)
+  const [isVisible, setIsVisible] = useState(true);
   const [isActive, setIsActive] = useState(false);
-  const [search, setSearch] = useState('')
-  const [isOpen, setIsOpen] = useState(false)
-  const [toggled , setToggled] = useState(false)
-  const pathName = usePathname()
+  const [search, setSearch] = useState("");
+  const [isOpen, setIsOpen] = useState(false);
+  const [toggled, setToggled] = useState(false);
+  const pathName = usePathname();
   const router = useRouter();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const query = search.trim().startsWith('search/') ? search.trim().slice(7) : search.trim();
-    console.log('Search Query : ' , query);
-    
-    router.push(`search/${query}`)
-  }
+    const query = search.trim().startsWith("search/")
+      ? search.trim().slice(7)
+      : search.trim();
+    console.log("Search Query : ", query);
 
-
-
+    router.push(`search/${query}`);
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -41,23 +38,20 @@ export default function Navbar() {
       setScrollPosition(currentScrollState);
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener("scroll", handleScroll);
     };
   }, [scrollPosition]);
 
-
-
-
   const toggleMenu = () => {
-    setIsOpen(!isOpen)
-  }
+    setIsOpen(!isOpen);
+  };
 
   useEffect(() => {
-    setIsOpen(false)
-    setToggled(false)
-  }, [pathName])
+    setIsOpen(false);
+    setToggled(false);
+  }, [pathName]);
 
   const items = {
     hidden: {
@@ -73,56 +67,62 @@ export default function Navbar() {
       y: -20,
       transition: {
         duration: 0.2,
-        ease: 'easeInOut'
-      }
-    }
+        ease: "easeInOut",
+      },
+    },
   };
-
-
-
-
-
-
-
-
 
   return (
     <>
-      <motion.div className='w-full flex justify-center rounded-xl transition-transform duration-300'>
+      <motion.div className="flex w-full justify-center rounded-xl transition-transform duration-300">
         {/* desktop navbar */}
         <motion.div
           variants={{
             visible: { y: 0 },
-            hidden: { y: '-200%' },
+            hidden: { y: "-200%" },
           }}
-          initial={{ y: '-200%' }}
-          animate={isVisible ? 'visible' : 'hidden'}
-          transition={{ duration: 0.6, ease: 'easeInOut' }}
-          className={`w-11/12 lg:w-[935px] h-[52px] fixed  top-0 mt-3 shadow-lg shadow-[#171717]/50 bg-[#17171771] ${isOpen ? 'backdrop-blur-none' : 'backdrop-blur-lg'} z-50 px-4 lg:px-10  rounded-xl border-[#ffff] after:-z-10 after:conten-[] after:absolute after:inset-0 after:outline-1 after:outline after:-outline-offset-1 after:rounded-xl after:outline-white/30`}
+          initial={{ y: "-200%" }}
+          animate={isVisible ? "visible" : "hidden"}
+          transition={{ duration: 0.6, ease: "easeInOut" }}
+          className={`fixed top-0 mt-3 h-[52px] w-11/12 bg-[#17171771] shadow-lg shadow-[#171717]/50 lg:w-[935px] ${isOpen ? "backdrop-blur-none" : "backdrop-blur-lg"} after:conten-[] z-50 rounded-xl border-[#ffff] px-4 after:absolute after:inset-0 after:-z-10 after:rounded-xl after:outline after:outline-1 after:-outline-offset-1 after:outline-white/30 lg:px-10`}
         >
-          <div className='w-full h-full flex justify-between items-center relative'>
-            <div className=''>
-              <Link href={'/'}>
-                <RiMovie2AiFill className='text-2xl lg:text-3xl' />
+          <div className="relative flex h-full w-full items-center justify-between">
+            <div className="">
+              <Link href={"/"}>
+                <RiMovie2AiFill className="text-2xl lg:text-3xl" />
               </Link>
             </div>
 
             {/* desktop nav */}
-            <div className='hidden  lg:flex gap-8 text-lg font-medium items-center'>
-              <Link href={'/'}>Home</Link>
-              <Link href={'/MainContent'}>Movie</Link>
-              <Link href={'#'}>Tv Series</Link>
-              <Link href={'#'}>My List</Link>
+            <div className="hidden items-center gap-8 text-lg font-medium lg:flex">
+              <Link href={"/"}>Home</Link>
+              <Link href={"/MainContent"}>Movie</Link>
+              <Link href={"#"}>Tv Series</Link>
+              <Link href={"#"}>My List</Link>
             </div>
-            <form action="" className='gruop hidden  lg:flex items-center' onSubmit={handleSubmit}>
-              <input type="text" name="" id="" className='bg-transparent w-44 focus:outline-none' placeholder='search your keywords...' value={search} onChange={(e) => setSearch(e.target.value)} />
-              <button className='text-gray-400 text-2xl font-medium  px-4 py-1.5 rounded-lg transition-transform  duration-300 hover:scale-105 hover:text-white'><FiSearch /></button>
+            <form
+              action=""
+              className="gruop hidden items-center lg:flex"
+              onSubmit={handleSubmit}
+            >
+              <input
+                type="text"
+                name=""
+                id=""
+                className="w-44 bg-transparent focus:outline-none"
+                placeholder="search your keywords..."
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+              />
+              <button className="rounded-lg px-4 py-1.5 text-2xl font-medium text-gray-400 transition-transform duration-300 hover:scale-105 hover:text-white">
+                <FiSearch />
+              </button>
             </form>
 
             {/* moblie nav */}
-            <div className='lg:hidden flex items-center '>
+            <div className="flex items-center lg:hidden">
               <button onClick={toggleMenu}>
-                <Hamburger size={25} toggled={toggled} toggle={setToggled}/>
+                <Hamburger size={25} toggled={toggled} toggle={setToggled} />
               </button>
             </div>
           </div>
@@ -130,82 +130,84 @@ export default function Navbar() {
           <AnimatePresence>
             {isOpen ? (
               <motion.div
-
                 initial={{ scaleY: 0, opacity: 0 }} // เริ่มจากย่อขนาดลง
                 animate={{ scaleY: 1, opacity: 1 }} // ยืดเต็มขนาด
-                exit={{ scaleY: 0, opacity: 0, transition: { duration: 0.3, ease: 'easeInOut' } }} // หดกลับ
+                exit={{
+                  scaleY: 0,
+                  opacity: 0,
+                  transition: { duration: 0.3, ease: "easeInOut" },
+                }} // หดกลับ
                 style={{ originY: 0 }} // ตั้งค่าให้ขยายจากด้านบน
-                className='absolute flex flex-col items-center top-[52px] w-11/12 mt-2 shadow-lg shadow-[#171717]/50 bg-[#00000071] backdrop-blur-lg z-50 px-4 py-6 rounded-xl border-[#ffff] after:-z-10 after:conten-[] after:absolute after:inset-0 after:outline-1 after:outline after:-outline-offset-1 after:rounded-xl after:outline-white/30'
+                className="after:conten-[] absolute top-[52px] z-50 mt-2 flex w-11/12 flex-col items-center rounded-xl border-[#ffff] bg-[#00000071] px-4 py-6 shadow-lg shadow-[#171717]/50 backdrop-blur-lg after:absolute after:inset-0 after:-z-10 after:rounded-xl after:outline after:outline-1 after:-outline-offset-1 after:outline-white/30"
               >
-                <ul className='w-full text-4xl font-bold ml-5 flex flex-col items-center'>
+                <ul className="ml-5 flex w-full flex-col items-center text-4xl font-bold">
                   <motion.li
                     variants={items}
-                    initial='hidden'
-                    animate='show'
-                    exit='visible'
-                    className='mb-5 pt-5'>
-                    <Link href={'/'}>Home</Link>
+                    initial="hidden"
+                    animate="show"
+                    exit="visible"
+                    className="mb-5 pt-5"
+                  >
+                    <Link href={"/"}>Home</Link>
                   </motion.li>
                   <motion.li
                     variants={items}
-                    initial='hidden'
-                    animate='show'
-                    exit='visible'
-                    className='mb-5'>
-                    <Link href={'/'}>Movie</Link>
-                  </motion.li>
-
-                  <motion.li
-                    variants={items}
-                    initial='hidden'
-                    animate='show'
-                    exit='visible'
-                    className='mb-5'>
-                    <Link href={'/'}>Tv Series</Link>
+                    initial="hidden"
+                    animate="show"
+                    exit="visible"
+                    className="mb-5"
+                  >
+                    <Link href={"/"}>Movie</Link>
                   </motion.li>
 
                   <motion.li
                     variants={items}
-                    initial='hidden'
-                    animate='show'
-                    exit='visible'
-                    className='mb-5'>
-                    <Link href={'/'}>My List</Link>
+                    initial="hidden"
+                    animate="show"
+                    exit="visible"
+                    className="mb-5"
+                  >
+                    <Link href={"/"}>Tv Series</Link>
+                  </motion.li>
+
+                  <motion.li
+                    variants={items}
+                    initial="hidden"
+                    animate="show"
+                    exit="visible"
+                    className="mb-5"
+                  >
+                    <Link href={"/"}>My List</Link>
                   </motion.li>
                 </ul>
 
                 <motion.form
                   variants={items}
-                  initial='hidden'
-                  animate='show'
-                  exit='visible'
+                  initial="hidden"
+                  animate="show"
+                  exit="visible"
                   action=""
-                  className='flex items-center'
+                  className="flex items-center"
                   onSubmit={handleSubmit}
                 >
                   <input
                     type="text"
                     name=""
                     id=""
-                    className='bg-transparent w-44 focus:outline-none'
-                    placeholder='search your keywords...'
+                    className="w-44 bg-transparent focus:outline-none"
+                    placeholder="search your keywords..."
                     value={search}
                     onChange={(e) => setSearch(e.target.value)}
                   />
-                  <button className='text-gray-400 text-2xl font-medium px-4 py-1.5 rounded-lg transition-transform duration-300 hover:scale-105 hover:text-white'>
+                  <button className="rounded-lg px-4 py-1.5 text-2xl font-medium text-gray-400 transition-transform duration-300 hover:scale-105 hover:text-white">
                     <FiSearch />
                   </button>
                 </motion.form>
               </motion.div>
             ) : null}
           </AnimatePresence>
-
-
-
         </motion.div>
-
-
       </motion.div>
     </>
-  )
+  );
 }
