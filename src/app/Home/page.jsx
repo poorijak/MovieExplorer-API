@@ -10,7 +10,7 @@ const page = () => {
     const getTrending = async () => {
       try {
         const res = await fetchPopular("movie");
-        setMovie(res[1]);
+        setMovie(res[8]);
       } catch (err) {
         console.log("getTreding error is :", err);
       }

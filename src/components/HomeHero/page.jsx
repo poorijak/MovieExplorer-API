@@ -41,7 +41,7 @@ const page = ({ movie }) => {
           className="relative z-10 flex min-h-[--hero-height] flex-col items-center pl-0 pt-[40vh] text-center xl:inline-block xl:pl-56"
         >
           <p className="mb-5 text-7xl font-bold">{movie.original_title}</p>
-          <button className="group mb-5 inline-block rounded-full bg-[#3d3d3d9a] px-3 py-3 font-semibold text-white transition-shadow duration-300 hover:shadow-[0px_0px_10px_-1px_#545454]">
+          <button className="group mb-5 inline-block rounded-full bg-[#ffffff2f] px-3 py-3 font-semibold text-white transition-shadow duration-300 hover:shadow-[0px_0px_10px_-1px_#545454]">
             <Link href={`/movie/${movie.id}`}>Watch Trailer</Link>
           </button>
           <div className="flex items-baseline justify-center gap-2">

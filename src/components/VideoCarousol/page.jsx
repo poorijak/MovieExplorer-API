@@ -8,7 +8,13 @@ import React, {
 } from "react";
 import { fetchTrending } from "../../../Service/imdbAPI";
 import { InfiniteSlider } from "../../../components/ui/infinite-slider";
-import { useScroll, useTransform, motion } from "framer-motion";
+import {
+  useScroll,
+  useTransform,
+  motion,
+  useMotionValueEvent,
+  progress,
+} from "framer-motion";
 import { useWindowSize } from "react-use";
 
 const Page = () => {
@@ -19,6 +25,7 @@ const Page = () => {
     target: carouselWrapperRef,
     offset: ["start start", "end start"],
   });
+  const [caerouselVal, setCarouselVariant] = useState("inactive" | "active");
 
   const maximumScale = useMemo(() => {
     const windowYRatio = height / width;
@@ -74,7 +81,7 @@ const Page = () => {
                   scale: index === 1 ? centerScale : 1, // ใช้ scale เฉพาะไอเท็มที่ 2
                   opacity: index !== 1 && 2 ? postersOpacity : 1,
                 }}
-                className="aspect-video w-[60vw] shrink-0"
+                className="aspect-[9/16] w-[60vw] shrink-0 lg:aspect-video"
                 key={item.id}
               >
                 <Image
@@ -82,15 +89,18 @@ const Page = () => {
                   width={1440}
                   height={1080}
                   alt="movie"
-                  className="h-full w-full rounded-2xl object-cover"
+                  className="relative h-full w-full rounded-2xl object-cover"
                 />
+                <div className="absolute bottom-0 mb-5 ml-10">
+                  <p>{item.original_title}</p>
+                </div>
               </motion.div>
             ))}
           </div>
         </div>
       </div>
       {/* ส่ง movie เป็น props */}
-      <div className="space-y-5">
+      <div className="mt-[-120px] space-y-5">
         <SmallVideoCarousel_1 movie={movie} />
         <SmallVideoCarousel_2 movie={movie} />
       </div>
@@ -104,16 +114,22 @@ export default Page;
 const SmallVideoCarousel_1 = ({ movie }) => {
   return (
     <div>
-      <InfiniteSlider durationOnHover={75} gap={24} duration={35}>
+      <InfiniteSlider durationOnHover={80} gap={24} duration={35}>
         {movie.map((item) => (
-          <div className="aspect-video w-[23vw] shrink-0" key={item.id}>
+          <div
+            className="w-[60 vw] aspect-video shrink-0 lg:w-[23vw]"
+            key={item.id}
+          >
             <Image
               src={`https://image.tmdb.org/t/p/original${item.backdrop_path}`}
               width={1440}
               height={1080}
               alt="movie"
-              className="h-full w-full rounded-xl object-cover"
+              className="relative h-full w-full rounded-xl object-cover"
             />
+            <div className="absolute bottom-0 mb-2 ml-3">
+              <p>{item.original_title}</p>
+            </div>
           </div>
         ))}
       </InfiniteSlider>
@@ -126,7 +142,7 @@ const SmallVideoCarousel_2 = ({ movie }) => {
   return (
     <div>
       <InfiniteSlider
-        durationOnHover={75}
+        durationOnHover={80}
         gap={24}
         reverse={true}
         duration={35}
@@ -135,14 +151,20 @@ const SmallVideoCarousel_2 = ({ movie }) => {
           .slice() // Clone array ก่อน reverse เพื่อไม่ให้กระทบ array เดิม
           .reverse()
           .map((item) => (
-            <div key={item.id} className="aspect-video w-[23vw] shrink-0">
+            <div
+              key={item.id}
+              className="w-[60 vw] aspect-video shrink-0 lg:w-[23vw]"
+            >
               <Image
                 src={`https://image.tmdb.org/t/p/original${item.backdrop_path}`}
                 width={1440}
                 height={1080}
                 alt="movie"
-                className="h-full w-full rounded-xl object-cover"
+                className="relative h-full w-full rounded-xl object-cover"
               />
+              <div className="absolute bottom-0 mb-2 ml-3">
+                <p>{item.original_title}</p>
+              </div>
             </div>
           ))}
       </InfiniteSlider>
