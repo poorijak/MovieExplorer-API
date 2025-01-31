@@ -97,7 +97,7 @@ export default function Navbar() {
             <div className="hidden items-center gap-8 text-lg font-medium lg:flex">
               <Link href={"/"}>Home</Link>
               <Link href={"/MainContent"}>Movie</Link>
-              <Link href={"#"}>Tv Series</Link>
+              <Link href={"/De"}>Tv Series</Link>
               <Link href={"#"}>My List</Link>
             </div>
             <form
@@ -157,7 +157,7 @@ export default function Navbar() {
                     exit="visible"
                     className="mb-5"
                   >
-                    <Link href={"/"}>Movie</Link>
+                    <Link href={"/MainContent"}>Movie</Link>
                   </motion.li>
 
                   <motion.li

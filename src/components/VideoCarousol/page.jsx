@@ -67,7 +67,7 @@ const Page = () => {
   }, []);
 
   return (
-    <div className="bg-black pb-8">
+    <div className="pb-8">
       <div
         ref={carouselWrapperRef}
         className="mt-[-100vh] h-[300vh] overflow-clip"
@@ -91,7 +91,7 @@ const Page = () => {
                   alt="movie"
                   className="relative h-full w-full rounded-2xl object-cover"
                 />
-                <div className="absolute bottom-0 mb-5 ml-10">
+                <div className="absolute bottom-0 mb-5 flex w-full justify-between px-10">
                   <p>{item.original_title}</p>
                 </div>
               </motion.div>
@@ -117,7 +117,7 @@ const SmallVideoCarousel_1 = ({ movie }) => {
       <InfiniteSlider durationOnHover={80} gap={24} duration={35}>
         {movie.map((item) => (
           <div
-            className="w-[60 vw] aspect-video shrink-0 lg:w-[23vw]"
+            className="aspect-video w-[60vw] shrink-0 lg:w-[23vw]"
             key={item.id}
           >
             <Image
@@ -153,16 +153,16 @@ const SmallVideoCarousel_2 = ({ movie }) => {
           .map((item) => (
             <div
               key={item.id}
-              className="w-[60 vw] aspect-video shrink-0 lg:w-[23vw]"
+              className="aspect-video w-[60vw] shrink-0 lg:w-[23vw]"
             >
               <Image
                 src={`https://image.tmdb.org/t/p/original${item.backdrop_path}`}
                 width={1440}
                 height={1080}
                 alt="movie"
-                className="relative h-full w-full rounded-xl object-cover"
+                className="h-full w-full rounded-xl object-cover"
               />
-              <div className="absolute bottom-0 mb-2 ml-3">
+              <div className="absolute bottom-0 mb-2 ml-3 w-full">
                 <p>{item.original_title}</p>
               </div>
             </div>

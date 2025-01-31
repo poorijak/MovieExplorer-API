@@ -2,6 +2,12 @@ import { React, useEffect, useState } from "react";
 import VideoCarousol from "../../components/VideoCarousol/page";
 import HomeHero from "../../components/HomeHero/page";
 import { fetchPopular } from "../../../Service/imdbAPI";
+import TrendingPala from "../../components/TrendingPala/Page";
+import TopRated from "@/src/components/TopRated/TopRated";
+import PopularMovie from "@/src/components/PopularMovie/PopularMovie";
+import PopularSeries from "@/src/components/PopularSeries/PopularSeries";
+import Genres from "@/src/components/Genres/Genres";
+import Link from "next/link";
 
 const page = () => {
   const [movie, setMovie] = useState([]);
@@ -21,11 +27,25 @@ const page = () => {
   console.log(movie);
   return (
     <>
-      <div className="relative z-10 bg-black">
-        <HomeHero movie={movie} />
+      <div className="bg-[#0D0D0D]">
+        <div className="relative z-10">
+          <HomeHero movie={movie} />
+        </div>
+        <VideoCarousol movie={movie} />
+        <div className="h-[50vh]"></div>
+        <TrendingPala />
+        <div className="my-24">
+          <PopularMovie />
+          <PopularSeries />
+          <div className="w-full text-center">
+            <button className="rounded-full bg-[#272727] px-4 py-2 text-lg font-semibold transition-all duration-300 ease-in-out hover:bg-[#555] active:scale-95">
+              <Link href={"/MainContent"} className="text-white">
+                See All LineUp!
+              </Link>
+            </button>
+          </div>
+        </div>
       </div>
-      <VideoCarousol movie={movie} />
-      <div className="h-[300vh] bg-black"></div>
     </>
   );
 };
