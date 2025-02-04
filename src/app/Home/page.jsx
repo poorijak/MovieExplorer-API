@@ -39,12 +39,13 @@ const page = () => {
           <PopularMovie />
           <PopularSeries />
           <div className="w-full text-center">
-            <button className="rounded-full bg-[#272727] px-4 py-2 text-lg font-semibold transition-all duration-300 ease-in-out hover:bg-[#555] active:scale-95">
+            <button className="rounded-full bg-[#272727] px-4 py-2 text-md font-medium transition-all duration-300 ease-in-out hover:bg-[#555] active:scale-95">
               <Link href={"/MainContent"} className="text-white">
                 See All LineUp!
               </Link>
             </button>
           </div>
+          <Accordion/>
         </div>
       </div>
     </>
