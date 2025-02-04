@@ -8,6 +8,7 @@ import PopularMovie from "@/src/components/PopularMovie/PopularMovie";
 import PopularSeries from "@/src/components/PopularSeries/PopularSeries";
 import Genres from "@/src/components/Genres/Genres";
 import Link from "next/link";
+import Accordion from "../../components/Accordion/Page";
 
 const page = () => {
   const [movie, setMovie] = useState([]);
