@@ -1,5 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { IoIosArrowDown } from "react-icons/io";
+import { motion, AnimatePresence, delay } from "framer-motion";
+import { AiOutlinePlus } from "react-icons/ai";
+import { usePathname } from "next/navigation";
 
 const accordionData = [
   {
@@ -34,43 +37,73 @@ const accordionData = [
   },
 ];
 
-function AccordionItem({ title, content, isExpand, onToggle }) {
+function AccordionItem({ title, content }) {
+  const [expanded, setExpanded] = useState(false);
+  const pathName = usePathname();
+
+  const handleToggle = () => {
+    setExpanded((prev) => !prev);
+  };
+
+  const variants = {
+    hidden: {
+      opacity: 0,
+    },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+  };
+
+  useEffect(() => {
+    setExpanded(false);
+  }, [pathName]);
+
   return (
-    <div className="bg-white rounded-3xl overflow-hidden transition-all duration-300 shadow-md">
+    <div className="max-w-full border-b-2 border-[#5C5C5C] p-7 transition-transform duration-300">
       <div
-        className="flex justify-between items-center p-6 cursor-pointer"
-        onClick={onToggle} // คลิกเพื่อสลับเปิด/ปิด
+        onClick={handleToggle}
+        className="flex cursor-pointer justify-between text-xl font-medium lg:text-5xl"
       >
-        <div className="font-bold text-2xl">{title}</div>
-        <IoIosArrowDown
-          className={`transition-transform duration-300 text-2xl ${
-            isExpand ? "rotate-180" : "rotate-0"
-          }`}
+        <div className="">{title}</div>
+        <AiOutlinePlus
+          className={`ml-3 text-5xl transition-transform duration-300 ${expanded ? "rotate-45" : "rotate-0"}`}
         />
       </div>
-      <div
-        className={`px-5 pb-5 transition-all duration-300 ${
-          isExpand ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
-        } overflow-hidden`}
+      <motion.div
+        initial={{ height: 0 }}
+        animate={expanded ? { height: "auto" } : { height: 0 }}
+        exit={{ height: 0 }}
+        transition={{
+          duration: 0.5, // คุมระยะเวลา
+          ease: [0.25, 0.8, 0.25, 1], // ค่า cubic-bezier ที่ให้การเคลื่อนไหวสไลด์นุ่ม
+        }}
+        className="font-Poppins mt-2 overflow-hidden text-lg font-medium text-[#808080] lg:mt-8 lg:text-2xl"
       >
         {content}
-      </div>
+      </motion.div>
     </div>
   );
 }
 
 const Page = () => {
-  const [expandedId, setExpandedId] = useState(null);
-
   return (
-    <div className="max-w-2xl mx-auto mt-10 space-y-4">
+    <div className="mx-auto mt-40 w-11/12 space-y-4">
+      <div className="w-full text-center">
+        <div className="inline-block rounded-full bg-white px-7 py-1.5 text-lg font-medium text-black lg:text-3xl">
+          FAQs
+        </div>
+        <p className="mt-4 text-xl font-semibold text-[#5e5e5e] lg:text-2xl">
+          the most common question
+        </p>
+      </div>
       {accordionData.map((item) => (
         <AccordionItem
           key={item.id}
           title={item.title}
           content={item.content}
-          isExpand={expandedId === item.id}
-          onToggle={() => setExpandedId(expandedId === item.id ? null : item.id)}
         />
       ))}
     </div>
