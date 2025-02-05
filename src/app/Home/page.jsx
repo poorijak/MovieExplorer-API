@@ -9,6 +9,7 @@ import PopularSeries from "@/src/components/PopularSeries/PopularSeries";
 import Genres from "@/src/components/Genres/Genres";
 import Link from "next/link";
 import Accordion from "../../components/Accordion/Page";
+import Scroll_vel from "../../../src/components/Scroll_velocity/Page";
 
 const page = () => {
   const [movie, setMovie] = useState([]);
@@ -28,7 +29,7 @@ const page = () => {
   console.log(movie);
   return (
     <>
-      <div className="bg-[#0D0D0D]">
+      <div className="bg-[#0D0D0D] h-full">
         <div className="relative z-10">
           <HomeHero movie={movie} />
         </div>
@@ -46,6 +47,7 @@ const page = () => {
             </button>
           </div>
           <Accordion/>
+          <Scroll_vel/>
         </div>
       </div>
     </>

@@ -100,7 +100,7 @@ const Page = () => {
         </div>
       </div>
       {/* ส่ง movie เป็น props */}
-      <div className="mt-[-200px] space-y-5 md:mt-[-12px]">
+      <div className="mt-[-170px] space-y-5 md:mt-[-12px]">
         <SmallVideoCarousel_1 movie={movie} />
         <SmallVideoCarousel_2 movie={movie} />
       </div>
