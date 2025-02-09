@@ -71,7 +71,10 @@ function AccordionItem({ title, content }) {
   }, []);
 
   return (
-    <div className="max-w-full border-b-2 border-[#5C5C5C] p-7 transition-transform duration-300">
+    <div
+      data-aos="fade-up"
+      className="max-w-full border-b-2 border-[#5C5C5C] p-7 transition-transform duration-300">
+
       <div
         onClick={handleToggle}
         className="flex cursor-pointer justify-between text-xl font-medium lg:text-3xl"
@@ -90,6 +93,7 @@ function AccordionItem({ title, content }) {
           ease: [0.25, 0.8, 0.25, 1], // ค่า cubic-bezier ที่ให้การเคลื่อนไหวสไลด์นุ่ม
         }}
         className="font-Poppins mt-2 overflow-hidden text-lg font-medium text-[#808080] lg:mt-4 lg:text-xl"
+
       >
         {content}
       </motion.div>
