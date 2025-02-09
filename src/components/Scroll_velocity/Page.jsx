@@ -1,24 +1,22 @@
-import React from 'react'
+import React from "react";
 import { VelocityScroll } from "../../../components/ui/scroll-based-velocity";
 
-
-
 function VelocityScrollItem() {
-    return (
-        <div>
-            <VelocityScroll className={'text-8xl font-bold'}>MovieExplorer</VelocityScroll>
-        </div>
-    )
+  return (
+    <div className="flex w-full justify-center">
+      <VelocityScroll className="whitespace-nowrap text-[18vh] font-bold">
+        MovieExplorer
+      </VelocityScroll>
+    </div>
+  );
 }
-
 
 const Page = () => {
   return (
-    <div className='w-full overflow-hidden mt-20'>
-        <VelocityScrollItem/>
+    <div className="mt-20 w-full overflow-hidden">
+      <VelocityScrollItem />
     </div>
-    
-  )
-}
+  );
+};
 
-export default Page
+export default Page;

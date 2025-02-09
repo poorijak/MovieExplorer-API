@@ -3,6 +3,8 @@ import { IoIosArrowDown } from "react-icons/io";
 import { motion, AnimatePresence, delay } from "framer-motion";
 import { AiOutlinePlus } from "react-icons/ai";
 import { usePathname } from "next/navigation";
+import Aos from "aos";
+import "aos/dist/aos.css";
 
 const accordionData = [
   {
@@ -61,6 +63,13 @@ function AccordionItem({ title, content }) {
     setExpanded(false);
   }, [pathName]);
 
+  useEffect(() => {
+    Aos.init({
+      duration: 200,
+      once: false, // อนุญาตให้ AOS ทำงานซ้ำ
+    });
+  }, []);
+
   return (
     <div className="max-w-full border-b-2 border-[#5C5C5C] p-7 transition-transform duration-300">
       <div
@@ -90,10 +99,13 @@ function AccordionItem({ title, content }) {
 
 const Page = () => {
   return (
-    <div className="mx-auto mt-40 w-11/12 space-y-4 flex">
-      <div className="w-1/2 text-center pt-7">
-        <div className="flex flex-col items-center">
-          <p className=" rounded-full bg-white px-7 py-1.5 text-lg font-medium text-black lg:text-2xl">
+    <div
+      data-aos="fade-up"
+      className="mx-auto mt-40 flex w-11/12 flex-col items-center space-y-4 lg:w-2/3 lg:flex-row lg:items-start"
+    >
+      <div className="w-1/2 pt-7 text-center">
+        <div className="flex flex-col items-center justify-center lg:items-start">
+          <p className="rounded-full bg-white px-7 py-1.5 text-lg font-semibold text-black lg:text-4xl">
             FAQs
           </p>
           <p className="mt-4 text-xl font-semibold text-[#5e5e5e] lg:text-2xl">
@@ -101,14 +113,14 @@ const Page = () => {
           </p>
         </div>
       </div>
-      <div className="w-1/2">
-      {accordionData.map((item) => (
-        <AccordionItem
-          key={item.id}
-          title={item.title}
-          content={item.content}
-        />
-      ))}
+      <div className="w-11/12 lg:w-2/3">
+        {accordionData.map((item) => (
+          <AccordionItem
+            key={item.id}
+            title={item.title}
+            content={item.content}
+          />
+        ))}
       </div>
     </div>
   );
