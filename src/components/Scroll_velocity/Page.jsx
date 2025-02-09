@@ -6,7 +6,7 @@ import { VelocityScroll } from "../../../components/ui/scroll-based-velocity";
 function VelocityScrollItem() {
     return (
         <div>
-            <VelocityScroll className={'text-8xl'}>MovieExplorer</VelocityScroll>
+            <VelocityScroll className={'text-8xl font-bold'}>MovieExplorer</VelocityScroll>
         </div>
     )
 }
@@ -17,6 +17,7 @@ const Page = () => {
     <div className='w-full overflow-hidden mt-20'>
         <VelocityScrollItem/>
     </div>
+    
   )
 }
 

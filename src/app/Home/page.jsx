@@ -36,7 +36,7 @@ const page = () => {
         <VideoCarousol movie={movie} />
         <div className="h-[50vh]"></div>
         <TrendingPala />
-        <div className="my-24">
+        <div className="mt-24">
           <PopularMovie />
           <PopularSeries />
           <div className="w-full text-center">

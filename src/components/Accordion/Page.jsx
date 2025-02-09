@@ -65,11 +65,11 @@ function AccordionItem({ title, content }) {
     <div className="max-w-full border-b-2 border-[#5C5C5C] p-7 transition-transform duration-300">
       <div
         onClick={handleToggle}
-        className="flex cursor-pointer justify-between text-xl font-medium lg:text-4xl"
+        className="flex cursor-pointer justify-between text-xl font-medium lg:text-3xl"
       >
         <div className="">{title}</div>
         <AiOutlinePlus
-          className={`ml-3 text-5xl transition-transform duration-300 ${expanded ? "rotate-45" : "rotate-0"}`}
+          className={`ml-3 text-3xl transition-transform duration-300 ${expanded ? "rotate-45" : "rotate-0"}`}
         />
       </div>
       <motion.div
@@ -80,7 +80,7 @@ function AccordionItem({ title, content }) {
           duration: 0.5, // คุมระยะเวลา
           ease: [0.25, 0.8, 0.25, 1], // ค่า cubic-bezier ที่ให้การเคลื่อนไหวสไลด์นุ่ม
         }}
-        className="font-Poppins mt-2 overflow-hidden text-lg font-medium text-[#808080] lg:mt-4 lg:text-2xl"
+        className="font-Poppins mt-2 overflow-hidden text-lg font-medium text-[#808080] lg:mt-4 lg:text-xl"
       >
         {content}
       </motion.div>
@@ -90,15 +90,18 @@ function AccordionItem({ title, content }) {
 
 const Page = () => {
   return (
-    <div className="mx-auto mt-40 w-11/12 space-y-4">
-      <div className="w-full text-center">
-        <div className="inline-block rounded-full bg-white px-7 py-1.5 text-lg font-medium text-black lg:text-xl">
-          FAQs
+    <div className="mx-auto mt-40 w-11/12 space-y-4 flex">
+      <div className="w-1/2 text-center pt-7">
+        <div className="flex flex-col items-center">
+          <p className=" rounded-full bg-white px-7 py-1.5 text-lg font-medium text-black lg:text-2xl">
+            FAQs
+          </p>
+          <p className="mt-4 text-xl font-semibold text-[#5e5e5e] lg:text-2xl">
+            the most common question
+          </p>
         </div>
-        <p className="mt-4 text-xl font-semibold text-[#5e5e5e] lg:text-2xl">
-          the most common question
-        </p>
       </div>
+      <div className="w-1/2">
       {accordionData.map((item) => (
         <AccordionItem
           key={item.id}
@@ -106,6 +109,7 @@ const Page = () => {
           content={item.content}
         />
       ))}
+      </div>
     </div>
   );
 };
