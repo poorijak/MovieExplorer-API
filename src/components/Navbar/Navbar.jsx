@@ -51,7 +51,12 @@ export default function Navbar() {
   useEffect(() => {
     setIsOpen(false);
     setToggled(false);
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }, [pathName]);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   const items = {
     hidden: {
@@ -88,17 +93,25 @@ export default function Navbar() {
         >
           <div className="relative flex h-full w-full items-center justify-between">
             <div className="">
-              <Link href={"/"}>
+              <Link href={"/"} onClick={scrollToTop}>
                 <RiMovie2AiFill className="text-2xl lg:text-3xl" />
               </Link>
             </div>
 
             {/* desktop nav */}
             <div className="hidden items-center gap-8 text-lg font-medium lg:flex">
-              <Link href={"/"}>Home</Link>
-              <Link href={"/MainContent"}>Movie</Link>
-              <Link href={"/De"}>Tv Series</Link>
-              <Link href={"#"}>My List</Link>
+              <Link href={"/"} onClick={scrollToTop}>
+                Home
+              </Link>
+              <Link href={"/MainContent"} onClick={scrollToTop}>
+                Movie
+              </Link>
+              <Link href={"/De"} onClick={scrollToTop}>
+                Tv Series
+              </Link>
+              <Link href={"#"} onClick={scrollToTop}>
+                My List
+              </Link>
             </div>
             <form
               action=""

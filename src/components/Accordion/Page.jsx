@@ -65,13 +65,15 @@ function AccordionItem({ title, content }) {
 
   useEffect(() => {
     Aos.init({
-      duration: 200,
+      duration: 300,
       once: false, // อนุญาตให้ AOS ทำงานซ้ำ
     });
   }, []);
-
   return (
-    <div className="max-w-full border-b-2 border-[#5C5C5C] p-7 transition-transform duration-300">
+    <div
+      data-aos="fade-up"
+      className="max-w-full border-b-2 border-[#5C5C5C] p-7 transition-transform duration-300"
+    >
       <div
         onClick={handleToggle}
         className="flex cursor-pointer justify-between text-xl font-medium lg:text-3xl"

@@ -98,4 +98,23 @@ body {
   * {
     @apply border-border; /* หากไม่จำเป็นต้องใช้ทุก element อาจหลีกเลี่ยง */
   }
+
+  .slide-in {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: #171717;
+    transform-origin: bottom;
+  }
+  .slide-out {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: #171717;
+    transform-origin: top;
+  }
 }

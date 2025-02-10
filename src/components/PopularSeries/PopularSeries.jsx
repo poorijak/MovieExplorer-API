@@ -30,8 +30,10 @@ export default function PopularMovie() {
   useEffect(() => {
     Aos.init({
       duration: 400,
-      once: false, // อนุญาตให้ AOS ทำงานซ้ำ
+      once: false,
+      // อนุญาตให้ AOS ทำงานซ้ำ
     });
+    Aos.refresh();
   }, []);
 
   return (

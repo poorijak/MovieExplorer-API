@@ -8,8 +8,8 @@ import "aos/dist/aos.css";
 export default function GenresContent({ content }) {
   useEffect(() => {
     Aos.init({
-      duration: 400,
-      once: true,
+      duration: 300,
+      once: false,
     });
   }, []);
 
