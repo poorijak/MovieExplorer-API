@@ -9,7 +9,7 @@ export default function LoadingPage() {
         alt="Loading"
         width={1000}
         height={1500}
-        className="h-[450px] w-[250px] lg:h-[500px] lg:w-[350px]"
+        className="h-[325px] w-[175px] lg:h-[500px] lg:w-[350px]"
       />
     </div>
   );
