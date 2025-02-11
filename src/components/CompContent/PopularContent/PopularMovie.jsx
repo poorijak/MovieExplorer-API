@@ -7,26 +7,10 @@ import { IoIosArrowDroprightCircle } from "react-icons/io";
 import { ImFire } from "react-icons/im";
 import Image from "next/image";
 import Link from "next/link";
-import { fetchPopular } from "../../../../Service/imdbAPI";
 import Aos from "aos";
 import "aos/dist/aos.css";
 
-export default function PopularMovie( { content }) {
-  const [movie, setMovie] = useState([]);
-
-  useEffect(() => {
-    const getPopularMovie = async () => {
-      try {
-        const res = await fetchPopular(content);
-        setMovie(res);
-      } catch (err) {
-        console.log("getPopularMovieSection error: ", err);
-      }
-    };
-
-    getPopularMovie();
-  }, []);
-
+export default function PopularMovie({ content, data }) {
   useEffect(() => {
     Aos.init({
       duration: 300,
@@ -74,7 +58,7 @@ export default function PopularMovie( { content }) {
           className="mb-10 h-auto max-w-full"
           onSlideChange={() => Aos.refresh()} // แก้ปัญหา AOS หายเมื่อเปลี่ยนสไลด์
         >
-          {movie.map((item, index) => (
+          {data.map((item, index) => (
             <SwiperSlide key={item.id} className="h-[500px]">
               <div data-aos="fade-up" data-aos-delay={index * 100}>
                 <Link
@@ -96,7 +80,8 @@ export default function PopularMovie( { content }) {
                 </h2>
                 <div className="flex justify-between">
                   <p className="text-[#a6a6a6]">
-                    {item.release_date?.split("-")[0] || item.first_air_date?.split("-")[0]}
+                    {item.release_date?.split("-")[0] ||
+                      item.first_air_date?.split("-")[0]}
                   </p>
                   <div className="flex items-center">
                     <FaStar className="text-amber-400" />

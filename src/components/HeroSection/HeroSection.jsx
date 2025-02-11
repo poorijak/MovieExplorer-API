@@ -9,25 +9,7 @@ import "swiper/css/navigation";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function HeroSection({ content , lastSlice }) {
-  const [movie, setMovie] = useState([]);
-
-  useEffect(() => {
-    const getTrending = async () => {
-      try {
-        const res = await fetchPopular(content);
-        setMovie(res.slice(0, lastSlice).reverse());
-      } catch (err) {
-        console.log("getTreding error is :", err);
-      }
-    };
-
-    getTrending();
-  }, []);
-
-  console.log('content' , movie);
-  
-
+export default function HeroSection({ content, lastSlice, data }) {
   return (
     <div className="relative w-full">
       <Swiper
@@ -49,7 +31,7 @@ export default function HeroSection({ content , lastSlice }) {
         }}
         className="max-w-full hover:cursor-grabbing"
       >
-        {movie.map((item) => (
+        {data.map((item) => (
           <SwiperSlide key={item.id}>
             <div
               style={{

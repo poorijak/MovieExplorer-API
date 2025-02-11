@@ -1,23 +1,41 @@
-import React from 'react'
-import HeroSection from '@/src/components/HeroSection/HeroSection'
-import TopRatedContent from '@/src/components/CompContent/TopRatedContent/page'
-import TrendingContent from '@/src/components/CompContent/TrendingContent/page'
-import OnAirContent from '@/src/components/CompContent/OnAirSeries/page'
-import PopularMovie from '@/src/components/CompContent/PopularContent/PopularMovie'
-import AiringTv from '@/src/components/CompContent/AiringTv/page'
+import React from "react";
+import HeroSection from "@/src/components/HeroSection/HeroSection";
+import TopRatedContent from "@/src/components/CompContent/TopRatedContent/page";
+import TrendingContent from "@/src/components/CompContent/TrendingContent/page";
+import OnAirContent from "@/src/components/CompContent/OnAirSeries/page";
+import PopularMovie from "@/src/components/CompContent/PopularContent/PopularMovie";
+import AiringTv from "@/src/components/CompContent/AiringTv/page";
+import {
+  fetchPopular,
+  fetchTrending,
+  fetchTopRate,
+  fetchOnAirSeries,
+  fetchAiringSeries,
+} from "@/Service/imdbAPI";
 
-const page = () => {
+const page = async () => {
+  try {
+    const [trending, popular, top_rated, OnAir, AiringNow] = await Promise.all([
+      fetchTrending("tv"),
+      fetchPopular("tv", 20),
+      fetchTopRate("tv"),
+      fetchOnAirSeries(),
+      fetchAiringSeries(),
+    ]);
+
     return (
-        <div>
-            <HeroSection content={'tv'} lastSlice={1} />
-            <PopularMovie content={'tv'} />
-            <TopRatedContent content={'tv'}/>
-            <TrendingContent content={'tv'}/>
-            <AiringTv content={'tv'} />
-            <OnAirContent />
+      <div>
+        <HeroSection data={popular} />
+        <PopularMovie content={"tv"} data={popular} />
+        <TopRatedContent content={"tv"} data={top_rated} />
+        <TrendingContent content={"tv"} data={trending} />
+        <OnAirContent data={OnAir} />
+        <AiringTv data={AiringNow} />
+      </div>
+    );
+  } catch (err) {
+    console.log("Error: ", err);
+  }
+};
 
-        </div>
-    )
-}
-
-export default page
+export default page;

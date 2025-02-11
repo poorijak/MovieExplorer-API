@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import Lenis from "lenis";
-import Home from "../app/Home/page";
+import Home from "@/src/app/Home/page";
 import { metadata } from "./metadata";
 
 export default function TrendingMovies() {
