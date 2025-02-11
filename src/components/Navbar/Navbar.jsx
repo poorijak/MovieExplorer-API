@@ -100,13 +100,13 @@ export default function Navbar() {
 
             {/* desktop nav */}
             <div className="hidden items-center gap-8 text-lg font-medium lg:flex">
-              <Link href={"/"} onClick={scrollToTop}>
+              <Link href={"/MainContent"} onClick={scrollToTop}>
                 Home
               </Link>
-              <Link href={"/MainContent"} onClick={scrollToTop}>
+              <Link href={"/MovieContent"} onClick={scrollToTop}>
                 Movie
               </Link>
-              <Link href={"/De"} onClick={scrollToTop}>
+              <Link href={"/TvContent"} onClick={scrollToTop}>
                 Tv Series
               </Link>
               <Link href={"#"} onClick={scrollToTop}>

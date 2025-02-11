@@ -66,7 +66,7 @@ function AccordionItem({ title, content }) {
   useEffect(() => {
     Aos.init({
       duration: 300,
-      once: false, // อนุญาตให้ AOS ทำงานซ้ำ
+      once: false,
     });
   }, []);
   return (
@@ -80,7 +80,7 @@ function AccordionItem({ title, content }) {
       >
         <div className="">{title}</div>
         <AiOutlinePlus
-          className={`ml-3 text-3xl transition-transform duration-300 ${expanded ? "rotate-45" : "rotate-0"}`}
+          className={`ml-3 text-4xl transition-transform duration-300 ${expanded ? "rotate-45" : "rotate-0"}`}
         />
       </div>
       <motion.div

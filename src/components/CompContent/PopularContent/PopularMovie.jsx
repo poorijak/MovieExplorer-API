@@ -7,17 +7,17 @@ import { IoIosArrowDroprightCircle } from "react-icons/io";
 import { ImFire } from "react-icons/im";
 import Image from "next/image";
 import Link from "next/link";
-import { fetchPopular } from "../../../Service/imdbAPI";
+import { fetchPopular } from "../../../../Service/imdbAPI";
 import Aos from "aos";
 import "aos/dist/aos.css";
 
-export default function PopularMovie() {
+export default function PopularMovie( { content }) {
   const [movie, setMovie] = useState([]);
 
   useEffect(() => {
     const getPopularMovie = async () => {
       try {
-        const res = await fetchPopular("tv");
+        const res = await fetchPopular(content);
         setMovie(res);
       } catch (err) {
         console.log("getPopularMovieSection error: ", err);
@@ -29,11 +29,9 @@ export default function PopularMovie() {
 
   useEffect(() => {
     Aos.init({
-      duration: 400,
-      once: false,
-      // อนุญาตให้ AOS ทำงานซ้ำ
+      duration: 300,
+      once: false, // อนุญาตให้ AOS ทำงานซ้ำ
     });
-    Aos.refresh();
   }, []);
 
   return (
@@ -41,7 +39,7 @@ export default function PopularMovie() {
       {/* Header */}
       <div className="my-5 ml-8 flex items-center">
         <ImFire className="mr-2 text-xl text-[#FFC300]" />
-        <h1 className="text-xl font-semibold">Popular Movie</h1>
+        <h1 className="text-xl font-semibold">Popular {content}</h1>
         <div className="group ml-2 flex items-center">
           <div className="relative flex w-auto items-center">
             <IoIosArrowDroprightCircle className="transition-transform duration-300 group-hover:translate-x-20 group-hover:text-amber-300" />
@@ -98,7 +96,7 @@ export default function PopularMovie() {
                 </h2>
                 <div className="flex justify-between">
                   <p className="text-[#a6a6a6]">
-                    {item.first_air_date?.split("-")[0] || "N/A"}
+                    {item.release_date?.split("-")[0] || item.first_air_date?.split("-")[0]}
                   </p>
                   <div className="flex items-center">
                     <FaStar className="text-amber-400" />

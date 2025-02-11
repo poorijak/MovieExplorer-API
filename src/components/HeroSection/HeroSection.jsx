@@ -9,14 +9,14 @@ import "swiper/css/navigation";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function HeroSection() {
+export default function HeroSection({ content , lastSlice }) {
   const [movie, setMovie] = useState([]);
 
   useEffect(() => {
     const getTrending = async () => {
       try {
-        const res = await fetchPopular("movie");
-        setMovie(res.slice(0, 4).reverse());
+        const res = await fetchPopular(content);
+        setMovie(res.slice(0, lastSlice).reverse());
       } catch (err) {
         console.log("getTreding error is :", err);
       }
@@ -24,6 +24,9 @@ export default function HeroSection() {
 
     getTrending();
   }, []);
+
+  console.log('content' , movie);
+  
 
   return (
     <div className="relative w-full">
@@ -52,18 +55,18 @@ export default function HeroSection() {
               style={{
                 backgroundImage: `url(${`https://image.tmdb.org/t/p/original${item.backdrop_path}`})`,
               }}
-              className="h-[80vh] w-screen bg-cover bg-center xl:bg-top"
+              className="h-[90vh] w-screen bg-cover bg-center xl:bg-top"
             >
               <div className="flex h-full w-full items-center justify-center bg-blackOverlay_1 xl:block xl:bg-blackOverlay_2">
                 <div className="">
-                  <div className="flex flex-col justify-center pt-56 xl:justify-start xl:pl-16">
+                  <div className="flex flex-col justify-center pt-36 xl:justify-start xl:pl-16">
                     <h1 className="mb-2 text-center text-3xl font-bold md:text-4xl lg:text-left xl:mb-5 xl:text-6xl">
-                      {item.original_title}
+                      {item.original_title || item.name}
                     </h1>
                     <p className="smblock mb-5 line-clamp-1 hidden w-96 font-medium md:line-clamp-2 2xl:line-clamp-3">
                       {item.overview}
                     </p>
-                    <p className="mb-5 text-center font-semibold text-white xl:text-left xl:text-[#c2c2c2]">
+                    <p className="mb-5 text-center font-semibold text-white xl:text-left xl:text-[#BFBFBF]">
                       {item.genres.join(" , ")}
                     </p>
                     <div className="mb-5 flex items-center justify-center gap-2 text-lg xl:justify-start">

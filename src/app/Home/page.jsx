@@ -1,11 +1,11 @@
+'use client'
 import { React, useEffect, useState } from "react";
 import VideoCarousol from "../../components/VideoCarousol/page";
 import HomeHero from "../../components/HomeHero/page";
 import { fetchPopular } from "../../../Service/imdbAPI";
 import TrendingPala from "../../components/TrendingPala/Page";
 import TopRated from "@/src/components/TopRated/TopRated";
-import PopularMovie from "@/src/components/PopularMovie/PopularMovie";
-import PopularSeries from "@/src/components/PopularSeries/PopularSeries";
+import PopularMovie from "@/src/components/CompContent/PopularContent/PopularMovie";
 import Genres from "@/src/components/Genres/Genres";
 import Link from "next/link";
 import Accordion from "../../components/Accordion/Page";
@@ -37,8 +37,8 @@ const page = () => {
         <div className="h-[50vh]"></div>
         <TrendingPala />
         <div className="mt-24">
-          <PopularMovie />
-          <PopularSeries />
+          <PopularMovie  content={'movie'} />
+          <PopularMovie  content={'tv'} />
           <div className="w-full text-center">
             <button className="text-md rounded-full bg-[#272727] px-4 py-2 font-medium transition-all duration-300 ease-in-out hover:bg-[#555] active:scale-95">
               <Link href={"/MainContent"} className="text-white">

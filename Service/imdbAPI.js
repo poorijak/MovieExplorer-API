@@ -113,6 +113,52 @@ export const fetchTopRate = async (type) => {
     }
 }
 
+export const fetchOnAirSeries = async () => {
+    try {
+        const res = await axios.get((`${BASE_URL}/tv/on_the_air`), { params: { api_key: API_KEY, language: 'en-Us' } })
+        const results = res.data.results
+        return results
+    }
+    catch (err) {
+        console.log('fetchOnAirSerires err api : ', err);
+        throw err
+    }
+}
+
+export const fetchNowplayMovie = async () => {
+    try {
+        const res = await axios.get((`${BASE_URL}/movie/now_playing`), { params: { api_key: API_KEY, language: 'en-Us' } })
+        const results = res.data.results
+        return results
+    }
+    catch (err) {
+        console.log('fetchNowplayMovie err api : ', err);
+        throw err
+    }
+}
+export const fetchUpcoming = async () => {
+    try {
+        const res = await axios.get((`${BASE_URL}/movie/upcoming`), { params: { api_key: API_KEY, language: 'en-Us' } })
+        const results = res.data.results
+        return results
+    }
+    catch (err) {
+        console.log('fetchUpcoming err api : ', err);
+        throw err
+    }
+}
+
+
+export const fetchAiringSeries = async () => {
+    try {
+        const res = await axios.get(`${BASE_URL}/tv/airing_today`, { params: { api_key: API_KEY, language: 'en-US' } });
+        const results = res.data.results;
+        return results;
+    } catch (err) {
+        console.log('fetchAiringSeries error: ', err);
+        throw err;
+    }
+};
 
 
 
@@ -139,3 +185,5 @@ export const fetchVideo = async (type, id) => {
         throw err;
     }
 }
+
+
