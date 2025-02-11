@@ -170,7 +170,7 @@ export default function Navbar() {
                     exit="visible"
                     className="mb-5"
                   >
-                    <Link href={"/MainContent"}>Movie</Link>
+                    <Link href={"/MovieContent"}>Movie</Link>
                   </motion.li>
 
                   <motion.li
@@ -180,7 +180,7 @@ export default function Navbar() {
                     exit="visible"
                     className="mb-5"
                   >
-                    <Link href={"/"}>Tv Series</Link>
+                    <Link href={"/TvContent"}>Tv Series</Link>
                   </motion.li>
 
                   <motion.li
