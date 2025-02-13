@@ -1,18 +1,19 @@
 "use client";
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence, delay } from "framer-motion";
+
+import React, { useEffect, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import LoadingPage from "../components/Loading/Page";
 import { usePathname } from "next/navigation"; // คอมโพเนนต์หน้าจอโหลด
 
 export default function Template({ children }) {
-  const [Loading, setLoading] = useState(false);
+  const [Loading, setLoading] = useState(true); // กำหนดเริ่มต้นเป็น true
   const pathName = usePathname();
 
   useEffect(() => {
     setLoading(true);
-    const timer = setTimeout(() => setLoading(false), 1000); // ปรับเวลาให้โหลด 300ms
+    const timer = setTimeout(() => setLoading(false), 2000); // ปรับเวลาให้โหลด 2000ms
     return () => clearTimeout(timer);
-  }, [pathName]); // ใช้ [] เพื่อให้ทำงานแค่ครั้งเดียวเมื่อโหลดหน้า
+  }, [pathName]);
 
   return (
     <>
@@ -31,7 +32,8 @@ export default function Template({ children }) {
           </motion.div>
         )}
       </AnimatePresence>
-      {children}
+      {/* ส่ง prop loading ไปให้ MovieDetail */}
+      {React.cloneElement(children, { Loading })}
     </>
   );
 }
