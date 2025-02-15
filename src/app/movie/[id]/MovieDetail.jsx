@@ -7,9 +7,12 @@ import { FaBookmark, FaStar } from "react-icons/fa6";
 import Casting from "./Fetch/Actor";
 import Video from "./Fetch/VideoTrailer";
 import { Parallax } from "react-parallax";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, delay } from "framer-motion";
+import { TextAnimate } from "@/src/components/magicui/text-animate";
+import Aos from "aos";
+import "aos/dist/aos.css";
 
-const MovieDetail = ({ id, loading }) => {
+const MovieDetail = ({ id }) => {
   const [moveDetail, setMovieDetail] = useState([]);
   const [cast, setCast] = useState([]);
   const [heartActive, setHeartActive] = useState(false);
@@ -22,6 +25,7 @@ const MovieDetail = ({ id, loading }) => {
           fetchDetail("movie", id),
           fetchCasting("movie", id),
         ]);
+
         setMovieDetail(detail);
         setCast(casting);
       } catch (err) {
@@ -39,79 +43,210 @@ const MovieDetail = ({ id, loading }) => {
     setMyFav(!myFav);
   };
 
+  console.log(moveDetail);
+
+  useEffect(() => {
+    Aos.init({
+      duration: 300,
+      once: false,
+    });
+  }, []);
+
+  const itmes = {
+    hidden: { y: 100, opacity: 0 },
+    show: {
+      y: 0,
+      opacity: 1,
+      transition: { duration: 1, ease: [0, 0.71, 0.2, 1.01], delay: 2 },
+    },
+  };
+
+  const title = {
+    hidden: { y: 20, opacity: 0 },
+    show: {
+      y: 0,
+      opacity: 1,
+      transition: { duration: 1.5, delay: 2.2 },
+    },
+  };
+
+  const overVirew = {
+    hidden: { y: 20, opacity: 0 },
+    show: {
+      y: 0,
+      opacity: 1,
+      transition: { duration: 1, delay: 2.5 },
+    },
+  };
+
+  const vote_average = {
+    hidden: { scale: 1.1, opacity: 0 },
+    show: {
+      scale: 1,
+      opacity: 1,
+      transition: { duration: 0.2, delay: 3 },
+    },
+  };
+
+  const details = {
+    hidden: {
+      scale: 1.3,
+      opacity: 0,
+      filter: "blur(5px)",
+    },
+    show: {
+      scale: 1,
+      opacity: 1,
+      filter: "blur(0px)",
+    },
+    style: { originZ: 0 },
+  };
+
+  const poster_image = {
+    hidden: { y: 20, opacity: 0 },
+    show: {
+      y: 0,
+      opacity: 1,
+      transition: { duration: 1, delay: 2.2 },
+    },
+  };
+
   return (
     <>
-      <AnimatePresence>
-        <motion.div
-          key={id} // ใช้ key ให้ motion รู้ว่ามีการเปลี่ยนแปลง
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -50 }}
-          onAnimationStart={() => console.log("Animation started")}
-          onAnimationComplete={() => console.log("Animation completed")}
+      <motion.div
+        className="h-full w-full overflow-hidden"
+        variants={itmes}
+        initial="hidden"
+        animate="show"
+      >
+        <div
+          style={{
+            backgroundImage: `url(${`https://image.tmdb.org/t/p/original${moveDetail?.backdrop_path}`})`,
+          }}
+          className="inset-0 h-[70vh] w-full bg-cover bg-center lg:h-[100vh] lg:bg-top"
         >
-          <Parallax
-            bgImage={`https://image.tmdb.org/t/p/original${moveDetail?.backdrop_path}`}
-            strength={400}
-            className="b h-screen w-full"
-            style={{ willChange: "transform" }}
-            bgImageStyle={{
-              width: "100%",
-              height: "100%",
-              objectFit: "cover",
-            }}
-          >
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 1, delay: 2 }}
-              className="h-f mt-28 flex w-full justify-between px-11"
-            >
+          <div className="relative h-full w-full bg-blackOverlay_1 px-11 pt-36 lg:hidden"></div>
+
+          <div className="relative hidden h-full w-full bg-blackOverlay_6 px-11 pt-36 lg:flex">
+            <div>
               <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 1, delay: 2.3 }}
+                variants={title}
+                initial="hidden"
+                animate="show"
+                className="absoloute left-10 top-0 lg:w-[60%]"
               >
-                <p className="mb-10 bg-gray-500 bg-opacity-10 bg-clip-padding text-center text-8xl font-medium backdrop-blur backdrop-contrast-100 backdrop-saturate-100 backdrop-filter">
+                <p
+                  style={{ textShadow: "2px 2px 8px rgba(0, 0, 0, 0.6)" }}
+                  className="mb-10 mt-60 text-center text-6xl font-medium drop-shadow-lg lg:mt-0 lg:text-8xl"
+                >
                   {moveDetail?.original_title}
                 </p>
               </motion.div>
+            </div>
+
+            <div className="top-30 absolute right-10">
               <motion.div
-                initial={{ opacity: 0, x: 50 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 1, delay: 2 }}
+                variants={overVirew}
+                initial="hidden"
+                animate="show"
+                className="mb-5 w-[400px]"
               >
-                <div className="w-[400px]">
-                  <p className="mb-5 rounded-t-lg bg-gray-500 bg-opacity-10 bg-clip-padding px-5 py-5 text-left text-xl backdrop-blur-md backdrop-contrast-100 backdrop-saturate-100 backdrop-filter">
-                    {moveDetail?.overview}
+                <TextAnimate
+                  animation="blurInUp"
+                  by="word"
+                  duration={1}
+                  delay={2}
+                  startOnView={false}
+                  className={`text-left text-lg font-normal drop-shadow-lg`}
+                >
+                  {moveDetail?.overview ?? ""}
+                </TextAnimate>
+              </motion.div>
+              <motion.div
+                variants={vote_average}
+                initial="hidden"
+                animate="show"
+                className="inline-block rounded-full bg-[#F6C700] py-2 pl-4 pr-6"
+                data-aos="fade-up"
+              >
+                <div className="flex items-center justify-center gap-2">
+                  <Image
+                    src="/IMDB.svg"
+                    width={70}
+                    height={70}
+                    alt="imdb logo"
+                  />
+                  <p className="text-2xl font-bold text-black">
+                    {moveDetail?.vote_average}
                   </p>
                 </div>
-                <motion.div
-                  initial={{ y: 20, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  exit={{ y: -20, opacity: 0 }}
-                  transition={{ duration: 1 }}
-                  className="inline-block rounded-full bg-[#F6C700] py-2 pl-4 pr-6"
-                >
-                  <div className="flex items-center justify-center gap-2">
-                    <Image
-                      src="/IMDB.svg"
-                      width={70}
-                      height={70}
-                      alt="imdb logo"
-                    />
-                    <p className="text-2xl font-bold text-black">
-                      {moveDetail?.vote_average}
-                    </p>
-                  </div>
-                </motion.div>
               </motion.div>
-            </motion.div>
-          </Parallax>
-        </motion.div>
-      </AnimatePresence>
+            </div>
+          </div>
+        </div>
 
-      <Casting data={cast} />
+        <div className="absolute bottom-5 left-5 hidden p-2 lg:inline-block">
+          {[
+            {
+              label: "Country :",
+              value: moveDetail?.production_countries?.map((item) => item.name),
+            },
+            {
+              label: "Genre :",
+              value: moveDetail?.genres?.map((item) => item.name), // แทนที่จะ join ให้แยกตามค่า
+            },
+            {
+              label: "Time :",
+              value: `${Math.floor(moveDetail.runtime / 60)} h ${moveDetail.runtime % 60}m`,
+            },
+            {
+              label: "Studio :",
+              value: moveDetail?.production_companies?.map((item) => item.name),
+            },
+            { label: "Date :", value: moveDetail?.release_date },
+          ].map((item, index) => (
+            <motion.div
+              variants={details}
+              initial="hidden"
+              animate="show"
+              transition={{ duration: index * 0.5, delay: 3.2 }}
+              key={index}
+              className="mb-2 flex gap-3"
+            >
+              <p>{item.label}</p>
+
+              <div className="flex gap-2">
+                {Array.isArray(item.value) ? (
+                  item.value.map((valueItem, subIndex) => (
+                    <p
+                      key={subIndex}
+                      className="rounded-full px-3 py-1 outline outline-1 outline-[#BDBDBD]"
+                    >
+                      {valueItem}
+                    </p>
+                  ))
+                ) : (
+                  <p className="rounded-full px-3 py-1 outline outline-1 outline-[#BDBDBD]">
+                    {item.value}
+                  </p>
+                )}
+              </div>
+            </motion.div>
+          ))}
+        </div>
+        <div className="flex w-full -translate-y-48 flex-col items-center justify-center lg:hidden">
+          <motion.div variants={poster_image} initial="hidden" animate="show">
+            <Image
+              src={`https://image.tmdb.org/t/p/original${moveDetail?.poster_path}`}
+              height={1920}
+              width={1080}
+              alt="Poster_Movie"
+              className="h-[350px] w-auto rounded-lg object-cover shadow-lg"
+            />
+          </motion.div>
+          <Casting data={cast} />
+        </div>
+      </motion.div>
     </>
   );
 };

@@ -1,11 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Mousewheel, Autoplay, Navigation } from "swiper/modules";
 import Image from "next/image";
+import Aos from "aos";
+import "aos/dist/aos.css";
 
 const Actor = ({ data }) => {
+  useEffect(() => {
+    Aos.init({
+      duration: 300,
+      once: false, // อนุญาตให้ AOS ทำงานซ้ำ
+    });
+  }, []);
+
   return (
-    <div className="mx-auto mt-10 w-full">
+    <div className="mx-10 mt-10 w-full">
       <div>
         <h2 className="mb-4 text-2xl font-semibold">Top Billed Cast</h2>
       </div>
@@ -33,31 +42,31 @@ const Actor = ({ data }) => {
               spaceBetween: 5,
             },
           }}
-          // navigation={true} // เปิดใช้งานปุ่มเลื่อน
-          // autoplay={{
-          //     delay: 3000,
-          //     disableOnInteraction: true, // ไม่ปิด autoplay เมื่อเลื่อนด้วย mousewheel
-          // }}
           mousewheel={{
             forceToAxis: true,
             releaseOnEdges: true,
           }}
           className="mb-10 h-auto max-w-full"
+          onSlideChange={() => Aos.refresh()} // แก้ปัญหา AOS หายเมื่อเปลี่ยนสไลด์
         >
-          {data.map((item) => (
+          {data.map((item, index) => (
             <SwiperSlide key={item.id} className="">
-              <Image
-                src={`https://image.tmdb.org/t/p/original${item.profile_path}`}
-                width={235}
-                height={300}
-                alt={item.name}
-                className="rounded-lg object-cover"
-              />
-              <div className="flex flex-col items-center justify-center">
-                <p className="mt-2 text-center text-xl font-medium">
-                  {item.name}
-                </p>
-                <p className="text-[#A6A6A6]">{item.character}</p>
+              <div data-aos="fade-up" data-aos-delay={index * 100}>
+                <Image
+                  src={`https://image.tmdb.org/t/p/original${item.profile_path || "null"}`}
+                  width={235}
+                  height={300}
+                  alt={item.name}
+                  className="rounded-lg object-cover"
+                  style={{ width: "auto", height: "auto" }} // ✅ ป้องกัน aspect ratio เพี้ยน
+                />
+
+                <div className="flex flex-col items-center justify-center">
+                  <p className="mt-2 text-center text-xl font-medium">
+                    {item.name}
+                  </p>
+                  <p className="text-[#A6A6A6]">{item.character}</p>
+                </div>
               </div>
             </SwiperSlide>
           ))}

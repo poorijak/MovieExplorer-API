@@ -61,13 +61,15 @@ export default {
         blackOverlay_1:
           "linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 100%)",
         blackOverlay_2:
-          "`linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 100%),linear-gradient(to left, rgba(0,0,0,0) 0%, rgba(0,0,0,0.5 ) 100%)`",
+          "linear-gradient(to bottom, rgba(0,0,0,0) 50%, rgba(0,0,0,5) 100%),linear-gradient(to left, rgba(0,0,0,0) 0%, rgba(0,0,0,0.5 ) 100%)",
         blackOverlay_3:
-          "`linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(23,23,23,1) 100%)`",
+          "linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(23,23,23,1) 100%)",
         blackOverlay_4:
-          "`linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.7) 100%)`",
+          "linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.7) 100%`",
         blackOverlay_5:
-          "`linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 100%)`",
+          "linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 100%)",
+        blackOverlay_6:
+          "linear-gradient(to right, rgba(0,0,0,0) 70%, rgba(0,0,0,0.5) 100%) , linear-gradient(to right , rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.0) 30%)",
       },
       backdropBlur: {
         sm: "4px",

@@ -161,7 +161,7 @@ export default function Navbar() {
                     exit="visible"
                     className="mb-5 pt-5"
                   >
-                    <Link href={"/"}>Home</Link>
+                    <Link href={"/MainContent"}>Home</Link>
                   </motion.li>
                   <motion.li
                     variants={items}

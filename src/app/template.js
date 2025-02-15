@@ -15,6 +15,10 @@ export default function Template({ children }) {
     return () => clearTimeout(timer);
   }, [pathName]);
 
+  useEffect(() => {
+    console.log("Template Loading state: ", Loading); // ตรวจสอบค่า Loading
+  }, [Loading]);
+
   return (
     <>
       <AnimatePresence>
@@ -32,8 +36,12 @@ export default function Template({ children }) {
           </motion.div>
         )}
       </AnimatePresence>
-      {/* ส่ง prop loading ไปให้ MovieDetail */}
-      {React.cloneElement(children, { Loading })}
+
+      {/* ตรวจสอบว่าเป็น React element แล้วจึงส่ง props */}
+      {React.isValidElement(children)
+        ? React.cloneElement(children, { Loading }) // ส่ง props ไปยัง children
+        : children // หากไม่ใช่ React element ก็ให้แสดง children ตามปกติ
+      }
     </>
   );
 }

@@ -39,7 +39,7 @@ export default function HeroSection({ content, lastSlice, data }) {
               }}
               className="h-[90vh] w-screen bg-cover bg-center xl:bg-top"
             >
-              <div className="flex h-full w-full items-center justify-center bg-blackOverlay_1 xl:block xl:bg-blackOverlay_2">
+              <div className="flex h-full w-full items-center justify-center bg-blackOverlay_5 xl:block xl:bg-blackOverlay_2">
                 <div className="">
                   <div className="flex flex-col justify-center pt-36 xl:justify-start xl:pl-16">
                     <h1 className="mb-2 text-center text-3xl font-bold md:text-4xl lg:text-left xl:mb-5 xl:text-6xl">
