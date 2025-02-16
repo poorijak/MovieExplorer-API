@@ -1,8 +1,12 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { fetchDetail, fetchCasting } from "../../../../Service/imdbAPI";
+import {
+  fetchDetail,
+  fetchCasting,
+  fetchPopular,
+} from "../../../../Service/imdbAPI";
 import Image from "next/image";
-import { FaHeart } from "react-icons/fa";
+import { FaHeart, FaPlay } from "react-icons/fa";
 import { FaBookmark, FaStar } from "react-icons/fa6";
 import Casting from "./Fetch/Actor";
 import Video from "./Fetch/VideoTrailer";
@@ -11,8 +15,11 @@ import { motion, AnimatePresence, delay } from "framer-motion";
 import { TextAnimate } from "@/src/components/magicui/text-animate";
 import Aos from "aos";
 import "aos/dist/aos.css";
+import HeroSection from "@/src/components/HeroSection/HeroSection";
+import TopRated from "@/src/components/TopRated/TopRated";
 
 const MovieDetail = ({ id }) => {
+  const [popular, setPopular] = useState([]);
   const [moveDetail, setMovieDetail] = useState([]);
   const [cast, setCast] = useState([]);
   const [heartActive, setHeartActive] = useState(false);
@@ -21,11 +28,13 @@ const MovieDetail = ({ id }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [detail, casting] = await Promise.all([
+        const [detail, casting, popular] = await Promise.all([
           fetchDetail("movie", id),
           fetchCasting("movie", id),
+          fetchPopular("movie"),
         ]);
 
+        setPopular(popular);
         setMovieDetail(detail);
         setCast(casting);
       } catch (err) {
@@ -123,7 +132,7 @@ const MovieDetail = ({ id }) => {
           style={{
             backgroundImage: `url(${`https://image.tmdb.org/t/p/original${moveDetail?.backdrop_path}`})`,
           }}
-          className="inset-0 h-[70vh] w-full bg-cover bg-center lg:h-[100vh] lg:bg-top"
+          className="inset-0 h-[70vh] w-full bg-cover bg-fixed bg-center lg:h-[100vh] lg:bg-top"
         >
           <div className="relative h-full w-full bg-blackOverlay_1 px-11 pt-36 lg:hidden"></div>
 
@@ -234,18 +243,43 @@ const MovieDetail = ({ id }) => {
             </motion.div>
           ))}
         </div>
-        <div className="flex w-full -translate-y-48 flex-col items-center justify-center lg:hidden">
-          <motion.div variants={poster_image} initial="hidden" animate="show">
-            <Image
-              src={`https://image.tmdb.org/t/p/original${moveDetail?.poster_path}`}
-              height={1920}
-              width={1080}
-              alt="Poster_Movie"
-              className="h-[350px] w-auto rounded-lg object-cover shadow-lg"
-            />
-          </motion.div>
+        <div className="flex w-full -translate-y-52 flex-col items-center justify-center lg:hidden">
+          <div>
+            <motion.div variants={poster_image} initial="hidden" animate="show">
+              <Image
+                src={`https://image.tmdb.org/t/p/original${moveDetail?.poster_path}`}
+                height={1920}
+                width={1080}
+                alt="Poster_Movie"
+                className="h-[350px] w-auto rounded-lg object-cover shadow-lg"
+              />
+            </motion.div>
+          </div>
+          <div data-aos="fade-up" className="mt-10">
+            <button className="group flex items-center gap-4 rounded-md bg-[#4A4A4A] px-8 py-2 font-bold text-white">
+              <FaPlay /> Tralier
+            </button>
+          </div>
+          <div data-aos="fade-up" className="mt-10">
+            <p
+              style={{ textShadow: "2px 2px 8px rgba(0, 0, 0, 0.6)" }}
+              className="text-center text-4xl font-semibold drop-shadow-lg"
+            >
+              {moveDetail?.original_title}
+            </p>
+          </div>
+
+          <div data-aos="fade-up" className="mx-10 mt-5">
+            <p>
+              <span className="text-lg font-semibold">Overview : </span>
+              {moveDetail?.overview}
+            </p>
+          </div>
           <Casting data={cast} />
         </div>
+        {/* <HeroSection data={popular} /> */}
+        <Casting data={cast} className="hidden lg:inline-block" />
+        {/* <TopRated data={popular} /> */}
       </motion.div>
     </>
   );
