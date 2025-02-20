@@ -24,17 +24,7 @@ const page = ({ data, content }) => {
       <div className="my-5 ml-8 flex items-center">
         <ImFire className="mr-2 text-xl text-[#FFC300]" />
         <h1 className="text-xl font-semibold">TopRated {content}</h1>
-        <div className="group ml-2 flex items-center">
-          <div className="relative flex w-auto items-center">
-            <IoIosArrowDroprightCircle className="transition-transform duration-300 group-hover:translate-x-20 group-hover:text-amber-300" />
-            <Link
-              href={"#"}
-              className="text-md g:translate-x-4 absolute left-0 w-20 text-amber-400 opacity-0 transition-all duration-300 group-hover:underline-offset-1 group-hover:opacity-100"
-            >
-              See more
-            </Link>
-          </div>
-        </div>
+        <hr className="my-8 ml-4 mr-4 h-[2px] w-full flex-1 border-0 bg-[#303030] lg:ml-10 lg:mr-20" />
       </div>
 
       {/* Swiper */}
@@ -62,7 +52,7 @@ const page = ({ data, content }) => {
             <SwiperSlide key={item.id} className="h-[500px]">
               <div data-aos="fade-up" data-aos-delay={index * 100}>
                 <Link
-                  href={`/movie/${item.id}`}
+                  href={`/${content}/${item.id}`}
                   className="relative block overflow-hidden rounded-md"
                 >
                   <div className="group relative h-0 w-full pb-[150%]">

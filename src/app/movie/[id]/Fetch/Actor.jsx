@@ -14,15 +14,17 @@ const Actor = ({ data }) => {
   }, []);
 
   return (
-    <div className="mx-10 mt-10 w-full">
+    <div className="mt-10 w-full px-3 lg:px-10">
       <div>
-        <h2 className="mb-4 text-2xl font-semibold">Top Billed Cast</h2>
+        <h2 className="mb-4 text-4xl font-semibold lg:text-2xl">
+          Top Billed Cast
+        </h2>
       </div>
-      <div className="max-w-full rounded-md lg:ml-10">
+      <div className="w-full rounded-md">
         <Swiper
           modules={[Autoplay, Mousewheel, Navigation]}
           direction="horizontal" // แสดงแนวนอน
-          spaceBetween={2}
+          spaceBetween={10}
           slidesPerView={2} // ค่าเริ่มต้น
           breakpoints={{
             640: {
@@ -38,8 +40,8 @@ const Actor = ({ data }) => {
               spaceBetween: 5,
             },
             1280: {
-              slidesPerView: 6,
-              spaceBetween: 5,
+              slidesPerView: 8,
+              spaceBetween: 20,
             },
           }}
           mousewheel={{
@@ -50,22 +52,26 @@ const Actor = ({ data }) => {
           onSlideChange={() => Aos.refresh()} // แก้ปัญหา AOS หายเมื่อเปลี่ยนสไลด์
         >
           {data.map((item, index) => (
-            <SwiperSlide key={item.id} className="">
-              <div data-aos="fade-up" data-aos-delay={index * 100}>
+            <SwiperSlide key={item.id} className="h-60 w-72">
+              <div
+                data-aos="fade-up"
+                data-aos-delay={index * 100}
+                className="flex h-72 border-spacing-1 flex-col items-center gap-2 rounded-3xl border border-[#313131] bg-[#ffffff11] p-4 lg:h-80"
+              >
                 <Image
                   src={`https://image.tmdb.org/t/p/original${item.profile_path || "null"}`}
-                  width={235}
-                  height={300}
+                  width={150}
+                  height={150}
                   alt={item.name}
-                  className="rounded-lg object-cover"
-                  style={{ width: "auto", height: "auto" }} // ✅ ป้องกัน aspect ratio เพี้ยน
+                  className="lg h-36 w-36 rounded-full object-cover lg:h-44 lg:w-44"
                 />
-
                 <div className="flex flex-col items-center justify-center">
-                  <p className="mt-2 text-center text-xl font-medium">
+                  <p className="mt-2 text-center text-base font-medium lg:text-lg">
                     {item.name}
                   </p>
-                  <p className="text-[#A6A6A6]">{item.character}</p>
+                  <p className="mt-1 text-center text-lg text-[#A6A6A6]">
+                    {item.character}
+                  </p>
                 </div>
               </div>
             </SwiperSlide>

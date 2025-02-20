@@ -1,49 +1,29 @@
-import React, { useEffect, useState } from "react";
-import { fetchVideo } from "../../../../../Service/imdbAPI";
+import React, { useEffect } from "react";
+import Aos from "aos";
+import "aos/dist/aos.css";
 
-const VideoTrailer = ({ id }) => {
-  const [video, setVideo] = useState([]);
-  const [loading, setLoading] = useState(true);
+const VideoTrailer = ({ data, name }) => {
+  console.log("VideoTrailer : ", data);
 
   useEffect(() => {
-    const getVideo = async () => {
-      setLoading(true);
-      try {
-        const res = await fetchVideo("movie", id);
-        setVideo(res || []);
-      } catch (err) {
-        console.error(err);
-      } finally {
-        setLoading(false);
-      }
-    };
-    getVideo();
-  }, [id]);
-
-  // คัดเลือกคลิปที่เป็น "trailer" และ "YouTube"
-  const youtubeTrailers = video.filter(
-    (video) =>
-      video.type.toLowerCase() === "trailer" &&
-      video.site.toLowerCase() === "youtube",
-  );
-
-  // เลือก 5 คลิปแรกจาก youtubeTrailers
-  const top5Trailers = youtubeTrailers.slice(0, 5);
-
-  console.log(video);
+    Aos.init({
+      duration: 300,
+      once: false, // อนุญาตให้ AOS ทำงานซ้ำ
+    });
+  }, []);
 
   return (
-    <div className="mx-auto w-full">
-      {loading ? (
-        <p>Loading...</p>
-      ) : top5Trailers.length > 0 ? (
-        <div className="mx-auto w-full">
-          <div className="w-full">
-            <h3 className="mb-4 text-2xl font-semibold">Watch Trailers</h3>
-          </div>
-          {top5Trailers.map((trailer) => (
-            <div key={trailer.key} className="mb-4 flex justify-center">
-              <div className="relative h-0 w-full pb-[56.25%] lg:w-[80%]">
+    <>
+      <div className="w-full px-5 lg:mx-20">
+        <div className="mb-10 w-full">
+          <h3 className="mb-4 text-2xl font-semibold lg:text-4xl">
+            Watch Trailers
+          </h3>
+        </div>
+        {data.map((trailer) => (
+          <div key={trailer.key} data-aos="fade-up" className="mb-20">
+            <div className="flex h-full w-full flex-col items-center gap-2">
+              <div className="relative mb-5 aspect-video w-full lg:w-[70%]">
                 <iframe
                   className="absolute left-0 top-0 h-full w-full rounded-2xl"
                   src={`https://www.youtube.com/embed/${trailer.key}`}
@@ -53,12 +33,16 @@ const VideoTrailer = ({ id }) => {
                 ></iframe>
               </div>
             </div>
-          ))}
-        </div>
-      ) : (
-        <p>No Trailer Available</p>
-      )}
-    </div>
+            <div className="flex w-auto items-center px-5 lg:mx-72">
+              <p className="text-center text-base font-medium lg:text-4xl">
+                {name} :<span> {trailer?.name}</span>
+              </p>
+              <hr className="my-8 ml-4 mr-4 hidden h-px w-full flex-1 border-0 bg-[#4F4F4F] lg:block" />
+            </div>
+          </div>
+        ))}
+      </div>
+    </>
   );
 };
 

@@ -25,12 +25,12 @@ const page = async () => {
 
     return (
       <div>
-        <HeroSection data={popular} />
+        <HeroSection content={"tv"} data={popular} />
         <PopularMovie content={"tv"} data={popular} />
         <TopRatedContent content={"tv"} data={top_rated} />
         <TrendingContent content={"tv"} data={trending} />
-        <OnAirContent data={OnAir} />
-        <AiringTv data={AiringNow} />
+        <OnAirContent content={"tv"} data={OnAir} />
+        <AiringTv content={"tv"} data={AiringNow} />
       </div>
     );
   } catch (err) {

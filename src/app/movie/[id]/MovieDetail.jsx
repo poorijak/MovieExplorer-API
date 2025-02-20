@@ -4,6 +4,7 @@ import {
   fetchDetail,
   fetchCasting,
   fetchPopular,
+  fetchVideo,
 } from "../../../../Service/imdbAPI";
 import Image from "next/image";
 import { FaHeart, FaPlay } from "react-icons/fa";
@@ -17,10 +18,12 @@ import Aos from "aos";
 import "aos/dist/aos.css";
 import HeroSection from "@/src/components/HeroSection/HeroSection";
 import TopRated from "@/src/components/TopRated/TopRated";
+import Detail from "./Detail";
 
 const MovieDetail = ({ id }) => {
   const [popular, setPopular] = useState([]);
   const [moveDetail, setMovieDetail] = useState([]);
+  const [videoContent, setVideo] = useState([]);
   const [cast, setCast] = useState([]);
   const [heartActive, setHeartActive] = useState(false);
   const [myFav, setMyFav] = useState(false);
@@ -28,12 +31,14 @@ const MovieDetail = ({ id }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [detail, casting, popular] = await Promise.all([
+        const [detail, casting, popular, video] = await Promise.all([
           fetchDetail("movie", id),
           fetchCasting("movie", id),
           fetchPopular("movie"),
+          fetchVideo("movie", id),
         ]);
 
+        setVideo(video);
         setPopular(popular);
         setMovieDetail(detail);
         setCast(casting);
@@ -45,12 +50,13 @@ const MovieDetail = ({ id }) => {
     fetchData();
   }, [id]);
 
-  const handleHeart = () => {
-    setHeartActive(!heartActive);
-  };
-  const handleFav = () => {
-    setMyFav(!myFav);
-  };
+  const youtubeTrailers = videoContent.filter(
+    (videoContent) =>
+      videoContent.type.toLowerCase() === "trailer" &&
+      videoContent.site.toLowerCase() === "youtube",
+  );
+
+  const top5Trailers = youtubeTrailers.slice(0, 5);
 
   console.log(moveDetail);
 
@@ -123,7 +129,7 @@ const MovieDetail = ({ id }) => {
   return (
     <>
       <motion.div
-        className="h-full w-full overflow-hidden"
+        className="h-full w-full overflow-hidden bg-[#0D0D0D]"
         variants={itmes}
         initial="hidden"
         animate="show"
@@ -277,9 +283,15 @@ const MovieDetail = ({ id }) => {
           </div>
           <Casting data={cast} />
         </div>
-        {/* <HeroSection data={popular} /> */}
-        <Casting data={cast} className="hidden lg:inline-block" />
-        {/* <TopRated data={popular} /> */}
+        <div className="hidden lg:block">
+          <Casting data={cast} />
+        </div>
+
+        <hr className="mx-10 mb-20 border-[#4F4F4F] lg:mx-20 lg:my-20" />
+        <Video data={top5Trailers} name={moveDetail?.original_title} />
+        <hr className="mx-10 mb-20 border-[#4F4F4F] lg:mx-20 lg:my-20" />
+
+        <Detail data={moveDetail} />
       </motion.div>
     </>
   );
