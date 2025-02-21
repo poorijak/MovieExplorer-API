@@ -19,12 +19,7 @@ export default function Navbar() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const query = search.trim().startsWith("search/")
-      ? search.trim().slice(7)
-      : search.trim();
-    console.log("Search Query : ", query);
-
-    router.push(`search/${query}`);
+    router.push(`/search/${search}`);
   };
 
   useEffect(() => {

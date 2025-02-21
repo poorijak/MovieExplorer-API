@@ -95,13 +95,14 @@ export const fetchCasting = async (type, id) => {
   }
 };
 
-export const fetchSearch = async (type, searchTerm) => {
+export const fetchSearch = async (searchTerm) => {
   try {
     const res = await axiosInstance.get(
-      `${BASE_URL}/search/${type}?query=${searchTerm}&include_adult=false`,
-      { params: { api_key: API_KEY, language: "en-Us" } },
+      `${BASE_URL}/search/multi?query=${searchTerm}&include_adult=false`,
+      { params: { api_key: API_KEY, language: "en-US" } },
     );
-    const results = res.data.results;
+    const results = res.data.results || [];
+
     return results;
   } catch (err) {
     console.log("fetchSearch err api : ", err);

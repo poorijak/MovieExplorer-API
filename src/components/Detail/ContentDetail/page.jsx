@@ -283,14 +283,16 @@ const MovieDetail = ({ id, category }) => {
           </div>
           <Casting data={casting} />
         </div>
-        <hr className="mx-10 mb-20 border-[#4F4F4F] lg:mx-20 lg:my-20" />
 
         {category === "tv" ? (
-          <Seasons data={detail} name={detail?.original_name} />
+          <>
+            <hr className="mx-10 mb-20 border-[#4F4F4F] lg:mx-20 lg:my-20" />
+            <Seasons data={detail} name={detail?.original_name} />
+            <hr className="mx-10 mb-20 border-[#4F4F4F] lg:mx-20 lg:my-20" />
+          </>
         ) : (
           ""
         )}
-        <hr className="mx-10 mb-20 border-[#4F4F4F] lg:mx-20 lg:my-20" />
 
         <div className="hidden lg:block">
           <Casting data={casting} />
