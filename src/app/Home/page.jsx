@@ -9,6 +9,7 @@ import { fetchTrending, fetchPopular } from "../../../Service/imdbAPI";
 import PopularMovie from "@/src/components/CompContent/PopularContent/PopularMovie";
 import HeroSection from "@/src/components/HeroSection/HeroSection";
 import TopRated from "@/src/components/TopRated/TopRated";
+import useSWR from "swr";
 
 const Page = () => {
   const [heroMovie, setHeroMovie] = useState([]);

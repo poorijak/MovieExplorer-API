@@ -16,7 +16,7 @@ const Actor = ({ data }) => {
   return (
     <div className="mt-10 w-full px-3 lg:px-10">
       <div>
-        <h2 className="mb-4 text-4xl font-semibold lg:text-2xl">
+        <h2 className="lg:ext-2xl mb-4 text-4xl font-semibold">
           Top Billed Cast
         </h2>
       </div>

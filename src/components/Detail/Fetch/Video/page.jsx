@@ -3,7 +3,7 @@ import Aos from "aos";
 import "aos/dist/aos.css";
 
 const VideoTrailer = ({ data, name }) => {
-  console.log("VideoTrailer : ", data);
+  // console.log("VideoTrailer : ", data);
 
   useEffect(() => {
     Aos.init({
@@ -14,7 +14,7 @@ const VideoTrailer = ({ data, name }) => {
 
   return (
     <>
-      <div className="w-full px-5 lg:mx-20">
+      <div className="w-full px-5 lg:mx-10">
         <div className="mb-10 w-full">
           <h3 className="mb-4 text-2xl font-semibold lg:text-4xl">
             Watch Trailers
@@ -35,7 +35,7 @@ const VideoTrailer = ({ data, name }) => {
             </div>
             <div className="flex w-auto items-center px-5 lg:mx-72">
               <p className="text-center text-base font-medium lg:text-4xl">
-                {name} :<span> {trailer?.name}</span>
+                {name} :<span> {trailer?.name || trailer.originail_name}</span>
               </p>
               <hr className="my-8 ml-4 mr-4 hidden h-px w-full flex-1 border-0 bg-[#4F4F4F] lg:block" />
             </div>

@@ -179,7 +179,14 @@ export const fetchSimilar = async (type, id) => {
       params: { api_key: API_KEY, language: "en-Us" },
     });
     const results = res.data.results;
-    return results;
+
+    const sortYear = results.sort((a, b) => {
+      const yearA = new Date(a.release_date).getFullYear();
+      const yearB = new Date(b.release_date).getFullYear();
+      return yearB - yearA; // เรียงจากใหม่ไปเก่า
+    });
+
+    return sortYear;
   } catch (err) {
     console.log("MovieSimilar is : ", err);
     throw err;

@@ -5,7 +5,7 @@ import { FaPlay, FaStar } from "react-icons/fa6";
 import Aos from "aos";
 import "aos/dist/aos.css";
 
-export default function GenresContent({ content }) {
+export default function GenresContent({ content, category }) {
   useEffect(() => {
     Aos.init({
       duration: 300,
@@ -23,7 +23,7 @@ export default function GenresContent({ content }) {
           data-aos-delay={index * 50}
         >
           <Link
-            href={`/movie/${item.id}`}
+            href={`/${category}/${item.id}`}
             className="overflow relative block overflow-hidden rounded-md"
           >
             <div className="group relative h-0 w-full pb-[150%]">

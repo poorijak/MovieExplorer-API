@@ -5,12 +5,13 @@ import {
   fetchCasting,
   fetchPopular,
   fetchVideo,
+  fetchSimilar,
 } from "../../../../Service/imdbAPI";
 import Image from "next/image";
 import { FaHeart, FaPlay } from "react-icons/fa";
 import { FaBookmark, FaStar } from "react-icons/fa6";
-import Casting from "./Fetch/Actor";
-import Video from "./Fetch/VideoTrailer";
+import Casting from "../Fetch/Actor/page";
+import Video from "../Fetch/Video/page";
 import { Parallax } from "react-parallax";
 import { motion, AnimatePresence, delay } from "framer-motion";
 import { TextAnimate } from "@/src/components/magicui/text-animate";
@@ -18,47 +19,27 @@ import Aos from "aos";
 import "aos/dist/aos.css";
 import HeroSection from "@/src/components/HeroSection/HeroSection";
 import TopRated from "@/src/components/TopRated/TopRated";
+import Seasons from "@/src/components/Detail/ContentDetail/Seasons/page";
 import Detail from "./Detail";
+import Similar from "@/src/components/CompContent/Silimar/page";
+import useSWR from "swr";
 
-const MovieDetail = ({ id }) => {
-  const [popular, setPopular] = useState([]);
-  const [moveDetail, setMovieDetail] = useState([]);
-  const [videoContent, setVideo] = useState([]);
-  const [cast, setCast] = useState([]);
-  const [heartActive, setHeartActive] = useState(false);
-  const [myFav, setMyFav] = useState(false);
+const fetcher = async (id, category) => {
+  if (!id) return null;
+  const [detail, casting, popular, video, similar] = await Promise.all([
+    fetchDetail(category, id),
+    fetchCasting(category, id),
+    fetchPopular(category),
+    fetchVideo(category, id),
+    fetchSimilar(category, id),
+  ]);
+  return { detail, casting, popular, video, similar };
+};
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const [detail, casting, popular, video] = await Promise.all([
-          fetchDetail("movie", id),
-          fetchCasting("movie", id),
-          fetchPopular("movie"),
-          fetchVideo("movie", id),
-        ]);
-
-        setVideo(video);
-        setPopular(popular);
-        setMovieDetail(detail);
-        setCast(casting);
-      } catch (err) {
-        console.error(err);
-      }
-    };
-
-    fetchData();
-  }, [id]);
-
-  const youtubeTrailers = videoContent.filter(
-    (videoContent) =>
-      videoContent.type.toLowerCase() === "trailer" &&
-      videoContent.site.toLowerCase() === "youtube",
+const MovieDetail = ({ id, category }) => {
+  const { data, error } = useSWR(id ? `movie-datail-${id}` : null, () =>
+    fetcher(id, category),
   );
-
-  const top5Trailers = youtubeTrailers.slice(0, 5);
-
-  console.log(moveDetail);
 
   useEffect(() => {
     Aos.init({
@@ -67,12 +48,27 @@ const MovieDetail = ({ id }) => {
     });
   }, []);
 
+  if (error) return <p>Error loading movie</p>;
+  if (!data) return <p>Loading...</p>;
+
+  const { detail, casting, video, similar } = data;
+
+  const youtubeTrailers = video.filter(
+    (video) =>
+      video.type.toLowerCase() === "trailer" &&
+      video.site.toLowerCase() === "youtube",
+  );
+
+  const top5Trailers = youtubeTrailers.slice(0, 5);
+
+  console.log(detail);
+
   const itmes = {
     hidden: { y: 100, opacity: 0 },
     show: {
       y: 0,
       opacity: 1,
-      transition: { duration: 1, ease: [0, 0.71, 0.2, 1.01], delay: 2 },
+      transition: { duration: 1, ease: [0, 0.71, 0.2, 1.01], delay: 1.8 },
     },
   };
 
@@ -136,7 +132,7 @@ const MovieDetail = ({ id }) => {
       >
         <div
           style={{
-            backgroundImage: `url(${`https://image.tmdb.org/t/p/original${moveDetail?.backdrop_path}`})`,
+            backgroundImage: `url(${`https://image.tmdb.org/t/p/original${detail?.backdrop_path}`})`,
           }}
           className="inset-0 h-[70vh] w-full bg-cover bg-fixed bg-center lg:h-[100vh] lg:bg-top"
         >
@@ -154,7 +150,7 @@ const MovieDetail = ({ id }) => {
                   style={{ textShadow: "2px 2px 8px rgba(0, 0, 0, 0.6)" }}
                   className="mb-10 mt-60 text-center text-6xl font-medium drop-shadow-lg lg:mt-0 lg:text-8xl"
                 >
-                  {moveDetail?.original_title}
+                  {detail?.original_title || detail?.original_name}
                 </p>
               </motion.div>
             </div>
@@ -174,7 +170,7 @@ const MovieDetail = ({ id }) => {
                   startOnView={false}
                   className={`text-left text-lg font-normal drop-shadow-lg`}
                 >
-                  {moveDetail?.overview ?? ""}
+                  {detail?.overview ?? ""}
                 </TextAnimate>
               </motion.div>
               <motion.div
@@ -192,7 +188,7 @@ const MovieDetail = ({ id }) => {
                     alt="imdb logo"
                   />
                   <p className="text-2xl font-bold text-black">
-                    {moveDetail?.vote_average}
+                    {detail?.vote_average}
                   </p>
                 </div>
               </motion.div>
@@ -204,21 +200,24 @@ const MovieDetail = ({ id }) => {
           {[
             {
               label: "Country :",
-              value: moveDetail?.production_countries?.map((item) => item.name),
+              value: detail?.production_countries?.map((item) => item.name),
             },
             {
               label: "Genre :",
-              value: moveDetail?.genres?.map((item) => item.name), // แทนที่จะ join ให้แยกตามค่า
+              value: detail?.genres?.map((item) => item.name), // แทนที่จะ join ให้แยกตามค่า
             },
             {
               label: "Time :",
-              value: `${Math.floor(moveDetail.runtime / 60)} h ${moveDetail.runtime % 60}m`,
+              value: `${Math.floor(detail.runtime / 60)} h ${detail.runtime % 60}m`,
             },
             {
               label: "Studio :",
-              value: moveDetail?.production_companies?.map((item) => item.name),
+              value: detail?.production_companies?.map((item) => item.name),
             },
-            { label: "Date :", value: moveDetail?.release_date },
+            {
+              label: "Date :",
+              value: detail?.release_date || detail?.first_air_date,
+            },
           ].map((item, index) => (
             <motion.div
               variants={details}
@@ -249,11 +248,12 @@ const MovieDetail = ({ id }) => {
             </motion.div>
           ))}
         </div>
+
         <div className="flex w-full -translate-y-52 flex-col items-center justify-center lg:hidden">
           <div>
             <motion.div variants={poster_image} initial="hidden" animate="show">
               <Image
-                src={`https://image.tmdb.org/t/p/original${moveDetail?.poster_path}`}
+                src={`https://image.tmdb.org/t/p/original${detail?.poster_path}`}
                 height={1920}
                 width={1080}
                 alt="Poster_Movie"
@@ -271,27 +271,44 @@ const MovieDetail = ({ id }) => {
               style={{ textShadow: "2px 2px 8px rgba(0, 0, 0, 0.6)" }}
               className="text-center text-4xl font-semibold drop-shadow-lg"
             >
-              {moveDetail?.original_title}
+              {detail?.original_title}
             </p>
           </div>
 
           <div data-aos="fade-up" className="mx-10 mt-5">
             <p>
               <span className="text-lg font-semibold">Overview : </span>
-              {moveDetail?.overview}
+              {detail?.overview}
             </p>
           </div>
-          <Casting data={cast} />
+          <Casting data={casting} />
         </div>
+        <hr className="mx-10 mb-20 border-[#4F4F4F] lg:mx-20 lg:my-20" />
+
+        {category === "tv" ? (
+          <Seasons data={detail} name={detail?.original_name} />
+        ) : (
+          ""
+        )}
+        <hr className="mx-10 mb-20 border-[#4F4F4F] lg:mx-20 lg:my-20" />
+
         <div className="hidden lg:block">
-          <Casting data={cast} />
+          <Casting data={casting} />
         </div>
 
         <hr className="mx-10 mb-20 border-[#4F4F4F] lg:mx-20 lg:my-20" />
-        <Video data={top5Trailers} name={moveDetail?.original_title} />
+        <Video
+          data={top5Trailers}
+          name={detail?.original_title || detail?.original_name}
+        />
         <hr className="mx-10 mb-20 border-[#4F4F4F] lg:mx-20 lg:my-20" />
 
-        <Detail data={moveDetail} />
+        <Detail data={detail} />
+        <Similar
+          data={similar}
+          name={detail?.original_title || detail?.original_name}
+          content={category}
+        />
       </motion.div>
     </>
   );
