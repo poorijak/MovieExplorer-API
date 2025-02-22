@@ -1,3 +1,4 @@
+"use client";
 import { useEffect, useState } from "react";
 import VideoCarousol from "../../components/VideoCarousol/page";
 import HomeHero from "../../components/HomeHero/page";

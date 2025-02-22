@@ -1,7 +1,9 @@
+"use client";
 import Image from "next/image";
 import React, { useEffect } from "react";
 import Aos from "aos";
 import "aos/dist/aos.css";
+import Overview from "@/src/components/Overview/page";
 
 const page = ({ data, name }) => {
   useEffect(() => {
@@ -19,7 +21,7 @@ const page = ({ data, name }) => {
           data-aos="fade-up"
           key={item.id}
         >
-          <div className="mx-10 flex flex-col items-center justify-start lg:flex-row">
+          <div className="mx-3 flex flex-col items-center justify-start lg:mx-10 lg:flex-row">
             <Image
               src={`https://image.tmdb.org/t/p/original${item.poster_path}`}
               width={200}
@@ -33,19 +35,27 @@ const page = ({ data, name }) => {
                 {name} : <span>{item.original_name || item.name}</span>
               </h1>
               <div>
-                <p className="mb-4 px-10 text-xl font-medium text-[#7c7c7c] lg:px-0">
-                  Overview :{" "}
-                  <span className="text-lg text-white lg:text-lg">
-                    {item.overview || "Not available"}
-                  </span>
-                </p>
-                <p className="mb-4 px-10 text-xl font-medium text-[#7c7c7c] lg:px-0">
+                <div>
+                  <div className="mb-4 px-5 text-xl font-medium text-[#7c7c7c] lg:px-0">
+                    <p>overview : </p>
+                    <Overview text={item.overview} />
+                    <div className="hidden lg:block">
+                      <p className="mb-4 px-10 text-xl font-medium text-[#7c7c7c] lg:px-0">
+                        Overview :{" "}
+                        <span className="text-lg text-white lg:text-lg">
+                          {item.overview || "Not available"}
+                        </span>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <p className="mb-4 px-10 text-center text-xl font-medium text-[#7c7c7c] lg:px-0 lg:text-left">
                   Episode :{" "}
                   <span className="text-lg text-white lg:text-lg">
                     {item.episode_count || "Not available"}
                   </span>
                 </p>
-                <p className="mb-4 px-10 text-xl font-medium text-[#7c7c7c] lg:px-0">
+                <p className="mb-4 px-10 text-center text-xl font-medium text-[#7c7c7c] lg:px-0 lg:text-left">
                   Seasons :{" "}
                   <span className="text-lg text-white lg:text-lg">
                     {item.season_number || "Not available"}

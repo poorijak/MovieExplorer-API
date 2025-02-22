@@ -45,9 +45,6 @@ function SearchPage({ paramsPromise }) {
 
   const { searchResults = [], trending = [] } = data;
 
-  console.log(searchResults);
-  console.log(trending);
-
   return (
     <div>
       <Backdrop data={trending} />

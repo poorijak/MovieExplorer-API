@@ -1,3 +1,4 @@
+"use client";
 import { fetchTrending } from "@/Service/imdbAPI";
 import React, { useEffect, useState } from "react";
 

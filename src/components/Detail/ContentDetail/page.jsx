@@ -19,6 +19,7 @@ import Aos from "aos";
 import "aos/dist/aos.css";
 import HeroSection from "@/src/components/HeroSection/HeroSection";
 import TopRated from "@/src/components/TopRated/TopRated";
+import Overview from "@/src/components/Overview/page";
 import Seasons from "@/src/components/Detail/ContentDetail/Seasons/page";
 import Detail from "./Detail";
 import Similar from "@/src/components/CompContent/Silimar/page";
@@ -276,10 +277,7 @@ const MovieDetail = ({ id, category }) => {
           </div>
 
           <div data-aos="fade-up" className="mx-10 mt-5">
-            <p>
-              <span className="text-lg font-semibold">Overview : </span>
-              {detail?.overview}
-            </p>
+            <Overview text={detail?.overview} />
           </div>
           <Casting data={casting} />
         </div>

@@ -1,4 +1,4 @@
-import { React, useEffect, useRef, useState } from "react";
+import { React, useRef } from "react";
 import { fetchPopular } from "../../../Service/imdbAPI";
 import Image from "next/image";
 import Link from "next/link";

@@ -1,3 +1,4 @@
+"use client";
 import React, { useEffect, useState } from "react";
 import { IoIosArrowDown } from "react-icons/io";
 import { motion, AnimatePresence, delay } from "framer-motion";

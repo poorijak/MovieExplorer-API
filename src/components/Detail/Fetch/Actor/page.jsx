@@ -1,3 +1,4 @@
+"use client";
 import React, { useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Mousewheel, Autoplay, Navigation } from "swiper/modules";
@@ -56,14 +57,14 @@ const Actor = ({ data }) => {
               <div
                 data-aos="fade-up"
                 data-aos-delay={index * 100}
-                className="flex h-72 border-spacing-1 flex-col items-center gap-2 rounded-3xl border border-[#313131] bg-[#ffffff11] p-4 lg:h-80"
+                className="flex h-72 border-spacing-1 flex-col items-center gap-2 rounded-3xl border border-[#313131] bg-[#ffffff11] p-4"
               >
                 <Image
                   src={`https://image.tmdb.org/t/p/original${item.profile_path || "null"}`}
                   width={150}
                   height={150}
                   alt={item.name}
-                  className="lg h-36 w-36 rounded-full object-cover lg:h-44 lg:w-44"
+                  className="lg h-36 w-36 rounded-full object-cover"
                 />
                 <div className="flex flex-col items-center justify-center">
                   <p className="mt-2 text-center text-base font-medium lg:text-lg">
