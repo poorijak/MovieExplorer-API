@@ -23,7 +23,10 @@ export default function PopularMovie({ name, data, content }) {
       {/* Header */}
       <div className="my-5 ml-8 flex flex-col">
         <h1 className="text-2xl font-medium">Recommend for you!</h1>
-        <p className="text-xl text-[#424242]">We are see you liked {name}</p>
+        <p className="text-xl text-[#b9b9b9]">
+          We see you're interested
+          <span className="font-semibold"> "{name}"</span>
+        </p>
       </div>
 
       {/* Swiper */}

@@ -143,7 +143,7 @@ const MovieDetail = ({ id, category }) => {
             objectFit: "cover",
           }}
         ></Parallax>
-        <div className="absolute inset-0 h-full w-full bg-blackOverlay_1 lg:hidden"></div>
+        <div className="absolute inset-0 h-[70vh] w-full bg-blackOverlay_1 lg:hidden"></div>
         <div className="absolute inset-0 hidden h-full w-full bg-blackOverlay_6 lg:flex"></div>
         <div className="absolute left-20 top-40 hidden lg:block">
           <motion.div
@@ -160,7 +160,6 @@ const MovieDetail = ({ id, category }) => {
             </p>
           </motion.div>
         </div>
-
         <div className="absolute right-20 top-32 hidden lg:block">
           <motion.div
             variants={overVirew}
@@ -194,7 +193,6 @@ const MovieDetail = ({ id, category }) => {
             </div>
           </motion.div>
         </div>
-
         <div className="absolute bottom-5 left-5 hidden p-2 lg:inline-block">
           {[
             {
@@ -247,7 +245,6 @@ const MovieDetail = ({ id, category }) => {
             </motion.div>
           ))}
         </div>
-
         <div className="flex w-full -translate-y-52 flex-col items-center justify-center lg:hidden">
           <div>
             <motion.div variants={poster_image} initial="hidden" animate="show">
@@ -274,7 +271,6 @@ const MovieDetail = ({ id, category }) => {
           </div>
           <Casting data={casting} />
         </div>
-
         {category === "tv" ? (
           <>
             <hr className="mx-10 mb-20 border-[#4F4F4F] lg:mx-20 lg:my-20" />
@@ -284,17 +280,14 @@ const MovieDetail = ({ id, category }) => {
         ) : (
           ""
         )}
-
         <div className="hidden lg:block">
           <Casting data={casting} />
         </div>
-
         <Video
           data={top5Trailers}
           name={detail?.original_title || detail?.original_name}
         />
         <hr className="mx-10 mb-20 border-[#4F4F4F] lg:mx-20 lg:my-20" />
-
         <Detail data={detail} />
         <Similar
           data={similar}
