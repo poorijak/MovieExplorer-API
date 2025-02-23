@@ -21,8 +21,6 @@ export default function Page() {
     getPopular();
   }, []);
 
-  console.log(movie);
-
   return (
     <div className="text-white">
       {movie.map((item) => (
@@ -30,7 +28,7 @@ export default function Page() {
           bgImage={`https://image.tmdb.org/t/p/original${item.backdrop_path}`}
           key={item.id}
           strength={400}
-          className="flex h-screen items-center justify-center"
+          className="flex h-[100vh] items-center justify-center"
           blur={{ min: -15, max: 15 }}
           style={{ willChange: "transform" }}
           bgImageStyle={{

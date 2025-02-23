@@ -26,7 +26,7 @@ const page = ({ movie }) => {
             width={1440}
             height={1080}
             alt="HeroMovie"
-            className="sticky top-0 h-screen w-full object-cover"
+            className="sticky top-0 h-[100vh] w-full object-cover"
           />
         </motion.div>
         <motion.div

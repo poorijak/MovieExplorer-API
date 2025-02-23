@@ -62,8 +62,6 @@ const MovieDetail = ({ id, category }) => {
 
   const top5Trailers = youtubeTrailers.slice(0, 5);
 
-  console.log(detail);
-
   const itmes = {
     hidden: { y: 100, opacity: 0 },
     show: {

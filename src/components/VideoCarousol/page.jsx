@@ -74,7 +74,7 @@ const Page = () => {
         ref={carouselWrapperRef}
         className="mt-[-100vh] h-[300vh] overflow-clip"
       >
-        <div className="sticky top-0 flex h-screen items-center">
+        <div className="sticky top-0 flex h-[100vh] items-center">
           <div className="relative left-1/2 mb-10 flex -translate-x-1/2 gap-5">
             {/* แสดงผลเฉพาะ 3 ตัวแรก */}
             {movie.slice(3, 6).map((item, index) => (
@@ -119,11 +119,11 @@ export default Page;
 // SmallVideoCarousel_1: แสดงลำดับปกติ
 const SmallVideoCarousel_1 = ({ movie }) => {
   return (
-    <div>
+    <div className="w-full overflow-x-hidden">
       <InfiniteSlider durationOnHover={80} gap={24} duration={35}>
         {movie.map((item) => (
           <div
-            className="aspect-video w-[60vw] shrink-0 lg:w-[23vw]"
+            className="aspect-video w-full max-w-[90vw] shrink-0 lg:w-[23vw]"
             key={item.id}
           >
             <Link href={`/movie/${item.id}`}>
@@ -148,7 +148,7 @@ const SmallVideoCarousel_1 = ({ movie }) => {
 // SmallVideoCarousel_2: แสดงลำดับย้อนกลับ
 const SmallVideoCarousel_2 = ({ movie }) => {
   return (
-    <div>
+    <div className="overflow-x-hidden">
       <InfiniteSlider
         durationOnHover={80}
         gap={24}
@@ -161,7 +161,7 @@ const SmallVideoCarousel_2 = ({ movie }) => {
           .map((item) => (
             <div
               key={item.id}
-              className="aspect-video w-[60vw] shrink-0 lg:w-[23vw]"
+              className="aspect-video w-full max-w-[90vw] shrink-0 lg:w-[23vw]"
             >
               <Link href={`/movie/${item.id}`}>
                 <Image
