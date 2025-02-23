@@ -131,74 +131,68 @@ const MovieDetail = ({ id, category }) => {
         initial="hidden"
         animate="show"
       >
-        <div
+        <Parallax
+          bgImage={`https://image.tmdb.org/t/p/original${detail?.backdrop_path}`}
           key={detail?.id}
-          style={{
-            backgroundImage: `url(${`https://image.tmdb.org/t/p/original${detail?.backdrop_path}`})`,
-            backgroundSize: "cover", // ปรับให้ภาพไม่ถูกตัด
-            backgroundPosition: "center", // ให้ภาพอยู่ตรงกลาง
-            backgroundRepeat: "no-repeat", // ไม่ให้ภาพทำการ repeat
+          strength={400}
+          className="relative flex h-[70vh] w-full justify-center lg:h-[100vh]"
+          style={{ willChange: "transform" }}
+          bgImageStyle={{
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
           }}
-          className="h-[70vh] w-full bg-bottom lg:h-[100vh]"
-        >
-          <div className="relative h-full w-full bg-blackOverlay_1 px-11 pt-36 lg:hidden"></div>
+        ></Parallax>
+        <div className="absolute inset-0 h-full w-full bg-blackOverlay_1 lg:hidden"></div>
+        <div className="absolute inset-0 hidden h-full w-full bg-blackOverlay_6 lg:flex"></div>
+        <div className="absolute left-20 top-40 hidden lg:block">
+          <motion.div
+            variants={title}
+            initial="hidden"
+            animate="show"
+            className="absoloute left-10 top-0 lg:w-[60%]"
+          >
+            <p
+              style={{ textShadow: "2px 2px 8px rgba(0, 0, 0, 0.6)" }}
+              className="mb-10 mt-60 text-center text-6xl font-medium text-white drop-shadow-lg lg:mt-0 lg:text-8xl"
+            >
+              {detail?.original_title || detail?.original_name}
+            </p>
+          </motion.div>
+        </div>
 
-          <div className="relative hidden h-full w-full bg-blackOverlay_6 px-11 pt-36 lg:flex">
-            <div>
-              <motion.div
-                variants={title}
-                initial="hidden"
-                animate="show"
-                className="absoloute left-10 top-0 lg:w-[60%]"
-              >
-                <p
-                  style={{ textShadow: "2px 2px 8px rgba(0, 0, 0, 0.6)" }}
-                  className="mb-10 mt-60 text-center text-6xl font-medium text-white drop-shadow-lg lg:mt-0 lg:text-8xl"
-                >
-                  {detail?.original_title || detail?.original_name}
-                </p>
-              </motion.div>
+        <div className="absolute right-20 top-32 hidden lg:block">
+          <motion.div
+            variants={overVirew}
+            initial="hidden"
+            animate="show"
+            className="mb-5 w-[400px]"
+          >
+            <TextAnimate
+              animation="blurInUp"
+              by="word"
+              duration={1}
+              delay={2}
+              startOnView={false}
+              className={`text-left text-lg font-normal text-white drop-shadow-lg`}
+            >
+              {detail?.overview ?? ""}
+            </TextAnimate>
+          </motion.div>
+          <motion.div
+            variants={vote_average}
+            initial="hidden"
+            animate="show"
+            className="inline-block rounded-full bg-[#F6C700] py-2 pl-4 pr-6"
+            data-aos="fade-up"
+          >
+            <div className="flex items-center justify-center gap-2">
+              <Image src="/IMDB.svg" width={70} height={70} alt="imdb logo" />
+              <p className="text-2xl font-bold text-black">
+                {detail?.vote_average}
+              </p>
             </div>
-
-            <div className="top-30 absolute right-10">
-              <motion.div
-                variants={overVirew}
-                initial="hidden"
-                animate="show"
-                className="mb-5 w-[400px]"
-              >
-                <TextAnimate
-                  animation="blurInUp"
-                  by="word"
-                  duration={1}
-                  delay={2}
-                  startOnView={false}
-                  className={`text-left text-lg font-normal text-white drop-shadow-lg`}
-                >
-                  {detail?.overview ?? ""}
-                </TextAnimate>
-              </motion.div>
-              <motion.div
-                variants={vote_average}
-                initial="hidden"
-                animate="show"
-                className="inline-block rounded-full bg-[#F6C700] py-2 pl-4 pr-6"
-                data-aos="fade-up"
-              >
-                <div className="flex items-center justify-center gap-2">
-                  <Image
-                    src="/IMDB.svg"
-                    width={70}
-                    height={70}
-                    alt="imdb logo"
-                  />
-                  <p className="text-2xl font-bold text-black">
-                    {detail?.vote_average}
-                  </p>
-                </div>
-              </motion.div>
-            </div>
-          </div>
+          </motion.div>
         </div>
 
         <div className="absolute bottom-5 left-5 hidden p-2 lg:inline-block">
@@ -265,11 +259,6 @@ const MovieDetail = ({ id, category }) => {
                 className="h-[350px] w-auto rounded-lg object-cover shadow-lg"
               />
             </motion.div>
-          </div>
-          <div data-aos="fade-up" className="mt-10">
-            <button className="group flex items-center gap-4 rounded-md bg-[#4A4A4A] px-8 py-2 font-bold text-white">
-              <FaPlay /> Tralier
-            </button>
           </div>
           <div data-aos="fade-up" className="mt-10">
             <p
