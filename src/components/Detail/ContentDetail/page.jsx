@@ -189,7 +189,7 @@ const MovieDetail = ({ id, category }) => {
             <div className="flex items-center justify-center gap-2">
               <Image src="/IMDB.svg" width={70} height={70} alt="imdb logo" />
               <p className="text-2xl font-bold text-black">
-                {detail?.vote_average}
+                {detail?.vote_average.toFixed(1)}
               </p>
             </div>
           </motion.div>
