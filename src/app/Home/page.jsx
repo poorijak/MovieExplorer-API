@@ -42,9 +42,10 @@ const Page = () => {
 
   return (
     <div className="h-full w-full bg-[#0D0D0D]">
-      {/* <div className="relative z-10">
+      <div className="relative z-10">
         <HomeHero movie={heroMovie} />
-      </div> */}
+      </div>
+      <h1>VideoCarouse</h1>
       <VideoCarousol />
       <div className="h-[20vh]"></div>
       <TrendingPala data={trending} />

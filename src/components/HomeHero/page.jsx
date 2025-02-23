@@ -19,7 +19,7 @@ const page = ({ movie }) => {
         <motion.div
           style={{ opacity }}
           ref={ImageRef}
-          className="absolute -top-[--header-height] left-0 h-[190vh] w-full"
+          className="absolute inset-0 -top-[--header-height] h-[190vh] w-full overflow-clip"
         >
           <Image
             src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
@@ -38,7 +38,7 @@ const page = ({ movie }) => {
           exit="hidden"
           animate="hidden"
           viewport={{ amount: 0.8 }}
-          className="relative z-10 flex min-h-[--hero-height] flex-col items-center pl-0 pt-[40vh] text-center xl:inline-block xl:pl-56"
+          className="relative z-10 mx-auto flex min-h-[--hero-height] max-w-screen-xl flex-col items-center px-5 pt-[40vh] text-center"
         >
           <p className="mb-5 px-10 text-6xl font-bold lg:text-7xl">
             {movie.original_title}
