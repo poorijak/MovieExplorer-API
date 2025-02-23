@@ -134,6 +134,9 @@ const MovieDetail = ({ id, category }) => {
         <div
           style={{
             backgroundImage: `url(${`https://image.tmdb.org/t/p/original${detail?.backdrop_path}`})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
           }}
           className="h-[70vh] w-full bg-cover bg-fixed bg-center lg:h-[100vh] lg:bg-top"
         >
