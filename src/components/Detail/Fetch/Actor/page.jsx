@@ -57,7 +57,7 @@ const Actor = ({ data }) => {
               <div
                 data-aos="fade-up"
                 data-aos-delay={index * 100}
-                className="flex h-72 border-spacing-1 flex-col items-center gap-2 rounded-3xl border border-[#313131] bg-[#ffffff11] p-4"
+                className="flex h-72 border-spacing-1 flex-col items-center gap-2 rounded-3xl border border-[#313131] bg-[#ffffff11] p-4 text-white"
               >
                 <Image
                   src={`https://image.tmdb.org/t/p/original${item.profile_path || "null"}`}

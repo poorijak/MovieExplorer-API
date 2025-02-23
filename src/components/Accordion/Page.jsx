@@ -73,7 +73,7 @@ function AccordionItem({ title, content }) {
   return (
     <div
       data-aos="fade-up"
-      className="max-w-full border-b-2 border-[#5C5C5C] p-7 transition-transform duration-300"
+      className="max-w-full border-b-2 border-[#5C5C5C] p-7 text-white transition-transform duration-300"
     >
       <div
         onClick={handleToggle}

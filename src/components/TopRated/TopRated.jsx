@@ -12,7 +12,7 @@ import "swiper/css/scrollbar";
 
 export default function TopRated({ data }) {
   return (
-    <>
+    <div className="text-white">
       <div className="my-5 ml-8 flex items-center">
         <h1 className="text-xl font-semibold">Top Rated Movie!</h1>
       </div>
@@ -39,14 +39,14 @@ export default function TopRated({ data }) {
           className="max-w-full"
         >
           {data.map((item) => (
-            <SwiperSlide key={item.id}>
+            <SwiperSlide key={item.id} className="">
               <div
                 style={{
                   backgroundImage: `url(${`https://image.tmdb.org/t/p/original${item.backdrop_path}`})`,
                 }}
-                className="mx-auto h-screen w-11/12 bg-cover bg-center hover:cursor-grab lg:h-[500px] lg:rounded-xl lg:bg-top"
+                className="mx-auto h-screen w-11/12 rounded-lg bg-cover bg-center hover:cursor-grab lg:h-[500px] lg:rounded-xl lg:bg-top"
               >
-                <div className="flex h-full w-full items-center justify-center bg-blackOverlay_4 lg:block lg:rounded-xl">
+                <div className="bg-blackOverlay_4 flex h-full w-full items-center justify-center lg:block lg:rounded-xl">
                   <div className="flex flex-col items-center justify-center pt-32 lg:flex-row">
                     <Image
                       src={`https://image.tmdb.org/t/p/original${item.poster_path}`}
@@ -93,6 +93,6 @@ export default function TopRated({ data }) {
           ))}
         </Swiper>
       </div>
-    </>
+    </div>
   );
 }

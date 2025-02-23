@@ -19,7 +19,7 @@ export default function PopularMovie({ content, data }) {
   }, []);
 
   return (
-    <div className="relative">
+    <div className="relative text-white">
       {/* Header */}
       <div className="my-5 ml-8 flex items-center">
         <ImFire className="mr-2 text-xl text-[#FFC300]" />

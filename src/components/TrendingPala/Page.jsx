@@ -24,7 +24,7 @@ export default function Page() {
   console.log(movie);
 
   return (
-    <div>
+    <div className="text-white">
       {movie.map((item) => (
         <Parallax
           bgImage={`https://image.tmdb.org/t/p/original${item.backdrop_path}`}

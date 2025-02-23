@@ -135,7 +135,7 @@ const MovieDetail = ({ id, category }) => {
           style={{
             backgroundImage: `url(${`https://image.tmdb.org/t/p/original${detail?.backdrop_path}`})`,
           }}
-          className="inset-0 h-[70vh] w-full bg-cover bg-fixed bg-center lg:h-[100vh] lg:bg-top"
+          className="h-[70vh] w-full bg-cover bg-fixed bg-center lg:h-[100vh] lg:bg-top"
         >
           <div className="relative h-full w-full bg-blackOverlay_1 px-11 pt-36 lg:hidden"></div>
 
@@ -149,7 +149,7 @@ const MovieDetail = ({ id, category }) => {
               >
                 <p
                   style={{ textShadow: "2px 2px 8px rgba(0, 0, 0, 0.6)" }}
-                  className="mb-10 mt-60 text-center text-6xl font-medium drop-shadow-lg lg:mt-0 lg:text-8xl"
+                  className="mb-10 mt-60 text-center text-6xl font-medium text-white drop-shadow-lg lg:mt-0 lg:text-8xl"
                 >
                   {detail?.original_title || detail?.original_name}
                 </p>
@@ -169,7 +169,7 @@ const MovieDetail = ({ id, category }) => {
                   duration={1}
                   delay={2}
                   startOnView={false}
-                  className={`text-left text-lg font-normal drop-shadow-lg`}
+                  className={`text-left text-lg font-normal text-white drop-shadow-lg`}
                 >
                   {detail?.overview ?? ""}
                 </TextAnimate>
@@ -226,7 +226,7 @@ const MovieDetail = ({ id, category }) => {
               animate="show"
               transition={{ duration: index * 0.5, delay: 3.2 }}
               key={index}
-              className="mb-2 flex gap-3"
+              className="mb-2 flex gap-3 text-white"
             >
               <p>{item.label}</p>
 
@@ -286,7 +286,7 @@ const MovieDetail = ({ id, category }) => {
           <>
             <hr className="mx-10 mb-20 border-[#4F4F4F] lg:mx-20 lg:my-20" />
             <Seasons data={detail} name={detail?.original_name} />
-            <hr className="mx-10 mb-20 border-[#4F4F4F] lg:mx-20 lg:my-20" />
+            <hr className="mx-10 mb-10 border-[#4F4F4F] lg:mx-20 lg:my-20" />
           </>
         ) : (
           ""
@@ -296,7 +296,6 @@ const MovieDetail = ({ id, category }) => {
           <Casting data={casting} />
         </div>
 
-        <hr className="mx-10 mb-20 border-[#4F4F4F] lg:mx-20 lg:my-20" />
         <Video
           data={top5Trailers}
           name={detail?.original_title || detail?.original_name}

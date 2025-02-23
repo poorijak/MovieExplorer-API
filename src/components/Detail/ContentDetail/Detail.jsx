@@ -12,9 +12,9 @@ const Detail = ({ data }) => {
   }, []);
 
   return (
-    <div>
+    <div className="">
       <div className="flex justify-center">
-        <h1 className="mb-10 text-center text-4xl font-medium lg:text-left">
+        <h1 className="mb-10 text-center text-4xl font-medium text-white lg:text-left">
           Detail of {data?.original_title || data?.name}
         </h1>
       </div>

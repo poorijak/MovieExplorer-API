@@ -19,10 +19,10 @@ export default function PopularMovie({ name, data, content }) {
   }, []);
 
   return (
-    <div className="relative ml-0 mt-10 lg:ml-10">
+    <div className="relative ml-0 mt-10 text-white lg:ml-10">
       {/* Header */}
       <div className="my-5 ml-8 flex flex-col">
-        <h1 className="text-2xl font-medium">Recomand for you!</h1>
+        <h1 className="text-2xl font-medium">Recommend for you!</h1>
         <p className="text-xl text-[#424242]">We are see you liked {name}</p>
       </div>
 

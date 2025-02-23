@@ -46,7 +46,7 @@ const Page = () => {
         <HomeHero movie={heroMovie} />
       </div>
       <VideoCarousol />
-      <div className="h-[50vh]"></div>
+      <div className="h-[20vh]"></div>
       <TrendingPala data={trending} />
       <div className="mt-24">
         <PopularMovie content={"movie"} data={movie} />

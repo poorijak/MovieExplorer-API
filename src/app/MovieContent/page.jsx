@@ -15,18 +15,19 @@ import {
 
 const page = async () => {
   try {
-    const [trending, popular, top_rated, upcoming, now_playing] =
+    const [trending, popular, top_rated, upcoming, now_playing, HeroSec] =
       await Promise.all([
         fetchTrending("movie"),
         fetchPopular("movie", 20),
         fetchTopRate("movie"),
         fetchUpcoming(),
         fetchNowplayMovie(),
+        fetchPopular("movie", 5),
       ]);
 
     return (
       <div>
-        <HeroSection data={popular} />
+        <HeroSection data={HeroSec} />
         <PopularMovie content={"movie"} data={popular} />
         <TopRatedContent content={"movie"} data={top_rated} />
         <TrendingContent content={"movie"} data={trending} />

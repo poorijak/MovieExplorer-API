@@ -15,7 +15,7 @@ const page = ({ movie }) => {
 
   return (
     <>
-      <div className="relative h-[240vh] bg-black">
+      <div className="relative h-[240vh] bg-black text-white">
         <motion.div
           style={{ opacity }}
           ref={ImageRef}
@@ -40,9 +40,11 @@ const page = ({ movie }) => {
           viewport={{ amount: 0.8 }}
           className="relative z-10 flex min-h-[--hero-height] flex-col items-center pl-0 pt-[40vh] text-center xl:inline-block xl:pl-56"
         >
-          <p className="mb-5 text-7xl font-bold">{movie.original_title}</p>
+          <p className="mb-5 px-10 text-6xl font-bold lg:text-7xl">
+            {movie.original_title}
+          </p>
           <button className="group mb-5 inline-block rounded-full bg-[#ffffff2f] px-3 py-3 font-semibold text-white transition-shadow duration-300 hover:shadow-[0px_0px_10px_-1px_#545454]">
-            <Link href={`/movie/${movie.id}`}>Watch Trailer</Link>
+            <Link href={`/movie/${movie.id}`}>Watch Detail</Link>
           </button>
           <div className="flex items-baseline justify-center gap-2">
             <FaStar className="text-lg text-amber-400" />

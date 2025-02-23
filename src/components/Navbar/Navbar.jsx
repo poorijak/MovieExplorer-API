@@ -74,7 +74,7 @@ export default function Navbar() {
 
   return (
     <>
-      <motion.div className="flex w-full justify-center rounded-xl transition-transform duration-300">
+      <motion.div className="flex w-full justify-center rounded-xl text-white transition-transform duration-300">
         {/* desktop navbar */}
         <motion.div
           variants={{

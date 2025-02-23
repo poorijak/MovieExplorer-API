@@ -15,7 +15,7 @@ const VideoTrailer = ({ data, name }) => {
 
   return (
     <>
-      <div className="w-full px-5 lg:mx-10">
+      <div className="w-full px-5 text-white lg:mx-10">
         <div className="mb-10 w-full">
           <h3 className="mb-4 text-2xl font-semibold lg:text-4xl">
             Watch Trailers
@@ -26,7 +26,7 @@ const VideoTrailer = ({ data, name }) => {
             <div className="flex h-full w-full flex-col items-center gap-2">
               <div className="relative mb-5 aspect-video w-full lg:w-[70%]">
                 <iframe
-                  className="absolute left-0 top-0 h-full w-full rounded-2xl"
+                  className="absolute left-0 top-0 h-full w-full rounded-xl lg:rounded-2xl"
                   src={`https://www.youtube.com/embed/${trailer.key}`}
                   title={trailer.name}
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

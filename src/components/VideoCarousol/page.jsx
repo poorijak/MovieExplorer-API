@@ -17,6 +17,7 @@ import {
   progress,
 } from "framer-motion";
 import { useWindowSize } from "react-use";
+import Link from "next/link";
 
 const Page = () => {
   const { width, height } = useWindowSize();
@@ -68,7 +69,7 @@ const Page = () => {
   }, []);
 
   return (
-    <div className="pb-8">
+    <div className="pb-8 text-white">
       <div
         ref={carouselWrapperRef}
         className="mt-[-100vh] h-[300vh] overflow-clip"
@@ -85,15 +86,19 @@ const Page = () => {
                 className="aspect-[9/16] w-[60vw] shrink-0 lg:aspect-video"
                 key={item.id}
               >
-                <Image
-                  src={`https://image.tmdb.org/t/p/original${item.backdrop_path}`}
-                  width={1440}
-                  height={1080}
-                  alt="movie"
-                  className="relative h-full w-full rounded-2xl object-cover"
-                />
-                <div className="absolute bottom-0 mb-5 flex w-full justify-between px-10">
-                  <p>{item.original_title}</p>
+                <Link href={`/movie/${item.id}`}>
+                  <Image
+                    src={`https://image.tmdb.org/t/p/original${item.backdrop_path}`}
+                    width={1440}
+                    height={1080}
+                    alt="movie"
+                    className="relative h-full w-full rounded-2xl object-cover"
+                  />
+                </Link>
+                <div className="j absolute bottom-0 mb-5 flex w-full px-0 lg:px-10">
+                  <p className="w-56 break-words text-center text-sm lg:w-full lg:text-left lg:text-xl">
+                    {item.original_title}
+                  </p>
                 </div>
               </motion.div>
             ))}
@@ -101,7 +106,7 @@ const Page = () => {
         </div>
       </div>
       {/* ส่ง movie เป็น props */}
-      <div className="mt-[-170px] space-y-5 md:mt-[-12px]">
+      <div className="mt-[-100px] space-y-5 lg:mt-[-12px]">
         <SmallVideoCarousel_1 movie={movie} />
         <SmallVideoCarousel_2 movie={movie} />
       </div>
@@ -121,14 +126,16 @@ const SmallVideoCarousel_1 = ({ movie }) => {
             className="aspect-video w-[60vw] shrink-0 lg:w-[23vw]"
             key={item.id}
           >
-            <Image
-              src={`https://image.tmdb.org/t/p/original${item.backdrop_path}`}
-              width={1440}
-              height={1080}
-              alt="movie"
-              className="relative h-full w-full rounded-xl object-cover"
-            />
-            <div className="absolute bottom-0 mb-2 ml-3">
+            <Link href={`/movie/${item.id}`}>
+              <Image
+                src={`https://image.tmdb.org/t/p/original${item.backdrop_path}`}
+                width={1440}
+                height={1080}
+                alt="movie"
+                className="relative h-full w-full rounded-xl object-cover"
+              />
+            </Link>
+            <div className="absolute bottom-0 mb-2 ml-3 w-56">
               <p>{item.original_title}</p>
             </div>
           </div>
@@ -156,14 +163,16 @@ const SmallVideoCarousel_2 = ({ movie }) => {
               key={item.id}
               className="aspect-video w-[60vw] shrink-0 lg:w-[23vw]"
             >
-              <Image
-                src={`https://image.tmdb.org/t/p/original${item.backdrop_path}`}
-                width={1440}
-                height={1080}
-                alt="movie"
-                className="h-full w-full rounded-xl object-cover"
-              />
-              <div className="absolute bottom-0 mb-2 ml-3 w-full">
+              <Link href={`/movie/${item.id}`}>
+                <Image
+                  src={`https://image.tmdb.org/t/p/original${item.backdrop_path}`}
+                  width={1440}
+                  height={1080}
+                  alt="movie"
+                  className="h-full w-full rounded-xl object-cover"
+                />
+              </Link>
+              <div className="absolute bottom-0 mb-2 ml-3 w-56 lg:w-full">
                 <p>{item.original_title}</p>
               </div>
             </div>

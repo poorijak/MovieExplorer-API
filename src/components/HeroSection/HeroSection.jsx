@@ -11,7 +11,7 @@ import Link from "next/link";
 
 export default function HeroSection({ content, lastSlice, data }) {
   return (
-    <div className="relative w-full">
+    <div className="relative w-full text-white">
       <Swiper
         modules={[Autoplay, Mousewheel, Navigation]}
         direction="horizontal"
@@ -37,7 +37,7 @@ export default function HeroSection({ content, lastSlice, data }) {
               style={{
                 backgroundImage: `url(${`https://image.tmdb.org/t/p/original${item.backdrop_path}`})`,
               }}
-              className="h-[90vh] w-screen bg-cover bg-center xl:bg-top"
+              className="h-[90vh] w-full bg-cover bg-center xl:bg-top"
             >
               <div className="flex h-full w-full items-center justify-center bg-blackOverlay_5 xl:block xl:bg-blackOverlay_2">
                 <div className="">
