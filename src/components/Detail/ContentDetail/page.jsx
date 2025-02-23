@@ -132,13 +132,14 @@ const MovieDetail = ({ id, category }) => {
         animate="show"
       >
         <div
+          key={detail?.id}
           style={{
             backgroundImage: `url(${`https://image.tmdb.org/t/p/original${detail?.backdrop_path}`})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            backgroundRepeat: "no-repeat",
+            backgroundSize: "cover", // ปรับให้ภาพไม่ถูกตัด
+            backgroundPosition: "center", // ให้ภาพอยู่ตรงกลาง
+            backgroundRepeat: "no-repeat", // ไม่ให้ภาพทำการ repeat
           }}
-          className="h-[70vh] w-full bg-cover bg-fixed bg-center lg:h-[100vh] lg:bg-top"
+          className="h-[70vh] w-full bg-bottom lg:h-[100vh]"
         >
           <div className="relative h-full w-full bg-blackOverlay_1 px-11 pt-36 lg:hidden"></div>
 
