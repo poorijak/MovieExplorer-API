@@ -15,7 +15,7 @@ const page = ({ movie }) => {
 
   return (
     <>
-      <div className="relative h-[240vh] overflow-x-hidden bg-black text-white">
+      <div className="relative h-[240vh] bg-black text-white md:overflow-clip">
         <motion.div
           style={{ opacity }}
           ref={ImageRef}
@@ -29,6 +29,7 @@ const page = ({ movie }) => {
             className="sticky top-0 h-[100vh] w-full object-cover"
           />
         </motion.div>
+
         <motion.div
           variants={{
             hidden: { opacity: 0 },

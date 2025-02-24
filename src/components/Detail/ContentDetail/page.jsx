@@ -152,13 +152,13 @@ const MovieDetail = ({ id, category }) => {
           >
             <p
               style={{ textShadow: "2px 2px 8px rgba(0, 0, 0, 0.6)" }}
-              className="mb-10 mt-60 text-center text-6xl font-medium text-white drop-shadow-lg lg:mt-0 lg:text-8xl"
+              className="mb-10 mt-60 text-center font-medium text-white drop-shadow-lg md:text-3xl lg:mt-0 lg:text-7xl xl:text-8xl"
             >
               {detail?.original_title || detail?.original_name}
             </p>
           </motion.div>
         </div>
-        <div className="absolute right-20 top-32 hidden lg:block">
+        <div className="absolute top-32 hidden lg:right-10 lg:block xl:right-20">
           <motion.div
             variants={overVirew}
             initial="hidden"
@@ -220,16 +220,16 @@ const MovieDetail = ({ id, category }) => {
               animate="show"
               transition={{ duration: index * 0.5, delay: 3.2 }}
               key={index}
-              className="mb-2 flex gap-3 text-white"
+              className="mb-2 flex items-center gap-3 text-white"
             >
-              <p>{item.label}</p>
+              <p className="w-20">{item.label}</p>
 
               <div className="flex gap-2">
                 {Array.isArray(item.value) ? (
                   item.value.map((valueItem, subIndex) => (
                     <p
                       key={subIndex}
-                      className="rounded-full px-3 py-1 outline outline-1 outline-[#BDBDBD]"
+                      className="flex items-center text-nowrap rounded-full px-3 py-1 text-center outline outline-1 outline-[#BDBDBD]"
                     >
                       {valueItem}
                     </p>
