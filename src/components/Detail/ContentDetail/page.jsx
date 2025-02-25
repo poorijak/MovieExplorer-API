@@ -124,7 +124,7 @@ const MovieDetail = ({ id, category }) => {
   return (
     <>
       <motion.div
-        className="h-full w-full overflow-hidden bg-[#0D0D0D]"
+q         className="min-h-screen w-full overflow-hidden bg-[#0D0D0D]"
         variants={itmes}
         initial="hidden"
         animate="show"
@@ -133,7 +133,7 @@ const MovieDetail = ({ id, category }) => {
           bgImage={`https://image.tmdb.org/t/p/original${detail?.backdrop_path}`}
           key={detail?.id}
           strength={400}
-          className="relative flex h-[70vh] w-full justify-center lg:h-[100vh]"
+          className="relative flex h-[70vh] w-full justify-center lg:h-screen"
           style={{ willChange: "transform" }}
           bgImageStyle={{
             width: "100%",
@@ -143,7 +143,7 @@ const MovieDetail = ({ id, category }) => {
         ></Parallax>
         <div className="absolute inset-0 h-[70vh] w-full bg-blackOverlay_1 lg:hidden"></div>
         <div className="absolute inset-0 hidden h-full w-full bg-blackOverlay_6 lg:flex"></div>
-        <div className="absolute left-20 top-40 hidden lg:block">
+        <div className="absolute md:left-20 md:top-36 xl:left-40 2xl:left-20 xl:top-36 2xl:top-40 hidden lg:block">
           <motion.div
             variants={title}
             initial="hidden"
@@ -152,13 +152,13 @@ const MovieDetail = ({ id, category }) => {
           >
             <p
               style={{ textShadow: "2px 2px 8px rgba(0, 0, 0, 0.6)" }}
-              className="mb-10 mt-60 text-center font-medium text-white drop-shadow-lg md:text-3xl lg:mt-0 lg:text-7xl xl:text-8xl"
+              className="mb-10 mt-60 text-center font-medium text-white drop-shadow-lg md:text-3xl lg:mt-0 lg:text-7xl xl:text-6xl 2xl:text-8xl"
             >
               {detail?.original_title || detail?.original_name}
             </p>
           </motion.div>
         </div>
-        <div className="absolute top-32 hidden lg:right-10 lg:block xl:right-20">
+        <div className="absolute top-32 hidden lg:right-10 lg:block xl:right-10 2xl:right-20">
           <motion.div
             variants={overVirew}
             initial="hidden"
@@ -171,7 +171,7 @@ const MovieDetail = ({ id, category }) => {
               duration={1}
               delay={2}
               startOnView={false}
-              className={`text-left text-lg font-normal text-white drop-shadow-lg`}
+              className={`text-left 2xl:text-lg xl:text-base  font-normal text-white drop-shadow-lg`}
             >
               {detail?.overview ?? ""}
             </TextAnimate>
@@ -185,7 +185,7 @@ const MovieDetail = ({ id, category }) => {
           >
             <div className="flex items-center justify-center gap-2">
               <Image src="/IMDB.svg" width={70} height={70} alt="imdb logo" />
-              <p className="text-2xl font-bold text-black">
+              <p className="xl:text-xl 2xl:text-2xl font-bold text-black">
                 {detail?.vote_average.toFixed(1)}
               </p>
             </div>
@@ -224,7 +224,7 @@ const MovieDetail = ({ id, category }) => {
             >
               <p className="w-20">{item.label}</p>
 
-              <div className="flex gap-2">
+              <div className="flex gap-2 xl:text-sm 2xl:text-base">
                 {Array.isArray(item.value) ? (
                   item.value.map((valueItem, subIndex) => (
                     <p

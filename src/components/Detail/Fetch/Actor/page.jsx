@@ -15,7 +15,7 @@ const Actor = ({ data }) => {
   }, []);
 
   return (
-    <div className="mt-10 w-full px-3 lg:px-10">
+    <div className="mt-10 w-full px-3 lg:px-10 text-white">
       <div>
         <h2 className="lg:ext-2xl mb-4 text-4xl font-semibold">
           Top Billed Cast
@@ -41,6 +41,10 @@ const Actor = ({ data }) => {
               spaceBetween: 5,
             },
             1280: {
+              slidesPerView: 6,
+              spaceBetween: 20,
+            },
+            1500: {
               slidesPerView: 8,
               spaceBetween: 20,
             },
@@ -49,7 +53,7 @@ const Actor = ({ data }) => {
             forceToAxis: true,
             releaseOnEdges: true,
           }}
-          className="mb-10 h-auto max-w-full"
+          className=" mb-10 h-auto max-w-full"
           onSlideChange={() => Aos.refresh()} // แก้ปัญหา AOS หายเมื่อเปลี่ยนสไลด์
         >
           {data.map((item, index) => (
