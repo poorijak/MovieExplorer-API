@@ -58,7 +58,7 @@ export default function HeroSection({ content, lastSlice, data }) {
                         <span className="ml-2 text-lg"> /10</span>
                       </p>
                       <Image
-                        src="IMDB.svg"
+                        src="/IMDB.svg"
                         width={50}
                         height={50}
                         alt="imdb logo"

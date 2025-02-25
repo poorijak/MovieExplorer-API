@@ -61,7 +61,10 @@ const Detail = ({ data }) => {
           },
           {
             label: "Time :",
-            value: `${Math.floor(data.runtime / 60)} h ${data.runtime % 60}m`,
+            value:
+              data?.runtime < 60
+                ? `${data?.runtime}m`
+                : `${Math.floor(data?.runtime / 60)}h ${data?.runtime % 60}m`,
           },
           {
             label: "episode : ",
@@ -86,9 +89,9 @@ const Detail = ({ data }) => {
           },
         ].map((item, index) => (
           <div key={index}>
-            <p className="mx-5 text-lg font-medium text-[#7c7c7c] lg:mx-20">
+            <p className="mx-5 text-lg font-medium text-[#7c7c7c] lg:mx-20 2xl:text-xl">
               {item.label}
-              <span className="text-base text-white lg:text-lg">
+              <span className="text-base text-white lg:text-lg 2xl:text-xl">
                 {" "}
                 {item.value}
               </span>

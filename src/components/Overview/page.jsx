@@ -3,7 +3,6 @@ import { useCollapse } from "react-collapsed";
 
 const page = ({ text }) => {
   const previewLength = 200; // จำนวนตัวอักษรที่จะแสดง
-
   // หาตำแหน่งที่ดีที่สุดเพื่อให้ไม่ตัดคำกลาง
   const cutText = (str, length) => {
     const cutAt = str.lastIndexOf(" ", length); // หาตำแหน่งช่องว่างใกล้ที่สุด
@@ -17,7 +16,7 @@ const page = ({ text }) => {
   const { getCollapseProps, getToggleProps } = useCollapse({ isExpanded });
 
   return (
-    <div className="block lg:hidden">
+    <div className="block text-center lg:hidden lg:text-left">
       <p className="text-white">
         {showText}
         {!isExpanded && hiddenText.length > 0 && "..."}

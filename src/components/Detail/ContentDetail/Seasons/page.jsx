@@ -4,6 +4,7 @@ import React, { useEffect } from "react";
 import Aos from "aos";
 import "aos/dist/aos.css";
 import Overview from "@/src/components/Overview/page";
+import { TbMoodSadDizzy } from "react-icons/tb";
 
 const page = ({ data, name }) => {
   useEffect(() => {
@@ -22,14 +23,23 @@ const page = ({ data, name }) => {
           key={item.id}
         >
           <div className="mx-3 flex flex-col items-center justify-start lg:mx-10 lg:flex-row">
-            <Image
-              src={`https://image.tmdb.org/t/p/original${item.poster_path}`}
-              width={200}
-              height={300}
-              priority
-              alt={item.original_name || item.name}
-              className="rounded-lg"
-            />
+            {item.poster_path ? (
+              <Image
+                src={`https://image.tmdb.org/t/p/original${item.poster_path}`}
+                width={200}
+                height={300}
+                priority
+                alt={item.original_name || item.name}
+                className="rounded-lg"
+              />
+            ) : (
+              <div className="flex flex-col items-center justify-center">
+                <TbMoodSadDizzy className="text-8xl" />
+                <p className="mt-5 font-semibold text-[#a6a6a6] 2xl:text-2xl">
+                  No Poster
+                </p>
+              </div>
+            )}
             <div className="mt-5 flex flex-col items-center justify-center lg:items-start lg:pl-16">
               <h1 className="mb-5 text-center text-3xl font-bold md:text-4xl lg:text-left lg:text-5xl">
                 {name} : <span>{item.original_name || item.name}</span>
@@ -37,16 +47,14 @@ const page = ({ data, name }) => {
               <div>
                 <div>
                   <div className="mb-4 px-5 text-xl font-medium text-[#7c7c7c] lg:px-0">
-                    <p>overview : </p>
-                    <Overview text={item.overview} />
-                    <div className="hidden lg:block">
-                      <p className="mb-4 px-10 text-xl font-medium text-[#7c7c7c] lg:px-0">
+                    {item.overview.length > 0 ? (
+                      <Overview text={item.overview} />
+                    ) : (
+                      <p className="text-lg text-[#7c7c7c] lg:text-lg">
                         Overview :{" "}
-                        <span className="text-lg text-white lg:text-lg">
-                          {item.overview || "Not available"}
-                        </span>
+                        <span className="text-white">Not available</span>
                       </p>
-                    </div>
+                    )}
                   </div>
                 </div>
                 <p className="mb-4 px-10 text-center text-xl font-medium text-[#7c7c7c] lg:px-0 lg:text-left">

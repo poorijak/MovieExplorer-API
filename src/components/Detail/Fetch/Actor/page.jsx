@@ -4,6 +4,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Mousewheel, Autoplay, Navigation } from "swiper/modules";
 import Image from "next/image";
 import Aos from "aos";
+import { MdOutlineImageNotSupported } from "react-icons/md";
 import "aos/dist/aos.css";
 
 const Actor = ({ data }) => {
@@ -15,7 +16,7 @@ const Actor = ({ data }) => {
   }, []);
 
   return (
-    <div className="mt-10 w-full px-3 lg:px-10 text-white">
+    <div className="mt-10 w-full px-3 text-white lg:px-10">
       <div>
         <h2 className="lg:ext-2xl mb-4 text-4xl font-semibold">
           Top Billed Cast
@@ -25,23 +26,23 @@ const Actor = ({ data }) => {
         <Swiper
           modules={[Autoplay, Mousewheel, Navigation]}
           direction="horizontal" // แสดงแนวนอน
-          spaceBetween={10}
-          slidesPerView={2} // ค่าเริ่มต้น
+          spaceBetween={15}
+          slidesPerView={9} // ค่าเริ่มต้น
           breakpoints={{
             640: {
-              slidesPerView: 3,
+              slidesPerView: 9,
               spaceBetween: 10,
             },
             768: {
-              slidesPerView: 4,
+              slidesPerView: 9,
               spaceBetween: 10,
             },
             1024: {
-              slidesPerView: 5,
-              spaceBetween: 5,
+              slidesPerView: 9,
+              spaceBetween: 10,
             },
             1280: {
-              slidesPerView: 6,
+              slidesPerView: 9,
               spaceBetween: 20,
             },
             1500: {
@@ -53,7 +54,7 @@ const Actor = ({ data }) => {
             forceToAxis: true,
             releaseOnEdges: true,
           }}
-          className=" mb-10 h-auto max-w-full"
+          className="mb-10 h-auto w-[1600px] lg:w-[2000px]"
           onSlideChange={() => Aos.refresh()} // แก้ปัญหา AOS หายเมื่อเปลี่ยนสไลด์
         >
           {data.map((item, index) => (
@@ -63,13 +64,19 @@ const Actor = ({ data }) => {
                 data-aos-delay={index * 100}
                 className="flex h-72 border-spacing-1 flex-col items-center gap-2 rounded-3xl border border-[#313131] bg-[#ffffff11] p-4 text-white"
               >
-                <Image
-                  src={`https://image.tmdb.org/t/p/original${item.profile_path || "null"}`}
-                  width={150}
-                  height={150}
-                  alt={item.name}
-                  className="lg h-36 w-36 rounded-full object-cover"
-                />
+                {item.profile_path ? (
+                  <Image
+                    src={`https://image.tmdb.org/t/p/original${item.profile_path || "null"}`}
+                    width={150}
+                    height={150}
+                    alt={item.name}
+                    className="lg h-36 w-36 rounded-full object-cover"
+                  />
+                ) : (
+                  <div className="flex flex-col items-center justify-center">
+                    <MdOutlineImageNotSupported className="text-8xl" />
+                  </div>
+                )}
                 <div className="flex flex-col items-center justify-center">
                   <p className="mt-2 text-center text-base font-medium lg:text-lg">
                     {item.name}

@@ -121,10 +121,12 @@ const MovieDetail = ({ id, category }) => {
     },
   };
 
+  console.log("detail", detail);
+
   return (
     <>
       <motion.div
-q         className="min-h-screen w-full overflow-hidden bg-[#0D0D0D]"
+        className="min-h-screen w-full overflow-hidden bg-[#0D0D0D]"
         variants={itmes}
         initial="hidden"
         animate="show"
@@ -143,7 +145,7 @@ q         className="min-h-screen w-full overflow-hidden bg-[#0D0D0D]"
         ></Parallax>
         <div className="absolute inset-0 h-[70vh] w-full bg-blackOverlay_1 lg:hidden"></div>
         <div className="absolute inset-0 hidden h-full w-full bg-blackOverlay_6 lg:flex"></div>
-        <div className="absolute md:left-20 md:top-36 xl:left-40 2xl:left-20 xl:top-36 2xl:top-40 hidden lg:block">
+        <div className="absolute hidden md:left-20 md:top-36 lg:block xl:left-40 xl:top-36 2xl:left-20 2xl:top-40">
           <motion.div
             variants={title}
             initial="hidden"
@@ -171,7 +173,7 @@ q         className="min-h-screen w-full overflow-hidden bg-[#0D0D0D]"
               duration={1}
               delay={2}
               startOnView={false}
-              className={`text-left 2xl:text-lg xl:text-base  font-normal text-white drop-shadow-lg`}
+              className={`text-left font-normal text-white drop-shadow-lg xl:text-base 2xl:text-lg`}
             >
               {detail?.overview ?? ""}
             </TextAnimate>
@@ -185,7 +187,7 @@ q         className="min-h-screen w-full overflow-hidden bg-[#0D0D0D]"
           >
             <div className="flex items-center justify-center gap-2">
               <Image src="/IMDB.svg" width={70} height={70} alt="imdb logo" />
-              <p className="xl:text-xl 2xl:text-2xl font-bold text-black">
+              <p className="font-bold text-black lg:text-2xl xl:text-xl 2xl:text-2xl">
                 {detail?.vote_average.toFixed(1)}
               </p>
             </div>

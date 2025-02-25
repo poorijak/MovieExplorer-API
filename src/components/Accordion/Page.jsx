@@ -77,7 +77,7 @@ function AccordionItem({ title, content }) {
     >
       <div
         onClick={handleToggle}
-        className="flex cursor-pointer justify-between text-xl font-medium lg:text-3xl"
+        className="flex cursor-pointer justify-between text-xl font-medium lg:text-2xl 2xl:text-3xl"
       >
         <div className="">{title}</div>
         <AiOutlinePlus
@@ -104,7 +104,7 @@ const Page = () => {
   return (
     <div
       data-aos="fade-up"
-      className="mx-auto mt-40 flex w-11/12 flex-col items-center space-y-4 lg:w-2/3 lg:flex-row lg:items-start"
+      className="mx-auto mt-28 flex w-11/12 flex-col items-center space-y-4 lg:w-2/3 lg:flex-row lg:items-start"
     >
       <div className="w-1/2 pt-7 text-center">
         <div className="flex flex-col items-center justify-center lg:items-start">

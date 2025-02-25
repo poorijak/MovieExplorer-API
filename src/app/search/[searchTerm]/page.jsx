@@ -9,6 +9,7 @@ import { IoSearch } from "react-icons/io5";
 import { FaPlay, FaStar } from "react-icons/fa6";
 import Image from "next/image";
 import Link from "next/link";
+import { MdOutlineImageNotSupported } from "react-icons/md";
 
 const fetcher = async (searchTerm) => {
   if (!searchTerm) return { searchResults: [], trending: [] };
@@ -84,14 +85,20 @@ function SearchPage({ paramsPromise }) {
             >
               <Link href={`/${item.media_type}/${item.id}`}>
                 <div className="mx-6 flex flex-row items-start justify-start lg:mx-10 lg:items-center">
-                  <Image
-                    src={`https://image.tmdb.org/t/p/original${item.poster_path}`}
-                    width={200}
-                    height={300}
-                    priority
-                    alt={item.original_title || item.name}
-                    className="h-52 w-44 rounded-lg lg:h-72 lg:w-52"
-                  />
+                  {item.poster_path ? (
+                    <Image
+                      src={`https://image.tmdb.org/t/p/original${item.poster_path}`}
+                      width={200}
+                      height={300}
+                      priority
+                      alt={item.original_title || item.name}
+                      className="h-52 w-44 rounded-lg lg:h-72 lg:w-52"
+                    />
+                  ) : (
+                    <div className="flex h-full flex-col items-center justify-center">
+                      <MdOutlineImageNotSupported className="text-8xl" />
+                    </div>
+                  )}
                   <div className="mt-0 flex flex-col items-center justify-center pl-0 lg:mt-5 lg:items-start lg:pl-16">
                     <h1 className="mb-2 ml-2 line-clamp-2 text-center text-2xl font-bold md:text-4xl lg:mb-5 lg:ml-0 lg:line-clamp-none lg:text-left lg:text-5xl">
                       {item.original_title || item.original_name}
