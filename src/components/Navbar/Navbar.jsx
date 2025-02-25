@@ -94,7 +94,7 @@ export default function Navbar() {
             </div>
 
             {/* desktop nav */}
-            <div className="hidden items-center gap-8 text-lg font-medium lg:flex">
+            <div className="hidden items-center gap-8 text-xl font-medium lg:flex">
               <Link href={"/MainContent"} onClick={scrollToTop}>
                 Home
               </Link>
@@ -104,9 +104,9 @@ export default function Navbar() {
               <Link href={"/TvContent"} onClick={scrollToTop}>
                 Tv Series
               </Link>
-              <Link href={"#"} onClick={scrollToTop}>
+              {/* <Link href={"#"} onClick={scrollToTop}>
                 My List
-              </Link>
+              </Link> */}
             </div>
             <form
               action=""
@@ -178,7 +178,7 @@ export default function Navbar() {
                     <Link href={"/TvContent"}>Tv Series</Link>
                   </motion.li>
 
-                  <motion.li
+                  {/* <motion.li
                     variants={items}
                     initial="hidden"
                     animate="show"
@@ -186,7 +186,7 @@ export default function Navbar() {
                     className="mb-5"
                   >
                     <Link href={"/"}>My List</Link>
-                  </motion.li>
+                  </motion.li> */}
                 </ul>
 
                 <motion.form

@@ -24,67 +24,68 @@ const Detail = ({ data }) => {
       >
         {[
           {
-            label: "Name : ",
+            label: "Title: ",
             value: data?.original_title || data?.original_name,
           },
           {
-            label: "Tagline : ",
+            label: "Tagline: ",
             value: data?.tagline || "Not available",
           },
           {
-            label: "Total buget : ",
+            label: "Total Budget: ",
             value: data?.budget || "Not available",
           },
           {
-            label: "Genres : ",
+            label: "Genres: ",
             value: data?.genres?.map((item) => item.name).join(" , "),
           },
           {
-            label: "Origin Country : ",
+            label: "Country of Origin: ",
             value: data?.origin_country?.map((item) => item),
           },
           {
-            label: "Original Language : ",
+            label: "Original Language: ",
             value: data?.original_language,
           },
           {
-            label: "Production Companies : ",
+            label: "Production Companies: ",
             value: data?.production_companies
               ?.map((item) => item.name)
               .join(" , "),
           },
           {
-            label: "Production Countries : ",
+            label: "Production Companies: ",
             value: data?.production_countries
               ?.map((item) => item.name)
               .join(" , "),
           },
           {
-            label: "Time :",
+            label: "Duration: ",
             value:
               data?.runtime < 60
                 ? `${data?.runtime}m`
-                : `${Math.floor(data?.runtime / 60)}h ${data?.runtime % 60}m`,
+                : `${Math.floor(data?.runtime / 60)}h ${data?.runtime % 60}m` ||
+                  "Not available",
           },
           {
-            label: "episode : ",
+            label: "Number of Episodes: ",
             value: data?.number_of_episodes || "Not available",
           },
           {
-            label: "seasons : ",
+            label: "Number of Seasons: ",
             value: data?.number_of_seasons || "Not available",
           },
           {
-            label: "Release Data : ",
+            label: "Release Date: ",
             value: data?.release_date || data?.first_air_date,
           },
           {
-            label: "Vote Average : ",
+            label: "Average Rating: ",
             value: data?.vote_average,
           },
 
           {
-            label: "Vote Count : ",
+            label: "Total Votes: ",
             value: data?.vote_count,
           },
         ].map((item, index) => (

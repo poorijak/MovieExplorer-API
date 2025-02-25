@@ -5,6 +5,7 @@ import { Mousewheel, Autoplay, Navigation } from "swiper/modules";
 import { FaStar } from "react-icons/fa6";
 import { IoIosArrowDroprightCircle } from "react-icons/io";
 import { ImFire } from "react-icons/im";
+import { MdOutlineImageNotSupported } from "react-icons/md";
 import Image from "next/image";
 import Link from "next/link";
 import Aos from "aos";
@@ -58,13 +59,19 @@ export default function PopularMovie({ name, data, content }) {
                   className="relative block overflow-hidden rounded-md"
                 >
                   <div className="group relative h-0 w-full pb-[150%]">
-                    <Image
-                      src={`https://image.tmdb.org/t/p/original${item.poster_path || item.backdrop_path}`}
-                      width={250}
-                      height={250}
-                      alt={item.original_title || item.name}
-                      className="absolute left-0 top-0 h-full w-full object-cover transition-transform duration-300 ease-in-out group-hover:scale-110"
-                    />
+                    {item?.poster_path ? (
+                      <Image
+                        src={`https://image.tmdb.org/t/p/original${item.poster_path || item.backdrop_path}`}
+                        width={250}
+                        height={250}
+                        alt={item.original_title || item.name}
+                        className="absolute left-0 top-0 h-full w-full object-cover transition-transform duration-300 ease-in-out group-hover:scale-110"
+                      />
+                    ) : (
+                      <div className="relative">
+                        <MdOutlineImageNotSupported className="absolute left-20 top-32 text-8xl" />
+                      </div>
+                    )}
                   </div>
                 </Link>
                 <h2 className="mt-2 line-clamp-1 font-semibold">

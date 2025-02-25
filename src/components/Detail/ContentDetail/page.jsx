@@ -121,8 +121,6 @@ const MovieDetail = ({ id, category }) => {
     },
   };
 
-  console.log("detail", detail);
-
   return (
     <>
       <motion.div
@@ -260,7 +258,7 @@ const MovieDetail = ({ id, category }) => {
           <div data-aos="fade-up" className="mt-10">
             <p
               style={{ textShadow: "2px 2px 8px rgba(0, 0, 0, 0.6)" }}
-              className="text-center text-4xl font-semibold drop-shadow-lg"
+              className="text-center text-4xl font-semibold text-white drop-shadow-lg"
             >
               {detail?.original_title}
             </p>
