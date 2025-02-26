@@ -23,7 +23,7 @@ const page = ({ data, content }) => {
     <div className="relative text-white">
       {/* Header */}
       <div className="my-5 ml-8 flex items-center">
-        <ImFire className="mr-2 text-xl text-[#FFC300]" />
+        <ImFire className="mr-2 text-xl text-[#708DFF]" />
         <h1 className="text-xl font-semibold">Airing to day!</h1>
         <hr className="my-8 ml-4 mr-4 h-[2px] w-full flex-1 border-0 bg-[#303030] lg:ml-10 lg:mr-20" />
       </div>
