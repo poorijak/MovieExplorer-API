@@ -11,14 +11,12 @@ This project provides endpoints to fetch movie data such as trending, popular, o
 - Fetch trending or popular movies  
 - Search movies by keyword  
 - Retrieve movie details by ID  
-- Built with [Hono](https://hono.dev/) — a fast web framework  
 - Deployed on [Vercel](https://vercel.com/)  
 
 ---
 
 ## 🛠 Tech Stack
 - **Runtime**: Node.js 18+  
-- **Framework**: [Hono](https://hono.dev/)  
 - **Deployment**: Vercel  
 
 ---
