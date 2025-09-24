@@ -18,7 +18,6 @@ It acts as a simple wrapper around [TMDB API](https://developer.themoviedb.org/)
 
 ## 🛠 Tech Stack
 - **Runtime**: Node.js 18+  
-- **Framework**: [Express](https://expressjs.com/)  
 - **HTTP Client**: Axios  
 - **Deployment**: Vercel  
 - **Data Source**: [TMDB](https://developer.themoviedb.org/)
